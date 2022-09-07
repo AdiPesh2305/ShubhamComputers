@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { GlobalCartContextProvider } from "./context/CartContext";
 import loadingIcon from "./assets/images/dashboardloader3.gif";
 const Homepage = lazy(() => import("./Components/Homepage"));
+const About = lazy(() => import("./Components/About"));
 const Shopping = lazy(() => import("./Components/Shopping"));
 const Cart = lazy(() => import("./Components/Cart/Cart"));
 const Catalog = lazy(() => import("./Components/Catalog"));
@@ -23,6 +24,7 @@ function App() {
           >
             <Routes>
               <Route exact path="/" element={<Homepage/>} />
+              <Route exact path="/about" element={<About/>} />
               <Route exact path="/shop" element={<Shopping/>} />
               <Route exact path="/search" element={<SearchProducts/>} />
               <Route exact path="/cart" element={<Cart/>} />

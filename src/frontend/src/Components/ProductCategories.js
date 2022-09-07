@@ -20,7 +20,7 @@ export default function MultiActionAreaCard() {
         <CardActionArea>
           <CardMedia
             component="img"
-            height="140"
+            height="150"
             image={icImage}
             alt="green iguana"
           />
@@ -43,7 +43,7 @@ export default function MultiActionAreaCard() {
         <CardActionArea>
           <CardMedia
             component="img"
-            height="140"
+            height="150"
             image={icImage}
             alt="green iguana"
           />
@@ -66,7 +66,7 @@ export default function MultiActionAreaCard() {
         <CardActionArea>
           <CardMedia
             component="img"
-            height="140"
+            height="150"
             image={icImage}
             alt="green iguana"
           />
@@ -89,7 +89,7 @@ export default function MultiActionAreaCard() {
         <CardActionArea>
           <CardMedia
             component="img"
-            height="140"
+            height="150"
             image={icImage}
             alt="green iguana"
           />

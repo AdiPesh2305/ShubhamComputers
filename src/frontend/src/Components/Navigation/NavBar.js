@@ -13,6 +13,7 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import SearchIcon from '@mui/icons-material/Search';
 import InputBase from '@mui/material/InputBase';
+// import Logo from '/images/logo.png';
 
 const pages = ['Products', 'About', 'Contact'];
 
@@ -78,10 +79,18 @@ const NavBar = () => {
   }));
 
   return (
-    <AppBar position="sticky">
+    <AppBar position="sticky" sx={{
+      background: '#000',
+    }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
+          <img
+            src={'/images/logo.png'}
+            alt="logo"
+            height='25'
+            width='25'
+          />
           <Typography
             variant="h5"
             noWrap
@@ -89,10 +98,9 @@ const NavBar = () => {
             href="/"
             sx={{
               mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              flexGrow: 1,
+              display: { xs: 'none', md: 'block' },
               color: 'inherit',
-              textDecoration: 'none',
+              textDecoration: 'none'
             }}
           >
             Shubham Computers

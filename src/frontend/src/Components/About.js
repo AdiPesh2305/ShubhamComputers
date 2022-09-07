@@ -26,8 +26,7 @@ export default function () {
 
         {/* <SecondaryIntro /> */}
         <Box sx={{
-          px: 4,
-          pt:4,
+          p: 4,
           backgroundColor: '#EDEDED'
         }}
         >
@@ -41,16 +40,11 @@ export default function () {
             Welcome to Shubham Computers
           </Typography>
           <Box sx={{
-            mt:1
+            mt: 1
           }}>
-          Shubham Computers is a sole proprietorship in the computer business since 1996. We supply Reparing Accessories, Tools, IC Chipsets, COFS, TCON Cards, Logic Cards, Testing Equipment, DATA Recovery solutions, Machinery for repairing electronic/Microprocessor Based devices like TVs, Monitors, Motherboards (Desktop/Laptop/ Industrialetc), RAM, Hard Disk, Displays, PCI Cards, LCD repairing parts, etc. Pan India Delivery. All types of service center supplies under one roof.
+            Shubham Computers is a sole proprietorship in the computer business since 1996. We supply Reparing Accessories, Tools, IC Chipsets, COFS, TCON Cards, Logic Cards, Testing Equipment, DATA Recovery solutions, Machinery for repairing electronic/Microprocessor Based devices like TVs, Monitors, Motherboards (Desktop/Laptop/ Industrialetc), RAM, Hard Disk, Displays, PCI Cards, LCD repairing parts, etc. Pan India Delivery. All types of service center supplies under one roof.
           </Box>
         </Box>
-
-        <ProductCategories />
-
-        {/* <PopularProducts /> */}
-
         <Footer />
       </Suspense>
     </div>

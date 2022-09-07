@@ -12,19 +12,19 @@ function Footer() {
           Reach out to us for more details
         </p>
       </section>
-      <div class='footer-links'>
+      <div className='footer-links'>
         <div className='footer-link-wrapper'>
-          <div class='footer-link-items'>
+          <div className='footer-link-items'>
             <h2>
-              <Link to='/'>About Us</Link>
+              <Link to='/about'>About Us</Link>
             </h2>
           </div>
-          <div class='footer-link-items'>
+          <div className='footer-link-items'>
             <h2>
               <Link to='/'>Contact Us</Link>
             </h2>
           </div>
-          <div class='footer-link-items'>
+          <div className='footer-link-items'>
             <h2>Social Media</h2>
             <Link to='/'>Facebook</Link>
             <Link to='/'>WhatsApp</Link>
@@ -33,15 +33,15 @@ function Footer() {
           </div>
         </div>
       </div>
-      <section class='social-media'>
-        <div class='social-media-wrap'>
-          <div class='footer-logo'>
+      <section className='social-media'>
+        <div className='social-media-wrap'>
+          <div className='footer-logo'>
             <Link to='/' className='social-logo'>
               Shubham Computers
             </Link>
           </div>
-          {/* <small class='website-rights'>TRVL © 2020</small> */}
-          <div class="website-rights">Copyright © 2015-2022 All Rights Reserved</div>
+          {/* <small className='website-rights'>TRVL © 2020</small> */}
+          <div className="website-rights">Copyright © 2015-2022 All Rights Reserved</div>
         </div>
       </section>
     </div>
