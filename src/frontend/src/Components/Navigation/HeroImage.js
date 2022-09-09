@@ -1,13 +1,18 @@
 import React from "react";
 import "../../styles/HeroImage.scss";
+import HeroBkgImage from '../../assets/images/1.jpg';
 
 export default function HeroImage(props) {
-  
+
   return (
     <div className='hero-container'>
-      <video src='/videos/video-1.mp4' autoPlay loop muted />
+      {/* <video src='/videos/video-1.mp4' autoPlay loop muted /> */}
+      <img
+        src={HeroBkgImage}
+        alt="logo"
+      />
       <h1>SHUBHAM COMPUTERS</h1>
-      <p>COMPUTER & ACCESSORIES</p>
+      <p>COMPUTER ACCESSORIES and more...</p>
     </div>
   );
 }

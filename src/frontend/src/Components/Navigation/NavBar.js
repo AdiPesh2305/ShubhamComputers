@@ -13,7 +13,7 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import SearchIcon from '@mui/icons-material/Search';
 import InputBase from '@mui/material/InputBase';
-// import Logo from '/images/logo.png';
+import Logo from '../../assets/images/logo.png';
 
 const pages = ['Products', 'About', 'Contact'];
 
@@ -50,7 +50,7 @@ const NavBar = () => {
       width: 'auto',
     },
   }));
-  
+
   const SearchIconWrapper = styled('div')(({ theme }) => ({
     padding: theme.spacing(0, 2),
     height: '100%',
@@ -60,7 +60,7 @@ const NavBar = () => {
     alignItems: 'center',
     justifyContent: 'center',
   }));
-  
+
   const StyledInputBase = styled(InputBase)(({ theme }) => ({
     color: 'inherit',
     '& .MuiInputBase-input': {
@@ -84,27 +84,29 @@ const NavBar = () => {
     }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
-          <img
-            src={'/images/logo.png'}
-            alt="logo"
-            height='25'
-            width='25'
-          />
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'block' },
-              color: 'inherit',
-              textDecoration: 'none'
-            }}
-          >
-            Shubham Computers
-          </Typography>
+          <Box sx={{ flexGrow: 2, display: { xs: 'flex', md: 'flex' } }}>
+            {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
+            <img
+              src={Logo}
+              alt="logo"
+              height='30'
+              width='30'
+            />
+            <Typography
+              variant="h5"
+              noWrap
+              component="a"
+              href="/"
+              sx={{
+                mr: 2,
+                display: { xs: 'none', md: 'block' },
+                color: 'inherit',
+                textDecoration: 'none'
+              }}
+            >
+              Shubham Computers
+            </Typography>
+          </Box>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <Menu
@@ -147,11 +149,11 @@ const NavBar = () => {
           >
             Shubham Computers
           </Typography>
-          <Box sx={{ 
-              flexGrow: 1,
-              display: { xs: 'none', md: 'block' },
-              mr: 3,
-            }}
+          <Box sx={{
+            flexGrow: 1,
+            display: { xs: 'none', md: 'block' },
+            mr: 3,
+          }}
           >
             <Search>
               <SearchIconWrapper>
