@@ -8,107 +8,87 @@ import { Button, CardActionArea, CardActions } from '@mui/material';
 import icImage from '../assets/images/ic.jpg';
 
 export default function MultiActionAreaCard() {
+  const productCategories = [
+    {
+      'id': 'product1',
+      'heading': 'IC',
+      'imgSrc': icImage,
+      'imgAlt': 'IC image',
+      'description': 'An integrated circuit (IC), sometimes called a chip, microchip or microelectronic circuit, is a semiconductor wafer on which thousands or millions of tiny resistors, capacitors, diodes and transistors are fabricated.',
+      'btnText': 'Learn More',
+      'routeTo': '',
+    },
+    {
+      'id': 'product2',
+      'heading': 'IC',
+      'imgSrc': icImage,
+      'imgAlt': 'IC image',
+      'description': 'An integrated circuit (IC), sometimes called a chip, microchip or microelectronic circuit, is a semiconductor wafer on which thousands or millions of tiny resistors, capacitors, diodes and transistors are fabricated.',
+      'btnText': 'Learn More',
+      'routeTo': '',
+    },
+    {
+      'id': 'product3',
+      'heading': 'IC',
+      'imgSrc': icImage,
+      'imgAlt': 'IC image',
+      'description': 'An integrated circuit (IC), sometimes called a chip, microchip or microelectronic circuit, is a semiconductor wafer on which thousands or millions of tiny resistors, capacitors, diodes and transistors are fabricated.',
+      'btnText': 'Learn More',
+      'routeTo': '',
+    },
+    {
+      'id': 'product4',
+      'heading': 'IC',
+      'imgSrc': icImage,
+      'imgAlt': 'IC image',
+      'description': 'An integrated circuit (IC), sometimes called a chip, microchip or microelectronic circuit, is a semiconductor wafer on which thousands or millions of tiny resistors, capacitors, diodes and transistors are fabricated.',
+      'btnText': 'Learn More',
+      'routeTo': '',
+    }
+  ];
+
   return (
     <Container maxWidth="xl" sx={{
-      flexDirection: {xs: 'column', md: 'row'},
-      justifyContent: 'space-between',
-      display: { xs: 'flex'},
-      p: 4,
+      flexDirection: { xs: 'column', sm: 'row' },
+      justifyContent: { sm: 'space-between' },
+      display: 'flex',
+      flexWrap: { sm: 'wrap' },
+      p:4,
+      pb: {xs: 0, sm: 0, md: 4},
       backgroundColor: '#EDEDED',
     }}>
-      <Card sx={{ maxWidth: 300 }}>
-        <CardActionArea>
-          <CardMedia
-            component="img"
-            height="150"
-            image={icImage}
-            alt="green iguana"
-          />
-          <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-              IC
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              An integrated circuit (IC), sometimes called a chip, microchip or microelectronic circuit, is a semiconductor wafer on which thousands or millions of tiny resistors, capacitors, diodes and transistors are fabricated.
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-        <CardActions>
-          <Button size="small" color="primary">
-            Learn More
-          </Button>
-        </CardActions>
-      </Card>
-      <Card sx={{ maxWidth: 300 }}>
-        <CardActionArea>
-          <CardMedia
-            component="img"
-            height="150"
-            image={icImage}
-            alt="green iguana"
-          />
-          <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-              IC
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              An integrated circuit (IC), sometimes called a chip, microchip or microelectronic circuit, is a semiconductor wafer on which thousands or millions of tiny resistors, capacitors, diodes and transistors are fabricated.
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-        <CardActions>
-          <Button size="small" color="primary">
-            Learn More
-          </Button>
-        </CardActions>
-      </Card>
-      <Card sx={{ maxWidth: 300 }}>
-        <CardActionArea>
-          <CardMedia
-            component="img"
-            height="150"
-            image={icImage}
-            alt="green iguana"
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              IC
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              An integrated circuit (IC), sometimes called a chip, microchip or microelectronic circuit, is a semiconductor wafer on which thousands or millions of tiny resistors, capacitors, diodes and transistors are fabricated.
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-        <CardActions>
-          <Button size="small" color="primary">
-            Learn More
-          </Button>
-        </CardActions>
-      </Card>
-      <Card sx={{ maxWidth: 300 }}>
-        <CardActionArea>
-          <CardMedia
-            component="img"
-            height="150"
-            image={icImage}
-            alt="green iguana"
-          />
-          <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-              IC
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              An integrated circuit (IC), sometimes called a chip, microchip or microelectronic circuit, is a semiconductor wafer on which thousands or millions of tiny resistors, capacitors, diodes and transistors are fabricated.
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-        <CardActions>
-          <Button size="small" color="primary">
-            Learn More
-          </Button>
-        </CardActions>
-      </Card>
-
+      {productCategories.map((product) => (
+        <Card sx={{
+          flexBasis: { sm: '48%', md: '23%' },
+          mb: { xs: 4, sm: 4, md: 0 }
+        }} key={product.id}>
+          <CardActionArea>
+            <CardMedia
+              component="img"
+              height="180"
+              image={product.imgSrc}
+              alt={product.imgAlt}
+            />
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="div">
+                {product.heading}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                {product.description}
+              </Typography>
+            </CardContent>
+          </CardActionArea>
+          <CardActions
+            sx={{
+              justifyContent: 'end',
+              pr: 2,
+            }}>
+            <Button size="small" color="primary">
+              {product.btnText}
+            </Button>
+          </CardActions>
+        </Card>
+      ))}
     </Container>
   );
 }

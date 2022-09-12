@@ -2,11 +2,13 @@ import React, { Suspense } from "react";
 import "../styles/Homepage.scss";
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import CircularProgress from '@mui/material/CircularProgress';
 
 import loadingIcon from "../assets/images/dashboardloader3.gif";
 
 const NavBar = React.lazy(() => import("./Navigation/NavBar"));
 const Footer = React.lazy(() => import("./Navigation/Footer"));
+const ProgressSpinner = React.lazy(() => import("./ProgressSpinner"));
 // const SecondaryIntro = React.lazy(() => import("./Intro/SecondaryIntro"));
 const ProductCategories = React.lazy(() => import("./ProductCategories"));
 const PopularProducts = React.lazy(() => import("./PopularProducts"));
@@ -17,7 +19,7 @@ export default function () {
     <div>
       <Suspense
         fallback={
-          <img src={loadingIcon} alt="loading" className="loadingIcon" />
+          <CircularProgress />
         }
       >
         <NavBar />

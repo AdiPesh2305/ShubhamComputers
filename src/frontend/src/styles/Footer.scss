@@ -78,6 +78,11 @@
   color: #fff;
   text-decoration: none;
   margin-bottom: 0.5rem;
+  display: flex;
+}
+
+.footer-link-items svg {
+  margin-right: 0.5rem;
 }
 
 .footer-link-items a:hover {

@@ -3,6 +3,10 @@ import React from 'react';
 import "../../styles/Footer.scss";
 // import { Button } from './Button';
 import { Link } from 'react-router-dom';
+import TelegramIcon from '@mui/icons-material/Telegram';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import TwitterIcon from '@mui/icons-material/Twitter';
 
 function Footer() {
   return (
@@ -26,10 +30,10 @@ function Footer() {
           </div>
           <div className='footer-link-items'>
             <h2>Social Media</h2>
-            <Link to='/'>Facebook</Link>
-            <Link to='/'>WhatsApp</Link>
-            <Link to='/'>Twitter</Link>
-            <Link to='/'>Telegram</Link>
+            <Link to='/'><FacebookIcon />Facebook</Link>
+            <Link to='/'><WhatsAppIcon />WhatsApp</Link>
+            <Link to='/'><TwitterIcon />Twitter</Link>
+            <Link to='/'><TelegramIcon />Telegram</Link>
           </div>
         </div>
       </div>
