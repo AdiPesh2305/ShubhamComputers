@@ -17,9 +17,26 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
+import { Link } from 'react-router-dom';
 
 const drawerWidth = 240;
-const navItems = ['Products', 'About', 'Contact'];
+const navItems = [
+  {
+    'id': 'products',
+    'text': 'Products',
+    'routeTo': '/products'
+  },
+  {
+    'id': 'about',
+    'text': 'About',
+    'routeTo': '/about'
+  },
+  {
+    'id': 'contact',
+    'text': 'Contact',
+    'routeTo': '/contact'
+  }
+];
 
 const NavBar = (props) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -40,9 +57,9 @@ const NavBar = (props) => {
       <Divider />
       <List>
         {navItems.map((item) => (
-          <ListItem key={item} disablePadding>
-            <ListItemButton sx={{ textAlign: 'center' }}>
-              <ListItemText primary={item} />
+          <ListItem key={item.id} disablePadding>
+            <ListItemButton sx={{ textAlign: 'center' }} component={Link} to={item.routeTo}>
+              <ListItemText primary={item.text} />
             </ListItemButton>
           </ListItem>
         ))}
@@ -180,8 +197,8 @@ const NavBar = (props) => {
           </Box>
           <Box sx={{ display: { xs: 'none', md: 'block' } }}>
             {navItems.map((item) => (
-              <Button key={item} sx={{ color: '#fff' }}>
-                {item}
+              <Button key={item.id} sx={{ color: '#fff' }} component={Link} to={item.routeTo}>
+                {item.text}
               </Button>
             ))}
           </Box>

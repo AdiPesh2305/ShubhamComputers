@@ -6,6 +6,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions } from '@mui/material';
 import icImage from '../assets/images/ic.jpg';
+import { Link } from 'react-router-dom';
 
 export default function MultiActionAreaCard() {
   const productCategories = [
@@ -16,7 +17,7 @@ export default function MultiActionAreaCard() {
       'imgAlt': 'IC image',
       'description': 'An integrated circuit (IC), sometimes called a chip, microchip or microelectronic circuit, is a semiconductor wafer on which thousands or millions of tiny resistors, capacitors, diodes and transistors are fabricated.',
       'btnText': 'Learn More',
-      'routeTo': '',
+      'routeTo': '/about',
     },
     {
       'id': 'product2',
@@ -25,7 +26,7 @@ export default function MultiActionAreaCard() {
       'imgAlt': 'IC image',
       'description': 'An integrated circuit (IC), sometimes called a chip, microchip or microelectronic circuit, is a semiconductor wafer on which thousands or millions of tiny resistors, capacitors, diodes and transistors are fabricated.',
       'btnText': 'Learn More',
-      'routeTo': '',
+      'routeTo': '/about',
     },
     {
       'id': 'product3',
@@ -34,7 +35,7 @@ export default function MultiActionAreaCard() {
       'imgAlt': 'IC image',
       'description': 'An integrated circuit (IC), sometimes called a chip, microchip or microelectronic circuit, is a semiconductor wafer on which thousands or millions of tiny resistors, capacitors, diodes and transistors are fabricated.',
       'btnText': 'Learn More',
-      'routeTo': '',
+      'routeTo': '/about',
     },
     {
       'id': 'product4',
@@ -43,7 +44,7 @@ export default function MultiActionAreaCard() {
       'imgAlt': 'IC image',
       'description': 'An integrated circuit (IC), sometimes called a chip, microchip or microelectronic circuit, is a semiconductor wafer on which thousands or millions of tiny resistors, capacitors, diodes and transistors are fabricated.',
       'btnText': 'Learn More',
-      'routeTo': '',
+      'routeTo': '/abou',
     }
   ];
 
@@ -53,8 +54,8 @@ export default function MultiActionAreaCard() {
       justifyContent: { sm: 'space-between' },
       display: 'flex',
       flexWrap: { sm: 'wrap' },
-      p:4,
-      pb: {xs: 0, sm: 0, md: 4},
+      p: 4,
+      pb: { xs: 0, sm: 0, md: 4 },
       backgroundColor: '#EDEDED',
     }}>
       {productCategories.map((product) => (
@@ -83,7 +84,7 @@ export default function MultiActionAreaCard() {
               justifyContent: 'end',
               pr: 2,
             }}>
-            <Button size="small" color="primary">
+            <Button size="small" component={Link} to={product.routeTo}>
               {product.btnText}
             </Button>
           </CardActions>
