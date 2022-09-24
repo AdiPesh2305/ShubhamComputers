@@ -1,10 +1,15 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 import data from "../data/Allproducts.json";
 import "../styles/Products.scss";
+import loadingIcon from "../assets/images/dashboardloader3.gif";
 import Product from "./Product";
+import Container from '@mui/material/Container';
+const NavBar = React.lazy(() => import("./Navigation/NavBar"));
+const Footer = React.lazy(() => import("./Navigation/Footer"));
 
 export default function Products(props) {
-  const collectionname = props.collectionname;
+  const { collectionname } = useParams();
   let products = [];
   let header_collection;
 
@@ -14,6 +19,7 @@ export default function Products(props) {
       header_collection = "Collection: " + collectionname.toUpperCase();
       break;
     case "kids":
+      console.log('collectionname ', collectionname)
       products = data.filter((product) => product.category === collectionname);
       header_collection = "Collection: " + collectionname.toUpperCase();
       break;
@@ -34,24 +40,35 @@ export default function Products(props) {
       header_collection = "Collection: " + collectionname.toUpperCase();
       break;
     default:
+      console.log('collectionname ', collectionname)
       products = data;
-      header_collection="Products list";
+      header_collection = "Products list";
   }
 
   return (
-    <div className="container-products">
-      <div className="header-products">
-        <h1>
-        
+    <div>
+      <NavBar />
+      <div className="products-wrapper">
+        <div className="products-category-heading">
+          <h1>
             {header_collection}
-        </h1>
-      </div>
+          </h1>
+        </div>
 
-      <div className="row">
-        {products.map((product) => (
-          <Product data={product} key={product.id} />
-        ))}
+        <Container maxWidth="xl" sx={{
+          flexDirection: { xs: 'column', sm: 'row' },
+          justifyContent: { sm: 'space-between' },
+          display: 'flex',
+          flexWrap: { sm: 'wrap' },
+          p: 4,
+          pb: { xs: 0, sm: 0, md: 0 },
+        }}>
+          {products.map((product) => (
+            <Product data={product} key={product.id} />
+          ))}
+        </Container>
       </div>
+      <Footer />
     </div>
   );
 }

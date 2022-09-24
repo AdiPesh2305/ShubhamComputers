@@ -1,18 +1,12 @@
 @import "colors";
-$a-tag-product: "a, a:active, a:hover,a:visited,a:link";
-.container-products {
+
+.products-wrapper {
   width: 95%;
   margin: 0 auto;
-  padding: 40px 5px;
-}
+  padding-top: 2rem;
 
-.product-card-action-container {
-  background-color: $themeColor;
-  margin: 0 auto;
-  width: 90%;
-}
-.header-products {
-  text-align: center;
-  margin-bottom: 20px;
-  color: $colorGrey;
+  .products-category-heading {
+    text-align: center;
+    color: $colorGrey;
+  }
 }

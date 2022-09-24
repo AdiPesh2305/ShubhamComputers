@@ -2,3 +2,35 @@
 @import "product_card";
 @import "product_price_status";
 
+.product-list {
+    .product-discount {
+        padding: 0.5rem;
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 2;
+        color: #fff;
+        font-size: 0.75rem;
+        font-weight: 600;
+        background-color: #e22727
+    }
+
+    .product-price-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: flex-start;
+
+        div:first-child {
+            margin-right: 10px;
+        }
+
+        div:not(:first-child) {
+            font-weight: 600;
+            font-size: 15px;
+            color: #171616;
+            opacity: 0.6;
+            text-decoration: line-through;
+        }
+    }
+}

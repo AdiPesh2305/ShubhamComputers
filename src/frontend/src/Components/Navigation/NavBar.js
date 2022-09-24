@@ -34,7 +34,8 @@ const navItems = [
   {
     'id': 'contact',
     'text': 'Contact',
-    'routeTo': '/contact'
+    // 'routeTo': '/contact'
+    'routeTo': '/products/kids'
   }
 ];
 
