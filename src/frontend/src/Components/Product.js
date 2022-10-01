@@ -3,6 +3,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
+import { Link } from 'react-router-dom';
 import { Button, CardActionArea, CardActions } from '@mui/material';
 import icImage from '../assets/images/ic.jpg';
 import { GlobalCartContext } from '../context/CartContext';
@@ -19,16 +20,17 @@ export default function Product(props) {
     'imgSrc': icImage,
     'imgAlt': 'IC image',
     'price': '999',
-		'discountedPrice': '1,999',
+    'discountedPrice': '1,999',
+    'routeTo': '/'
   }
 
   return (
     <Card sx={{
       flexBasis: { sm: '48%', md: '23%' },
-      mb: { xs: 4, sm: 4, md: 4 },
+      margin: { sm: '1%' },
       position: 'relative'
     }} key={product.id} className='product-list'>
-      <CardActionArea>
+      <CardActionArea component={Link} to={product.routeTo}>
         <CardMedia
           component="img"
           height="180"
@@ -42,7 +44,7 @@ export default function Product(props) {
           <section className="product-price-wrapper">
             <div>₹ 999.00</div>
             <div>₹ 1,999.00</div>
-            <span class="product-discount">50% OFF</span>
+            <span className="product-discount">50% OFF</span>
           </section>
         </CardContent>
       </CardActionArea>

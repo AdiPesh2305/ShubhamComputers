@@ -51,17 +51,18 @@ export default function Products(props) {
       <div className="products-wrapper">
         <div className="products-category-heading">
           <h1>
-            {header_collection}
+            {/* {header_collection} */}
+            All Products
           </h1>
         </div>
 
         <Container maxWidth="xl" sx={{
           flexDirection: { xs: 'column', sm: 'row' },
-          justifyContent: { sm: 'space-between' },
+          // justifyContent: { sm: 'space-between' },
           display: 'flex',
           flexWrap: { sm: 'wrap' },
           p: 4,
-          pb: { xs: 0, sm: 0, md: 0 },
+          pb: { xs: 0 },
         }}>
           {products.map((product) => (
             <Product data={product} key={product.id} />

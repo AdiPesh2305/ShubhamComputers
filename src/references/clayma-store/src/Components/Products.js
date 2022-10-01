@@ -15,6 +15,7 @@ export default function Products(props) {
       header_collection = "Collection: " + collectionname.toUpperCase();
       break;
     case "kids":
+      console.log('collectionname ', collectionname)
       products = data.filter((product) => product.category === collectionname);
       header_collection = "Collection: " + collectionname.toUpperCase();
       break;
