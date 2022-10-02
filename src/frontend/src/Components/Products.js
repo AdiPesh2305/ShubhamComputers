@@ -8,7 +8,7 @@ import Container from '@mui/material/Container';
 const NavBar = React.lazy(() => import("./Navigation/NavBar"));
 const Footer = React.lazy(() => import("./Navigation/Footer"));
 
-export default function Products(props) {
+export default function Products() {
   const { collectionname } = useParams();
   let products = [];
   let header_collection;
