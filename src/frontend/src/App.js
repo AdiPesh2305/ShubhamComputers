@@ -42,7 +42,8 @@ function App() {
               />
               <Route
                 exact
-                path="/catalog/item/:id/:productname/:action"
+                // path="/products/view/:id/:productname"
+                path="/products/view/:id"
                 element={<Catalog/>}
               />
 

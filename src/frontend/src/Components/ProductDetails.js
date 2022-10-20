@@ -11,9 +11,9 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../styles/ProductDetails.scss";
 import {GlobalCartContext} from '../context/CartContext';
+import { useParams } from "react-router-dom";
 
 export default function ProductDetails(props) {
-
   // const {action} =props;
   // let product_display_mode="action_view";
 
@@ -29,8 +29,7 @@ export default function ProductDetails(props) {
 
   // }
 
-  
-   
+  console.log('useParams ',useParams())
  
 
   const [prod_quantity,setProd_quantity]=useState(1)
@@ -39,6 +38,7 @@ export default function ProductDetails(props) {
   let ProductDetails;
   let productDescription = [];
   let productSize = [];
+  console.log('props.product ', props)
   props.product.map((product) => (ProductDetails = product));
   productDescription = ProductDetails.product_details;
   productSize = ProductDetails.size;

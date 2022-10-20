@@ -17,7 +17,7 @@ export default function MultiActionAreaCard() {
       'imgAlt': 'IC image',
       'description': 'An integrated circuit (IC), sometimes called a chip, microchip or microelectronic circuit, is a semiconductor wafer on which thousands or millions of tiny resistors, capacitors, diodes and transistors are fabricated.',
       'btnText': 'Learn More',
-      'routeTo': '/products',
+      'routeTo': '/products/men',
     },
     {
       'id': 'product2',

@@ -14,8 +14,8 @@ export default function Product(props) {
   console.log(props)
   // const product1 = props.data;
   // console.log('product ', product1)
-  // const { collectionname } = useParams();
-  // console.log(useParams())
+  // const { productCategory } = useParams();
+  // console.log('productCategory ', productCategory)
   const product = {
     // 'id': 'product3',
     "name": "Flower Border Scarf",
@@ -38,8 +38,7 @@ export default function Product(props) {
       margin: { sm: '1%' },
       position: 'relative'
     }} key={product.id} className='product-list'>
-      <CardActionArea component={Link} to={`/catalog/item/${props.data.id}/${product_name}/view`}
-      >
+      <CardActionArea component={Link} to={`/products/view/${product.id}`}>
         <CardMedia
           component="img"
           height="180"
