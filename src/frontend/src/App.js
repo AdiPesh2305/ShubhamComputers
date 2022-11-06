@@ -7,6 +7,7 @@ import { GlobalCartContextProvider } from "./context/CartContext";
 import loadingIcon from "./assets/images/dashboardloader3.gif";
 const Homepage = lazy(() => import("./Components/Homepage"));
 const About = lazy(() => import("./Components/About"));
+const Contact = lazy(() => import("./Components/Contact"));
 const Products = lazy(() => import("./Components/Products"));
 const Shopping = lazy(() => import("./Components/Shopping"));
 const Cart = lazy(() => import("./Components/Cart/Cart"));
@@ -28,6 +29,7 @@ function App() {
             <Routes>
               <Route exact path="/" element={<Homepage/>} />
               <Route exact path="/about" element={<About/>} />
+              <Route exact path="/contact-us" element={<Contact/>} />
               <Route exact path="/products" element={<Products/>} />
               <Route exact path="/products/:collectionname" element={<Products/>} />
               <Route exact path="/shop" element={<Shopping/>} />
