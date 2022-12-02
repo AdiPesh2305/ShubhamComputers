@@ -25,7 +25,6 @@ export default function Product(props) {
     'imgAlt': 'IC image',
     'price': '999',
     'discountedPrice': '1,999',
-    'routeTo': '/'
   }
 
   // `/catalog/item/${props.data.id}/${product_name}/view`
