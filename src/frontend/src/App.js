@@ -9,8 +9,6 @@ const Homepage = lazy(() => import("./Components/Homepage"));
 const About = lazy(() => import("./Components/About"));
 const Contact = lazy(() => import("./Components/Contact"));
 const Products = lazy(() => import("./Components/Products"));
-const Shopping = lazy(() => import("./Components/Shopping"));
-const Cart = lazy(() => import("./Components/Cart/Cart"));
 const Catalog = lazy(() => import("./Components/Catalog"));
 const ProgressSpinner = lazy(() => import("./Components/ProgressSpinner"));
 
@@ -32,16 +30,7 @@ function App() {
               <Route exact path="/contact-us" element={<Contact/>} />
               <Route exact path="/products" element={<Products/>} />
               <Route exact path="/products/:collectionname" element={<Products/>} />
-              <Route exact path="/shop" element={<Shopping/>} />
               <Route exact path="/search" element={<SearchProducts/>} />
-              <Route exact path="/cart" element={<Cart/>} />
-              <Route exact path="/trend/:collectionname" element={<Shopping/>} />
-              <Route exact path="/collections" element={<Shopping/>} />
-              <Route
-                exact
-                path="/collections/:collectionname"
-                element={<Shopping/>}
-              />
               <Route
                 exact
                 // path="/products/view/:id/:productname"

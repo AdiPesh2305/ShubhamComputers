@@ -11,7 +11,6 @@ const Footer = React.lazy(() => import("./Navigation/Footer"));
 const ProgressSpinner = React.lazy(() => import("./ProgressSpinner"));
 // const SecondaryIntro = React.lazy(() => import("./Intro/SecondaryIntro"));
 const ProductCategories = React.lazy(() => import("./ProductCategories"));
-const PopularProducts = React.lazy(() => import("./PopularProducts"));
 const HeroImage = React.lazy(() => import("./Navigation/HeroImage"));
 
 export default function () {
@@ -48,11 +47,7 @@ export default function () {
           Shubham Computers is a sole proprietorship in the computer business since 1996. We supply Reparing Accessories, Tools, IC Chipsets, COFS, TCON Cards, Logic Cards, Testing Equipment, DATA Recovery solutions, Machinery for repairing electronic/Microprocessor Based devices like TVs, Monitors, Motherboards (Desktop/Laptop/ Industrialetc), RAM, Hard Disk, Displays, PCI Cards, LCD repairing parts, etc. Pan India Delivery. All types of service center supplies under one roof.
           </Box>
         </Box>
-
         <ProductCategories />
-
-        {/* <PopularProducts /> */}
-
         <Footer />
       </Suspense>
     </div>

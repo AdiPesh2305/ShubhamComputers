@@ -7,9 +7,7 @@ import loadingIcon from "../assets/images/dashboardloader3.gif";
 
 const NavBar = React.lazy(() => import("./Navigation/NavBar"));
 const Footer = React.lazy(() => import("./Navigation/Footer"));
-// const SecondaryIntro = React.lazy(() => import("./Intro/SecondaryIntro"));
 const ProductCategories = React.lazy(() => import("./ProductCategories"));
-const PopularProducts = React.lazy(() => import("./PopularProducts"));
 const HeroImage = React.lazy(() => import("./Navigation/HeroImage"));
 
 export default function () {
@@ -24,7 +22,6 @@ export default function () {
 
         <HeroImage />
 
-        {/* <SecondaryIntro /> */}
         <Box sx={{
           p: 4,
           backgroundColor: '#EDEDED'
