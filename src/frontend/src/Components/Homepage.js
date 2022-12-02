@@ -9,7 +9,6 @@ import loadingIcon from "../assets/images/dashboardloader3.gif";
 const NavBar = React.lazy(() => import("./Navigation/NavBar"));
 const Footer = React.lazy(() => import("./Navigation/Footer"));
 const ProgressSpinner = React.lazy(() => import("./ProgressSpinner"));
-// const SecondaryIntro = React.lazy(() => import("./Intro/SecondaryIntro"));
 const ProductCategories = React.lazy(() => import("./ProductCategories"));
 const HeroImage = React.lazy(() => import("./Navigation/HeroImage"));
 
@@ -22,10 +21,7 @@ export default function () {
         }
       >
         <NavBar />
-
         <HeroImage />
-
-        {/* <SecondaryIntro /> */}
         <Box sx={{
           px: 4,
           pt:4,

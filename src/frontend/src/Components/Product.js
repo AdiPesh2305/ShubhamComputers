@@ -1,13 +1,11 @@
-import React, { useContext } from "react";
+import React from "react";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { Link, useParams } from 'react-router-dom';
-import { Button, CardActionArea, CardActions } from '@mui/material';
+import { Link } from 'react-router-dom';
+import { CardActionArea } from '@mui/material';
 import icImage from '../assets/images/ic.jpg';
-import { GlobalCartContext } from '../context/CartContext';
-import { v4 as uuidv4 } from 'uuid';
 import "../styles/Product.scss";
 
 export default function Product(props) {

@@ -2,7 +2,6 @@ import React, { Suspense } from "react";
 import "../styles/Homepage.scss";
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-
 import loadingIcon from "../assets/images/dashboardloader3.gif";
 
 const NavBar = React.lazy(() => import("./Navigation/NavBar"));
@@ -19,9 +18,7 @@ export default function () {
         }
       >
         <NavBar />
-
         <HeroImage />
-
         <Box sx={{
           p: 4,
           backgroundColor: '#EDEDED'

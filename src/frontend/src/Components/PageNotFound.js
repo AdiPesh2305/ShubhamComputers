@@ -9,13 +9,12 @@ import HeroImage from "./Navigation/HeroImage";
 export default function PageNotFound() {
   return (
     <div>
-    <HeroImage/>
-
+      <HeroImage />
       <NavBar />
-        <div className="container-page-not_found">
-          <img src={PageNotFoundImage} alt="NotFound" />
-        </div>
-      <Footer/>
+      <div className="container-page-not_found">
+        <img src={PageNotFoundImage} alt="NotFound" />
+      </div>
+      <Footer />
     </div>
   );
 }

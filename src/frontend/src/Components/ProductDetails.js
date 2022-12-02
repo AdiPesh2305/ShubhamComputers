@@ -13,7 +13,7 @@ export default function ProductDetails(props) {
   productDescription = ProductDetails.product_details;
 
   const description = productDescription.map((desc, index) => (
-    <li key={desc+index}>
+    <li key={desc + index}>
       {desc}
     </li>
   ));
@@ -50,7 +50,7 @@ export default function ProductDetails(props) {
             </span>
           </h2>
           <h3>Product Details:</h3>
-          <ul type="" className="mb-4 mt-4">
+          <ul className="mb-4 mt-4">
             {description}
           </ul>
         </div>

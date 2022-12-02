@@ -28,17 +28,17 @@ export default function SearchProducts() {
       setsearchresult(results);
       setLoading(false);
       if (results.length < 1) {
-        
+
       }
     } else {
-      
+
     }
   };
 
   const handleSearchInput = (e) => {
     setQuery(e.target.value);
     setsearchresult([]);
-  
+
   };
   return (
     <div>
@@ -80,10 +80,9 @@ export default function SearchProducts() {
           <div className="row">
             {searchresult.length >= 1
               ? searchresult.map((product) => (
-                  <Product data={product} key={product.id} />
-                ))
+                <Product data={product} key={product.id} />
+              ))
               : ""}
-            
           </div>
         </div>
       </div>

@@ -55,7 +55,6 @@ export default function Products() {
             All Products
           </h1>
         </div>
-
         <Container maxWidth="xl" sx={{
           flexDirection: { xs: 'column', sm: 'row' },
           // justifyContent: { sm: 'space-between' },
