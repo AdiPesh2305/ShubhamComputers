@@ -2,14 +2,14 @@
 @import "product_card";
 @import "product_price_status";
 
-.container-product-details {
+.product-details-wrapper {
   padding: 20px;
   background-color: $white;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   display: flex;
 }
 
-.container-product-details > div {
+.product-details-wrapper > div {
   flex-basis: 50%;
 }
 

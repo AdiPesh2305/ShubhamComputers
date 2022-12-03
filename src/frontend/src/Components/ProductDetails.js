@@ -24,11 +24,11 @@ export default function ProductDetails(props) {
       backgroundColor: '#EDEDED'
     }}
     >
-      <div className="container-product-details">
+      <div className="product-details-wrapper">
         <div className="product-image-wrapper">
           <img
             className="product-image-main"
-            src={require("../assets/products/allproducts/" +
+            src={require("../assets/images/" +
               ProductDetails.product_image)}
             alt={ProductDetails.product_image}
           />

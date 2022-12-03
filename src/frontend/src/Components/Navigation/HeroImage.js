@@ -5,7 +5,7 @@ import HeroBkgImage from '../../assets/images/1.jpg';
 export default function HeroImage(props) {
 
   return (
-    <div className='hero-container'>
+    <div className='hero-wrapper'>
       {/* <video src='/videos/video-1.mp4' autoPlay loop muted /> */}
       <img
         src={HeroBkgImage}

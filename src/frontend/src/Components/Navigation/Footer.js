@@ -11,7 +11,7 @@ import EmailIcon from '@mui/icons-material/Email';
 
 function Footer() {
   return (
-    <div className='footer-container'>
+    <div className='footer-wrapper'>
       <div className='footer-links'>
         <div className='footer-link-items'>
           <h2>Contact Us</h2>

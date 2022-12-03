@@ -30,8 +30,6 @@ export default function SearchProducts() {
       if (results.length < 1) {
 
       }
-    } else {
-
     }
   };
 

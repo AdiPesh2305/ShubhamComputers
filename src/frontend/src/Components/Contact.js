@@ -1,7 +1,10 @@
 import React, { Suspense } from "react";
-import "../styles/Homepage.scss";
+import "../styles/Contact.scss";
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+
+import CallIcon from '@mui/icons-material/Call';
+import EmailIcon from '@mui/icons-material/Email';
 
 import loadingIcon from "../assets/images/dashboardloader3.gif";
 
@@ -23,18 +26,72 @@ export default function () {
         }}
         >
           <Typography
-            variant="h3"
-            noWrap
+            variant="h2"
             sx={{
-              textAlign: 'center'
+              textAlign: 'center',
+              fontSize: '2.5rem'
             }}
           >
-            Shubham Computers Contact Us Page
+            Contact Us
           </Typography>
           <Box sx={{
+            my: 2
+          }} className="map-wrapper">
+            <Typography
+                variant="h3"
+                sx={{
+                  fontSize: '1.5rem',
+                  borderBottom: '2px solid #CCC',
+                  mb: 1,
+                  pb: 0.5
+                }}
+              >
+                GOOGLE MAPS
+              </Typography>
+          </Box>
+          <Box sx={{
             mt: 1
-          }}>
-            Shubham Computers is a sole proprietorship in the computer business since 1996. We supply Reparing Accessories, Tools, IC Chipsets, COFS, TCON Cards, Logic Cards, Testing Equipment, DATA Recovery solutions, Machinery for repairing electronic/Microprocessor Based devices like TVs, Monitors, Motherboards (Desktop/Laptop/ Industrialetc), RAM, Hard Disk, Displays, PCI Cards, LCD repairing parts, etc. Pan India Delivery. All types of service center supplies under one roof.
+          }} className="contact-details-wrapper">
+            <div className="contact-form-wrapper">
+              <Typography
+                variant="h3"
+                sx={{
+                  fontSize: '1.5rem',
+                  borderBottom: '2px solid #CCC',
+                  mb: 1,
+                  pb: 0.5
+                }}
+              >
+                SEND US A MESSAGE
+              </Typography>
+            </div>
+            <div className="address-details-wrapper">
+              <Typography
+                variant="h3"
+                sx={{
+                  fontSize: '1.5rem',
+                  borderBottom: '2px solid #CCC',
+                  mb: 1,
+                  pb: 0.5
+                }}
+              >
+                SHOP ADDRESS
+              </Typography>
+              <address>
+                A-04, 2nd floor, <br />
+                Sidhachal Darshan <br />
+                Seth Motishah Lane <br />
+                Byculla East <br />
+                Mumbai 400 027 <br />
+                Maharashtra, India <br />
+              </address>
+              <a href="tel:9999999999">
+                <CallIcon /> +91 9999999999
+              </a>
+              <a href="mailto:aaa@aaa.com">
+                <EmailIcon /> aaa@aaa.com
+              </a>
+            </div>
           </Box>
         </Box>
         <Footer />

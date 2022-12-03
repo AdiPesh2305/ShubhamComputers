@@ -17,7 +17,7 @@ export default function MultiActionAreaCard() {
       'imgAlt': 'IC image',
       'description': 'An integrated circuit (IC), sometimes called a chip, microchip or microelectronic circuit, is a semiconductor wafer on which thousands or millions of tiny resistors, capacitors, diodes and transistors are fabricated.',
       'btnText': 'Learn More',
-      'routeTo': '/products/men',
+      'routeTo': '/products/ic',
     },
     {
       'id': 'product2',
@@ -26,7 +26,7 @@ export default function MultiActionAreaCard() {
       'imgAlt': 'IC image',
       'description': 'An integrated circuit (IC), sometimes called a chip, microchip or microelectronic circuit, is a semiconductor wafer on which thousands or millions of tiny resistors, capacitors, diodes and transistors are fabricated.',
       'btnText': 'Learn More',
-      'routeTo': '/products/men',
+      'routeTo': '/products/chips',
     },
     {
       'id': 'product3',
@@ -35,7 +35,7 @@ export default function MultiActionAreaCard() {
       'imgAlt': 'IC image',
       'description': 'An integrated circuit (IC), sometimes called a chip, microchip or microelectronic circuit, is a semiconductor wafer on which thousands or millions of tiny resistors, capacitors, diodes and transistors are fabricated.',
       'btnText': 'Learn More',
-      'routeTo': '/products/women',
+      'routeTo': '/products/ic',
     },
     {
       'id': 'product4',
@@ -44,7 +44,7 @@ export default function MultiActionAreaCard() {
       'imgAlt': 'IC image',
       'description': 'An integrated circuit (IC), sometimes called a chip, microchip or microelectronic circuit, is a semiconductor wafer on which thousands or millions of tiny resistors, capacitors, diodes and transistors are fabricated.',
       'btnText': 'Learn More',
-      'routeTo': '/products/kids',
+      'routeTo': '/products/chips',
     }
   ];
 

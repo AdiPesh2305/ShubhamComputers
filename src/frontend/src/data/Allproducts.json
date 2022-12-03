@@ -4,20 +4,20 @@
     "id": "2ve68tenY9TGZMPPxppP",
     "price": 200.0,
     "color": "X PINK",
-    "category": "women",
+    "category": "ic",
     "discount": 8,
     "size": ["small", "medium", "large", "xlarge"],
     "selected_size": "small",
     "product_status": "New",
     "product_stock": 30,
     "product_selected_qty": 1,
-    "product_image": "Flower-Border-Scarf-X-PINK-.jpg",
+    "product_image": "ic.jpg",
     "brand": "Gucci",
     "product_details": [
-      "100% polyester",
-      "100% polyester",
-      "100% polyester",
-      "100% polyester"
+      "Logic Gate ICs",
+      "Timer ICs",
+      "Operational Amplifiers",
+      "Voltage Regulators"
     ]
   },
   {
@@ -25,20 +25,20 @@
     "id": "2ve68tenY9TGZMPPxppP1",
     "price": 200.0,
     "color": "X PINK",
-    "category": "men",
+    "category": "chips",
     "discount": 8,
     "size": ["small", "medium", "large", "xlarge"],
     "selected_size": "small",
     "product_status": "New",
     "product_stock": 30,
     "product_selected_qty": 1,
-    "product_image": "Flower-Border-Scarf-X-PINK-.jpg",
+    "product_image": "ic.jpg",
     "brand": "Gucci",
     "product_details": [
-      "100% polyester",
-      "100% polyester",
-      "100% polyester",
-      "100% polyester"
+      "Logic Gate ICs",
+      "Timer ICs",
+      "Operational Amplifiers",
+      "Voltage Regulators"
     ]
   }
 ]
