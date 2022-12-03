@@ -5,8 +5,12 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions } from '@mui/material';
-import icImage from '../assets/images/ic.jpg';
 import { Link } from 'react-router-dom';
+
+import icImage from '../assets/images/products/ic.jpg';
+import standImage from '../assets/images/products/stand.jpg';
+import chargerImage from '../assets/images/products/charger.jpg';
+import connectorImage from '../assets/images/products/connector.jpg';
 
 export default function MultiActionAreaCard() {
   const productCategories = [
@@ -22,29 +26,29 @@ export default function MultiActionAreaCard() {
     {
       'id': 'product2',
       'heading': 'IC',
-      'imgSrc': icImage,
+      'imgSrc': standImage,
       'imgAlt': 'IC image',
       'description': 'An integrated circuit (IC), sometimes called a chip, microchip or microelectronic circuit, is a semiconductor wafer on which thousands or millions of tiny resistors, capacitors, diodes and transistors are fabricated.',
       'btnText': 'Learn More',
-      'routeTo': '/products/chips',
+      'routeTo': '/products/connector',
     },
     {
       'id': 'product3',
       'heading': 'IC',
-      'imgSrc': icImage,
+      'imgSrc': chargerImage,
       'imgAlt': 'IC image',
       'description': 'An integrated circuit (IC), sometimes called a chip, microchip or microelectronic circuit, is a semiconductor wafer on which thousands or millions of tiny resistors, capacitors, diodes and transistors are fabricated.',
       'btnText': 'Learn More',
-      'routeTo': '/products/ic',
+      'routeTo': '/products/charger',
     },
     {
       'id': 'product4',
       'heading': 'IC',
-      'imgSrc': icImage,
+      'imgSrc': connectorImage,
       'imgAlt': 'IC image',
       'description': 'An integrated circuit (IC), sometimes called a chip, microchip or microelectronic circuit, is a semiconductor wafer on which thousands or millions of tiny resistors, capacitors, diodes and transistors are fabricated.',
       'btnText': 'Learn More',
-      'routeTo': '/products/chips',
+      'routeTo': '/products/stand',
     }
   ];
 

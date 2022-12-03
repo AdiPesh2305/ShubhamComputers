@@ -5,29 +5,12 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
 import { CardActionArea } from '@mui/material';
-import icImage from '../assets/images/ic.jpg';
 import "../styles/Product.scss";
 
 export default function Product(props) {
-  console.log(props)
-  // const product1 = props.data;
-  // console.log('product ', product1)
-  // const { productCategory } = useParams();
-  // console.log('productCategory ', productCategory)
-  const product = {
-    // 'id': 'product3',
-    "name": "Flower Border Scarf",
-    "id": "2ve68tenY9TGZMPPxppP",
-    'heading': 'IC',
-    'imgSrc': icImage,
-    'imgAlt': 'IC image',
-    'price': '999',
-    'discountedPrice': '1,999',
-  }
-
-  // `/catalog/item/${props.data.id}/${product_name}/view`
-
-  let product_name = product.name.replace(/ /g, "_");
+  console.log(props.data)
+  const product = props.data;
+  const productMainImg = require("../assets/images/products/" + product.mainImg.src);
 
   return (
     <Card sx={{
@@ -39,17 +22,19 @@ export default function Product(props) {
         <CardMedia
           component="img"
           height="180"
-          image={product.imgSrc}
-          alt={product.imgAlt}
+          image={productMainImg}
+          alt={product.mainImg.alt}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            {product.heading}
+            {product.name}
           </Typography>
           <section className="product-price-wrapper">
-            <div>₹ 999.00</div>
-            <div>₹ 1,999.00</div>
-            <span className="product-discount">50% OFF</span>
+            <div>₹ {product.price.toFixed()}</div>
+            <div>₹ {
+              (product.price - (product.price * product.discount / 100)).toFixed(2)
+            }</div>
+            <span className="product-discount">{product.discount}% Off</span>
           </section>
         </CardContent>
       </CardActionArea>

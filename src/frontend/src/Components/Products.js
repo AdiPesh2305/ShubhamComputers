@@ -1,5 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
+import Typography from '@mui/material/Typography';
 import data from "../data/Allproducts.json";
 import "../styles/Products.scss";
 import loadingIcon from "../assets/images/dashboardloader3.gif";
@@ -11,50 +12,45 @@ const Footer = React.lazy(() => import("./Navigation/Footer"));
 export default function Products() {
   const { collectionname } = useParams();
   let products = [];
-  let header_collection;
+  let productCategoryHeader;
 
   switch (collectionname) {
-    case "women":
+    case "ic":
       products = data.filter((product) => product.category === collectionname);
-      header_collection = "Collection: " + collectionname.toUpperCase();
+      productCategoryHeader = collectionname.toUpperCase();
       break;
-    case "kids":
+    case "stand":
       console.log('collectionname ', collectionname)
       products = data.filter((product) => product.category === collectionname);
-      header_collection = "Collection: " + collectionname.toUpperCase();
+      productCategoryHeader = collectionname.toUpperCase();
       break;
-    case "men":
+    case "connector":
       products = data.filter((product) => product.category === collectionname);
-      header_collection = "Collection: " + collectionname.toUpperCase();
+      productCategoryHeader = collectionname.toUpperCase();
       break;
-    case "Trending":
-      products = data.filter(
-        (product) => product.product_status === collectionname
-      );
-      header_collection = "Collection: " + collectionname.toUpperCase();
-      break;
-    case "New":
-      products = data.filter(
-        (product) => product.product_status === collectionname
-      );
-      header_collection = "Collection: " + collectionname.toUpperCase();
+    case "charger":
+      products = data.filter((product) => product.category === collectionname);
+      productCategoryHeader = collectionname.toUpperCase();
       break;
     default:
       console.log('collectionname ', collectionname)
       products = data;
-      header_collection = "Products list";
+      productCategoryHeader = "All products".toUpperCase();
   }
 
   return (
     <div>
       <NavBar />
       <div className="products-wrapper">
-        <div className="products-category-heading">
-          <h1>
-            {/* {header_collection} */}
-            All Products
-          </h1>
-        </div>
+        <Typography
+          variant="h2"
+          sx={{
+            textAlign: 'center',
+            fontSize: '2.5rem'
+          }}
+        >
+          {productCategoryHeader}
+        </Typography>
         <Container maxWidth="xl" sx={{
           flexDirection: { xs: 'column', sm: 'row' },
           // justifyContent: { sm: 'space-between' },

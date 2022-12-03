@@ -1,44 +1,107 @@
 [
   {
-    "productname": "Flower Border Scarf",
-    "id": "2ve68tenY9TGZMPPxppP",
-    "price": 200.0,
-    "color": "X PINK",
-    "category": "ic",
-    "discount": 8,
-    "size": ["small", "medium", "large", "xlarge"],
-    "selected_size": "small",
-    "product_status": "New",
-    "product_stock": 30,
-    "product_selected_qty": 1,
-    "product_image": "ic.jpg",
-    "brand": "Gucci",
-    "product_details": [
+		"id": "ic",
+		"name":"IC",
+    "brand": "Ericson",
+		"description": "An integrated circuit (IC), sometimes called a chip",
+    "details": [
       "Logic Gate ICs",
       "Timer ICs",
       "Operational Amplifiers",
       "Voltage Regulators"
-    ]
-  },
+    ],
+    "mainImg": {
+      "src": "ic.jpg",
+      "alt": "IC"
+    },
+		"thumbnails": [
+			{
+				"src": "",
+				"alt": ""
+			}
+		],
+		"price": 100,
+		"discount": "10",
+		"category":"ic",
+		"subCategories": []
+	},
   {
-    "productname": "Flower Border Scarf",
-    "id": "2ve68tenY9TGZMPPxppP1",
-    "price": 200.0,
-    "color": "X PINK",
-    "category": "chips",
-    "discount": 8,
-    "size": ["small", "medium", "large", "xlarge"],
-    "selected_size": "small",
-    "product_status": "New",
-    "product_stock": 30,
-    "product_selected_qty": 1,
-    "product_image": "ic.jpg",
-    "brand": "Gucci",
-    "product_details": [
+		"id": "charger",
+		"name":"Charger",
+    "brand": "Ericson",
+		"description": "An integrated circuit (IC), sometimes called a chip",
+    "details": [
       "Logic Gate ICs",
       "Timer ICs",
       "Operational Amplifiers",
       "Voltage Regulators"
-    ]
-  }
+    ],
+    "mainImg": {
+      "src": "charger.jpg",
+      "alt": "IC"
+    },
+		"thumbnails": [
+			{
+				"src": "",
+				"alt": ""
+			}
+		],
+		"price": 100,
+		"discount": "10",
+		"category":"charger",
+		"subCategories": []
+	},
+  {
+		"id": "stand",
+		"name":"Stand",
+    "brand": "Ericson",
+		"description": "An integrated circuit (IC), sometimes called a chip",
+    "details": [
+      "Logic Gate ICs",
+      "Timer ICs",
+      "Operational Amplifiers",
+      "Voltage Regulators"
+    ],
+    "mainImg": {
+      "src": "stand.jpg",
+      "alt": "IC"
+    },
+		"thumbnails": [
+			{
+				"src": "",
+				"alt": ""
+			}
+		],
+		"price": 100,
+		"discount": "10",
+		"category":"stand",
+		"subCategories": []
+	},
+  {
+		"id": "connector",
+		"name":"Connector",
+    "brand": "Ericson",
+		"description": "An integrated circuit (IC), sometimes called a chip",
+    "details": [
+      "Logic Gate ICs",
+      "Timer ICs",
+      "Operational Amplifiers",
+      "Voltage Regulators"
+    ],
+    "mainImg": {
+      "src": "connector.jpg",
+      "alt": "IC"
+    },
+		"thumbnails": [
+			{
+				"src": "",
+				"alt": ""
+			}
+		],
+		"price": 100,
+		"discount": "10",
+		"category":"connector",
+		"subCategories": []
+	}
+
 ]

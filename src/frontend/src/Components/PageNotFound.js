@@ -1,5 +1,4 @@
 import React from "react";
-import PageNotFoundImage from "../assets/images/error-1349562_1280.png";
 
 import NavBar from "./Navigation/NavBar";
 import "../styles/pagenotfound.scss";
@@ -12,7 +11,7 @@ export default function PageNotFound() {
       <HeroImage />
       <NavBar />
       <div className="container-page-not_found">
-        <img src={PageNotFoundImage} alt="NotFound" />
+        <img src="" alt="NotFound" />
       </div>
       <Footer />
     </div>
