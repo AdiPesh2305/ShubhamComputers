@@ -24,7 +24,7 @@ export default function Contact() {
         }}
         >
           <Typography
-            variant="h2"
+            variant="h1"
             sx={{
               textAlign: 'center',
               fontSize: '2.5rem'
@@ -36,7 +36,7 @@ export default function Contact() {
             my: 2
           }} className="map-wrapper">
             <Typography
-                variant="h3"
+                variant="h2"
                 sx={{
                   fontSize: '1.5rem',
                   borderBottom: '2px solid #CCC',
@@ -52,7 +52,7 @@ export default function Contact() {
           }} className="contact-details-wrapper">
             <div className="contact-form-wrapper">
               <Typography
-                variant="h3"
+                variant="h2"
                 sx={{
                   fontSize: '1.5rem',
                   borderBottom: '2px solid #CCC',
@@ -65,7 +65,7 @@ export default function Contact() {
             </div>
             <div className="address-details-wrapper">
               <Typography
-                variant="h3"
+                variant="h2"
                 sx={{
                   fontSize: '1.5rem',
                   borderBottom: '2px solid #CCC',

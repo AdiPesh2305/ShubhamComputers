@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { Helmet } from 'react-helmet-async';
 import Typography from '@mui/material/Typography';
@@ -6,6 +6,13 @@ import data from "../data/Allproducts.json";
 import "../styles/Products.scss";
 import Product from "./Product";
 import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import TextField from "@mui/material/TextField";
+import Select from '@mui/material/Select';
+
 const NavBar = React.lazy(() => import("./Navigation/NavBar"));
 const Footer = React.lazy(() => import("./Navigation/Footer"));
 
@@ -17,26 +24,75 @@ export default function Products() {
   switch (collectionname) {
     case "ic":
       products = data.filter((product) => product.category === collectionname);
-      productCategoryHeader = collectionname.toUpperCase();
+      productCategoryHeader = collectionname;
       break;
     case "stand":
-      console.log('collectionname ', collectionname)
       products = data.filter((product) => product.category === collectionname);
-      productCategoryHeader = collectionname.toUpperCase();
+      productCategoryHeader = collectionname;
       break;
     case "connector":
       products = data.filter((product) => product.category === collectionname);
-      productCategoryHeader = collectionname.toUpperCase();
+      productCategoryHeader = collectionname;
       break;
     case "charger":
       products = data.filter((product) => product.category === collectionname);
-      productCategoryHeader = collectionname.toUpperCase();
+      productCategoryHeader = collectionname;
       break;
     default:
-      console.log('collectionname ', collectionname)
       products = data;
-      productCategoryHeader = "All products".toUpperCase();
+      productCategoryHeader = "All products";
   }
+
+  const [age, setAge] = React.useState('nameAsc');
+  const [value, setValue] = React.useState('');
+
+  const handleChange = (event) => {
+    setAge(event.target.value);
+  };
+
+  const handleChanges = (event) => {
+    setValue(event.target.value);
+  };
+
+  const data1 = [
+    "Paris",
+    "London",
+    "New York",
+    "Tokyo",
+    "Berlin",
+    "Buenos Aires",
+    "Cairo",
+    "Canberra",
+    "Rio de Janeiro",
+    "Dublin"
+  ];
+
+
+
+  const SearchBar = ({ setSearchQuery }) => (
+    <div>
+      <TextField
+        id="search-bar"
+        className="text"
+        label="Enter a city name"
+        variant="outlined"
+        placeholder="Search..."
+        size="small"
+      />
+
+    </div>
+  );
+
+  const filterData = (query, data1) => {
+    if (!query) {
+      return data1;
+    } else {
+      return data1.filter((d) => d.toLowerCase().includes(query));
+    }
+  };
+
+  const [searchQuery, setSearchQuery] = useState("");
+  const dataFiltered = filterData(searchQuery, data1);
 
   return (
     <div>
@@ -45,29 +101,67 @@ export default function Products() {
         <meta name="description" content="Shubham Computers - Our Products" />
       </Helmet>
       <NavBar />
-      <div className="products-wrapper">
-        <Typography
-          variant="h2"
-          sx={{
-            textAlign: 'center',
-            fontSize: '2.5rem'
-          }}
-        >
-          {productCategoryHeader}
-        </Typography>
-        <Container maxWidth="xl" sx={{
+      <Container maxWidth="xl" className="products-wrapper">
+        <Box sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          pt: 4,
+          px: 2,
+          pb: 2
+        }}>
+          <Typography
+            variant="h1"
+            sx={{
+              textAlign: 'left',
+              fontSize: '2.5rem',
+              flexBasis: {md: '50%'},
+              textTransform: 'capitalize'
+            }}
+          >
+            {productCategoryHeader}
+          </Typography>
+          <FormControl size="small" sx={{ 
+            flexBasis: { md: '400px' },
+            mr: 2
+          }}>
+            <TextField
+              id="outlined-search"
+              label='Search on this page'
+              type="search"
+              size="small"
+              onChange={handleChanges}
+            />
+          </FormControl>
+          <FormControl size="small" sx={{ 
+            flexBasis: {md: '200px'}
+          }}>
+            <InputLabel id="select-label">Sort products by</InputLabel>
+            <Select
+              labelId="select-label"
+              id="demo-select-small"
+              value={age}
+              onChange={handleChange}
+              label="Sort products by"
+            >
+              <MenuItem value={'nameAsc'}>Name - A to Z</MenuItem>
+              <MenuItem value={'nameDesc'}>Name - Z to A</MenuItem>
+              <MenuItem value={'priceAsc'}>Price - Low to High</MenuItem>
+              <MenuItem value={'priceDesc'}>Price - High to Low</MenuItem>
+            </Select>
+          </FormControl>
+        </Box>
+        <Box sx={{
           flexDirection: { xs: 'column', sm: 'row' },
           // justifyContent: { sm: 'space-between' },
           display: 'flex',
           flexWrap: { sm: 'wrap' },
-          p: 4,
           pb: { xs: 0 },
         }}>
           {products.map((product) => (
             <Product data={product} key={product.id} />
           ))}
-        </Container>
-      </div>
+        </Box>
+      </Container>
       <Footer />
     </div>
   );

@@ -75,7 +75,7 @@ export default function MultiActionAreaCard() {
               alt={product.imgAlt}
             />
             <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
+              <Typography gutterBottom variant="h3">
                 {product.heading}
               </Typography>
               <Typography variant="body2" color="text.secondary">

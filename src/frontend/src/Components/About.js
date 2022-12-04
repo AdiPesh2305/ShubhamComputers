@@ -23,13 +23,13 @@ export default function About() {
       }}
       >
         <Typography
-          variant="h3"
+          variant="h2"
           noWrap
           sx={{
             textAlign: 'center'
           }}
         >
-          Welcome to Shubham Computers
+          About Shubham Computers
         </Typography>
         <Box sx={{
           mt: 1

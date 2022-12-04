@@ -25,7 +25,7 @@ export default function Homepage() {
       }}
       >
         <Typography
-          variant="h3"
+          variant="h2"
           noWrap
           sx={{
             textAlign: 'center'

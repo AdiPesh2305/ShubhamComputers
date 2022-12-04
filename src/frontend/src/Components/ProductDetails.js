@@ -2,6 +2,7 @@ import React from "react";
 import "../styles/ProductDetails.scss";
 import Box from '@mui/material/Box';
 import { useParams } from "react-router-dom";
+import Typography from '@mui/material/Typography';
 
 export default function ProductDetails(props) {
   console.log('useParams ', useParams(), props)
@@ -34,7 +35,11 @@ export default function ProductDetails(props) {
           />
         </div>
         <div className="product-details-wrapper">
-          <h1>{productDetails.productname}</h1>
+          <Typography gutterBottom variant="h1" sx={{
+              fontSize: '2.5rem'
+            }}>
+            {productDetails.name}
+          </Typography>
           <h2>
             <span className="product-price-after-discount">
               &#8377;
@@ -49,7 +54,11 @@ export default function ProductDetails(props) {
               -{productDetails.discount}%
             </span>
           </h2>
-          <h3>Product Details:</h3>
+          <Typography gutterBottom variant="h3" sx={{
+              fontSize: '1.25rem'
+            }}>
+            Product Details
+          </Typography>
           <ul className="mb-4 mt-4">
             {description}
           </ul>
