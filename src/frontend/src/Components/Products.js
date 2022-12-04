@@ -1,9 +1,9 @@
 import React from "react";
 import { useParams } from "react-router-dom";
+import { Helmet } from 'react-helmet-async';
 import Typography from '@mui/material/Typography';
 import data from "../data/Allproducts.json";
 import "../styles/Products.scss";
-import loadingIcon from "../assets/images/dashboardloader3.gif";
 import Product from "./Product";
 import Container from '@mui/material/Container';
 const NavBar = React.lazy(() => import("./Navigation/NavBar"));
@@ -40,6 +40,10 @@ export default function Products() {
 
   return (
     <div>
+      <Helmet>
+        <title>Shubham Computers - Our Products</title>
+        <meta name="description" content="Shubham Computers - Our Products" />
+      </Helmet>
       <NavBar />
       <div className="products-wrapper">
         <Typography

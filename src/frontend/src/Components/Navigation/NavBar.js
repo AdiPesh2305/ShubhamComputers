@@ -40,8 +40,8 @@ const navItems = [
 ];
 
 const NavBar = (props) => {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  // const [anchorElNav, setAnchorElNav] = React.useState(null);
+  // const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);

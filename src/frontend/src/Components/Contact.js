@@ -1,4 +1,5 @@
-import React, { Suspense } from "react";
+import React from "react";
+import { Helmet } from 'react-helmet-async';
 import "../styles/Contact.scss";
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -6,19 +7,16 @@ import Typography from '@mui/material/Typography';
 import CallIcon from '@mui/icons-material/Call';
 import EmailIcon from '@mui/icons-material/Email';
 
-import loadingIcon from "../assets/images/dashboardloader3.gif";
-
 const NavBar = React.lazy(() => import("./Navigation/NavBar"));
 const Footer = React.lazy(() => import("./Navigation/Footer"));
 
-export default function () {
+export default function Contact() {
   return (
     <div>
-      <Suspense
-        fallback={
-          <img src={loadingIcon} alt="loading" className="loadingIcon" />
-        }
-      >
+      <Helmet>
+        <title>Shubham Computers - Contact Us</title>
+        <meta name="description" content="Shubham Computers - Contact Us" />
+      </Helmet>
         <NavBar />
         <Box sx={{
           p: 4,
@@ -95,7 +93,6 @@ export default function () {
           </Box>
         </Box>
         <Footer />
-      </Suspense>
     </div>
   );
 }
