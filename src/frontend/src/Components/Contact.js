@@ -76,18 +76,21 @@ export default function Contact() {
                 SHOP ADDRESS
               </Typography>
               <address>
-                A-04, 2nd floor, <br />
-                Sidhachal Darshan <br />
-                Seth Motishah Lane <br />
-                Byculla East <br />
-                Mumbai 400 027 <br />
+                Office #100, 3rd Floor, <br />
+                Rajesh Building, <br />
+                Opposite Lamington Road Police Station, <br />
+                Grant Road (East), <br />
+                Mumbai 400 007, <br />
                 Maharashtra, India <br />
               </address>
-              <a href="tel:9999999999">
-                <CallIcon /> +91 9999999999
+              <a href="tel:9322249976">
+                <CallIcon /> +91 9322249976
               </a>
-              <a href="mailto:aaa@aaa.com">
-                <EmailIcon /> aaa@aaa.com
+              <a href="tel:9222785781">
+                <CallIcon /> +91 9222785781
+              </a>
+              <a href="mailto:mailto:shubhamcomputers@hotmail.com?subject=Inquiry%20about%20Shubham%20Computers%20Products%20&body=Hi, %0D%0A%0D%0A">
+                <EmailIcon /> shubhamcomputers@hotmail.com
               </a>
             </div>
           </Box>

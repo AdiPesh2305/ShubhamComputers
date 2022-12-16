@@ -106,7 +106,7 @@ export default function Products() {
           display: 'flex',
           justifyContent: 'space-between',
           pt: 4,
-          px: 2,
+          px: 1,
           pb: 2
         }}>
           <Typography
