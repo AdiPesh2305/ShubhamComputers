@@ -12,8 +12,6 @@ export default function Product(props) {
   const product = props.data;
   const productMainImg = require("../assets/images/products/" + product.mainImg.src);
 
-  product.priceAfterDiscount = (product.price - (product.price * product.discount / 100)).toFixed(2);
-
   return (
     <Card sx={{
       flexBasis: { sm: '48%', md: '23%' },

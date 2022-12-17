@@ -43,13 +43,48 @@ export default function Products() {
       productCategoryHeader = "All products";
   }
 
-  const [age, setAge] = React.useState('nameAsc');
-  const [value, setValue] = React.useState('');
+  products.map((product) => {
+    product.priceAfterDiscount = (product.price - (product.price * product.discount / 100)).toFixed(2);
+  });
 
-  const handleChange = (event) => {
-    setAge(event.target.value);
+  const [sortProductsBy, setSortProductsBy] = React.useState('nameAsc');
+  const handleProductSorting = (event) => {
+    const sortBy = event.target.value;
+    setSortProductsBy(sortBy);
+
+    switch (sortBy) {
+      case "nameAsc":
+        products = data.sort((p1, p2) => {
+          if (p1.name < p2.name) {
+            return -1;
+          }
+        });
+        break;
+      case "nameDesc":
+        products = data.sort((p1, p2) => {
+          if (p1.name > p2.name) {
+            return -1;
+          }
+        });
+        break;
+      case "priceAsc":
+        products = data.sort((p1, p2) => {
+          if (p1.priceAfterDiscount < p2.priceAfterDiscount) {
+            return -1;
+          }
+        });
+        break;
+      case "priceDesc":
+        products = data.sort((p1, p2) => {
+          if (p1.priceAfterDiscount > p2.priceAfterDiscount) {
+            return -1;
+          }
+        });
+        break;
+    }
   };
 
+  const [value, setValue] = React.useState('');
   const handleChanges = (event) => {
     setValue(event.target.value);
   };
@@ -67,8 +102,6 @@ export default function Products() {
     "Dublin"
   ];
 
-
-
   const SearchBar = ({ setSearchQuery }) => (
     <div>
       <TextField
@@ -83,11 +116,11 @@ export default function Products() {
     </div>
   );
 
-  const filterData = (query, data1) => {
+  const filterData = (query, data) => {
     if (!query) {
-      return data1;
+      return data;
     } else {
-      return data1.filter((d) => d.toLowerCase().includes(query));
+      return data.filter((d) => d.toLowerCase().includes(query));
     }
   };
 
@@ -114,13 +147,13 @@ export default function Products() {
             sx={{
               textAlign: 'left',
               fontSize: '2.5rem',
-              flexBasis: {md: '50%'},
+              flexBasis: { md: '50%' },
               textTransform: 'capitalize'
             }}
           >
             {productCategoryHeader}
           </Typography>
-          <FormControl size="small" sx={{ 
+          <FormControl size="small" sx={{
             flexBasis: { md: '400px' },
             mr: 2
           }}>
@@ -132,15 +165,15 @@ export default function Products() {
               onChange={handleChanges}
             />
           </FormControl>
-          <FormControl size="small" sx={{ 
-            flexBasis: {md: '200px'}
+          <FormControl size="small" sx={{
+            flexBasis: { md: '200px' }
           }}>
             <InputLabel id="select-label">Sort products by</InputLabel>
             <Select
               labelId="select-label"
               id="demo-select-small"
-              value={age}
-              onChange={handleChange}
+              value={sortProductsBy}
+              onChange={handleProductSorting}
               label="Sort products by"
             >
               <MenuItem value={'nameAsc'}>Name - A to Z</MenuItem>
