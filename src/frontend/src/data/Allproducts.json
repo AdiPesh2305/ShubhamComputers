@@ -1,19 +1,19 @@
 [
-  {
+	{
 		"id": "ic",
-		"name":"IC",
-    "brand": "Ericson",
+		"name": "IC",
+		"brand": "Ericson",
 		"description": "An integrated circuit (IC), sometimes called a chip",
-    "details": [
-      "Logic Gate ICs",
-      "Timer ICs",
-      "Operational Amplifiers",
-      "Voltage Regulators"
-    ],
-    "mainImg": {
-      "src": "ic.jpg",
-      "alt": "IC"
-    },
+		"features": [
+			"Logic Gate ICs",
+			"Timer ICs",
+			"Operational Amplifiers",
+			"Voltage Regulators"
+		],
+		"mainImg": {
+			"src": "ic.jpg",
+			"alt": "IC"
+		},
 		"thumbnails": [
 			{
 				"src": "",
@@ -21,25 +21,25 @@
 			}
 		],
 		"price": 100,
-		"discount": "10",
-		"category":"ic",
+		"discount": "11",
+		"category": "ic",
 		"subCategories": []
 	},
-  {
+	{
 		"id": "charger",
-		"name":"Charger",
-    "brand": "Ericson",
+		"name": "Charger",
+		"brand": "Ericson",
 		"description": "An integrated circuit (IC), sometimes called a chip",
-    "details": [
-      "Logic Gate ICs",
-      "Timer ICs",
-      "Operational Amplifiers",
-      "Voltage Regulators"
-    ],
-    "mainImg": {
-      "src": "charger.jpg",
-      "alt": "IC"
-    },
+		"features": [
+			"Logic Gate ICs",
+			"Timer ICs",
+			"Operational Amplifiers",
+			"Voltage Regulators"
+		],
+		"mainImg": {
+			"src": "charger.jpg",
+			"alt": "IC"
+		},
 		"thumbnails": [
 			{
 				"src": "",
@@ -48,24 +48,24 @@
 		],
 		"price": 100,
 		"discount": "10",
-		"category":"charger",
+		"category": "charger",
 		"subCategories": []
 	},
-  {
+	{
 		"id": "stand",
-		"name":"Stand",
-    "brand": "Ericson",
+		"name": "Stand",
+		"brand": "Ericson",
 		"description": "An integrated circuit (IC), sometimes called a chip",
-    "details": [
-      "Logic Gate ICs",
-      "Timer ICs",
-      "Operational Amplifiers",
-      "Voltage Regulators"
-    ],
-    "mainImg": {
-      "src": "stand.jpg",
-      "alt": "IC"
-    },
+		"features": [
+			"Logic Gate ICs",
+			"Timer ICs",
+			"Operational Amplifiers",
+			"Voltage Regulators"
+		],
+		"mainImg": {
+			"src": "stand.jpg",
+			"alt": "IC"
+		},
 		"thumbnails": [
 			{
 				"src": "",
@@ -74,24 +74,24 @@
 		],
 		"price": 100,
 		"discount": "10",
-		"category":"stand",
+		"category": "stand",
 		"subCategories": []
 	},
-  {
+	{
 		"id": "connector",
-		"name":"Connector",
-    "brand": "Ericson",
+		"name": "Connector",
+		"brand": "Ericson",
 		"description": "An integrated circuit (IC), sometimes called a chip",
-    "details": [
-      "Logic Gate ICs",
-      "Timer ICs",
-      "Operational Amplifiers",
-      "Voltage Regulators"
-    ],
-    "mainImg": {
-      "src": "connector.jpg",
-      "alt": "IC"
-    },
+		"features": [
+			"Logic Gate ICs",
+			"Timer ICs",
+			"Operational Amplifiers",
+			"Voltage Regulators"
+		],
+		"mainImg": {
+			"src": "connector.jpg",
+			"alt": "IC"
+		},
 		"thumbnails": [
 			{
 				"src": "",
@@ -100,8 +100,7 @@
 		],
 		"price": 100,
 		"discount": "10",
-		"category":"connector",
+		"category": "connector",
 		"subCategories": []
 	}
-
 ]

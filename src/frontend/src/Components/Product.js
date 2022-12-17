@@ -8,9 +8,11 @@ import { CardActionArea } from '@mui/material';
 import "../styles/Product.scss";
 
 export default function Product(props) {
-  console.log(props.data)
+  // console.log(111, props.data)
   const product = props.data;
   const productMainImg = require("../assets/images/products/" + product.mainImg.src);
+
+  product.priceAfterDiscount = (product.price - (product.price * product.discount / 100)).toFixed(2);
 
   return (
     <Card sx={{
@@ -26,15 +28,15 @@ export default function Product(props) {
           alt={product.mainImg.alt}
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography gutterBottom variant="h5" component="div" sx={{
+            mb: 0
+          }}>
             {product.name}
           </Typography>
           <section className="product-price-wrapper">
-            <div>₹ {product.price.toFixed()}</div>
-            <div>₹ {
-              (product.price - (product.price * product.discount / 100)).toFixed(2)
-            }</div>
-            <span className="product-discount">{product.discount}% Off</span>
+            <div className="product-price-after-discount">₹ {product.priceAfterDiscount}</div>
+            <div className="product-price-before-discount">₹ {product.price.toFixed()}</div>
+            <div className="product-discount">{product.discount}% Off</div>
           </section>
         </CardContent>
       </CardActionArea>

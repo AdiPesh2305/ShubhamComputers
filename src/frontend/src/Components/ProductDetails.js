@@ -8,12 +8,13 @@ export default function ProductDetails(props) {
   console.log('useParams ', useParams(), props)
 
   let productDetails;
-  let productDescription = [];
-  console.log('props.product ', props)
+  let productFeatures = [];
+  // console.log('props.product ', props)
   props.product.map((product) => (productDetails = product));
-  productDescription = productDetails.details;
+  productDetails.priceAfterDiscount = (productDetails.price - (productDetails.price * productDetails.discount / 100)).toFixed(2);
 
-  const description = productDescription.map((desc, index) => (
+  productFeatures = productDetails.features;
+  const features = productFeatures.map((desc, index) => (
     <li key={desc + index}>
       {desc}
     </li>
@@ -36,32 +37,49 @@ export default function ProductDetails(props) {
         </div>
         <div className="product-details-wrapper">
           <Typography gutterBottom variant="h1" sx={{
-              fontSize: '2.5rem'
-            }}>
+            fontSize: '2.5rem',
+            mb: 0
+          }}>
             {productDetails.name}
           </Typography>
-          <h2>
-            <span className="product-price-after-discount">
+          <section className="product-price-wrapper">
+            <div className="product-price-after-discount">
               &#8377;
               {
                 (productDetails.price - (productDetails.price * productDetails.discount / 100)).toFixed(2)
               }
-            </span>
-            <span className="product-price-before-discount">
+            </div>
+            <div className="product-price-before-discount">
               &#8377; {productDetails.price.toFixed()}
-            </span>
-            <span className="product-discount-rate">
-              -{productDetails.discount}%
-            </span>
-          </h2>
-          <Typography gutterBottom variant="h3" sx={{
-              fontSize: '1.25rem'
-            }}>
-            Product Details
-          </Typography>
-          <ul className="mb-4 mt-4">
-            {description}
-          </ul>
+            </div>
+            <div className="product-discount-rate">
+              {productDetails.discount}%
+            </div>
+          </section>
+          {productDetails.description &&
+            <div>
+              <Typography gutterBottom variant="h3" sx={{
+                fontSize: '1.25rem',
+                m: 0
+              }}>
+                Product Description
+              </Typography>
+              <div className="product-description">{productDetails.description}</div>
+            </div>
+          }
+          {productFeatures.length > 0 &&
+            <div>
+              <Typography gutterBottom variant="h3" sx={{
+                fontSize: '1.25rem',
+                m: 0
+              }}>
+                Product Features
+              </Typography>
+              <ul className="product-features-list">
+                {features}
+              </ul>
+            </div>
+          }
         </div>
       </div>
     </Box>

@@ -22,10 +22,18 @@ function Footer() {
         </div> */}
         <div className='footer-link-items'>
           <h2>Social Media</h2>
-          <Link to='/'><FacebookIcon />Facebook</Link>
-          <Link to="/"><WhatsAppIcon />WhatsApp</Link>
-          <Link to='/'><TwitterIcon />Twitter</Link>
-          <Link to='/'><TelegramIcon />Telegram</Link>
+          <a href="#">
+            <FacebookIcon />Facebook
+          </a>
+          <a href="https://web.whatsapp.com/send?phone=919322249976&text=https://www.shubhamcomputers.com/%0A%0AI'm interested in your products and I have a few questions. Can you help?">
+            <WhatsAppIcon /> WhatsApp
+          </a>
+          <a href="#">
+            <TwitterIcon />Twitter
+          </a>
+          <a href="#">
+            <TelegramIcon />Telegram
+          </a>
         </div>
         <div className='footer-link-items'>
           <h2>Contact Us</h2>
