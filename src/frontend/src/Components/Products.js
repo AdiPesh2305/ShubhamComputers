@@ -51,6 +51,7 @@ export default function Products() {
     results.map((product) => {
       product.priceAfterDiscount = (product.price - (product.price * product.discount / 100)).toFixed(2);
     });
+
     setProducts(results);
     setProductCategoryHeader(productCategoryHeader);
   }, []);
@@ -104,7 +105,7 @@ export default function Products() {
     setProducts(results);
 
     if(results.length < 1){
-      setNoResultsFound(`No results found for the product: ${searchInput}. Please provide a valid product name and try again.`)
+      setNoResultsFound(`No results found for the product ${searchInput}. Please provide a valid product name and try again.`)
     }
   };
 

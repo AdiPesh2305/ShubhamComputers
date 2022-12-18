@@ -20,6 +20,10 @@ export default function ProductDetails(props) {
     </li>
   ));
 
+  const handleThumbClick = (event) => {
+    console.log(event)
+  };
+
   return (
     <Box sx={{
       p: 4,
@@ -34,6 +38,19 @@ export default function ProductDetails(props) {
               productDetails.mainImg.src)}
             alt={productDetails.mainImg.alt}
           />
+          <div className="product-thumb-images-wrapper">
+          <div className="active" onClick={handleThumbClick} tabIndex="0">
+              <img src={require("../assets/images/products/" +
+                productDetails.thumbnails[0].src)}
+                alt={productDetails.thumbnails[0].alt} />
+            </div>
+            <div>
+              <img src="" alt="" />
+            </div>
+            <div className="active">
+              <img src="" alt="" />
+            </div>
+          </div>
         </div>
         <div className="product-details-wrapper">
           <Typography gutterBottom variant="h1" sx={{
