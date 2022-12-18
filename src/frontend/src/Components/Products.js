@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Helmet } from 'react-helmet-async';
 import Typography from '@mui/material/Typography';
@@ -18,114 +18,95 @@ const Footer = React.lazy(() => import("./Navigation/Footer"));
 
 export default function Products() {
   const { collectionname } = useParams();
-  let products = [];
-  let productCategoryHeader;
+  const [products, setProducts] = useState([]);
+  const [productCategoryHeader, setProductCategoryHeader] = useState('');
+  const [sortProductsBy, setSortProductsBy] = useState('nameAsc');
+  const [searchQuery, setSearchQuery] = React.useState('');
+  const [noResultsFound, setNoResultsFound] = React.useState('');
 
-  switch (collectionname) {
-    case "ic":
-      products = data.filter((product) => product.category === collectionname);
-      productCategoryHeader = collectionname;
-      break;
-    case "stand":
-      products = data.filter((product) => product.category === collectionname);
-      productCategoryHeader = collectionname;
-      break;
-    case "connector":
-      products = data.filter((product) => product.category === collectionname);
-      productCategoryHeader = collectionname;
-      break;
-    case "charger":
-      products = data.filter((product) => product.category === collectionname);
-      productCategoryHeader = collectionname;
-      break;
-    default:
-      products = data;
-      productCategoryHeader = "All products";
-  }
+  useEffect(() => {
+    let results, productCategoryHeader;
+    switch (collectionname) {
+      case "ic":
+        results = data.filter((product) => product.category === collectionname);
+        productCategoryHeader = collectionname;
+        break;
+      case "stand":
+        results = data.filter((product) => product.category === collectionname);
+        productCategoryHeader = collectionname;
+        break;
+      case "connector":
+        results = data.filter((product) => product.category === collectionname);
+        productCategoryHeader = collectionname;
+        break;
+      case "charger":
+        results = data.filter((product) => product.category === collectionname);
+        productCategoryHeader = collectionname;
+        break;
+      default:
+        results = data;
+        productCategoryHeader = 'All products';
+    }
 
-  products.map((product) => {
-    product.priceAfterDiscount = (product.price - (product.price * product.discount / 100)).toFixed(2);
-  });
-
-  const [sortProductsBy, setSortProductsBy] = React.useState('nameAsc');
+    results.map((product) => {
+      product.priceAfterDiscount = (product.price - (product.price * product.discount / 100)).toFixed(2);
+    });
+    setProducts(results);
+    setProductCategoryHeader(productCategoryHeader);
+  }, []);
+  
   const handleProductSorting = (event) => {
     const sortBy = event.target.value;
-    setSortProductsBy(sortBy);
+    let results;
 
     switch (sortBy) {
       case "nameAsc":
-        products = data.sort((p1, p2) => {
+        results = data.sort((p1, p2) => {
           if (p1.name < p2.name) {
             return -1;
           }
         });
         break;
       case "nameDesc":
-        products = data.sort((p1, p2) => {
+        results = data.sort((p1, p2) => {
           if (p1.name > p2.name) {
             return -1;
           }
         });
         break;
       case "priceAsc":
-        products = data.sort((p1, p2) => {
+        results = data.sort((p1, p2) => {
           if (p1.priceAfterDiscount < p2.priceAfterDiscount) {
             return -1;
           }
         });
         break;
       case "priceDesc":
-        products = data.sort((p1, p2) => {
+        results = data.sort((p1, p2) => {
           if (p1.priceAfterDiscount > p2.priceAfterDiscount) {
             return -1;
           }
         });
         break;
     }
+
+    setSortProductsBy(sortBy);
+    setProducts(results);
   };
 
-  const [value, setValue] = React.useState('');
-  const handleChanges = (event) => {
-    setValue(event.target.value);
-  };
+  const handlePageSearch = (event) => {
+    const searchInput = event.target.value;
+    const results = data.filter((product) =>
+      product.name.toLowerCase().includes(searchInput.toLowerCase())
+    );
 
-  const data1 = [
-    "Paris",
-    "London",
-    "New York",
-    "Tokyo",
-    "Berlin",
-    "Buenos Aires",
-    "Cairo",
-    "Canberra",
-    "Rio de Janeiro",
-    "Dublin"
-  ];
+    setSearchQuery(searchInput);
+    setProducts(results);
 
-  const SearchBar = ({ setSearchQuery }) => (
-    <div>
-      <TextField
-        id="search-bar"
-        className="text"
-        label="Enter a city name"
-        variant="outlined"
-        placeholder="Search..."
-        size="small"
-      />
-
-    </div>
-  );
-
-  const filterData = (query, data) => {
-    if (!query) {
-      return data;
-    } else {
-      return data.filter((d) => d.toLowerCase().includes(query));
+    if(results.length < 1){
+      setNoResultsFound(`No results found for the product: ${searchInput}. Please provide a valid product name and try again.`)
     }
   };
-
-  const [searchQuery, setSearchQuery] = useState("");
-  const dataFiltered = filterData(searchQuery, data1);
 
   return (
     <div>
@@ -162,7 +143,8 @@ export default function Products() {
               label='Search on this page'
               type="search"
               size="small"
-              onChange={handleChanges}
+              value={searchQuery}
+              onChange={handlePageSearch}
             />
           </FormControl>
           <FormControl size="small" sx={{
@@ -190,9 +172,13 @@ export default function Products() {
           flexWrap: { sm: 'wrap' },
           pb: { xs: 0 },
         }}>
-          {products.map((product) => (
-            <Product data={product} key={product.id} />
-          ))}
+          {products.length > 0
+            ? products.map((product) => (
+              <Product data={product} key={product.id} />
+            ))
+            : (
+              <h3>{noResultsFound}</h3>
+            )}
         </Box>
       </Container>
       <Footer />
