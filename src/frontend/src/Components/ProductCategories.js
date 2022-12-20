@@ -58,24 +58,28 @@ export default function MultiActionAreaCard() {
       justifyContent: { sm: 'space-between' },
       display: 'flex',
       flexWrap: { sm: 'wrap' },
-      p: 4,
-      pb: { xs: 0, sm: 0, md: 4 },
+      p: { xs: 2, md: 4 },
+      pb: { xs: 0, md: 4 },
       backgroundColor: '#EDEDED',
     }}>
       {productCategories.map((product) => (
         <Card sx={{
-          flexBasis: { sm: '48%', md: '23%' },
-          mb: { xs: 4, sm: 4, md: 0 }
+          flexBasis: { sm: '49%', md: '23%' },
+          mb: { xs: 2, md: 0 }
         }} key={product.id}>
           <CardActionArea>
             <CardMedia
               component="img"
-              height="180"
+              sx={{
+                height: { xs: '225px', md: '180px' },
+              }}
               image={product.imgSrc}
               alt={product.imgAlt}
             />
             <CardContent>
-              <Typography gutterBottom variant="h3">
+              <Typography gutterBottom variant="h3" sx={{
+                fontSize: { xs: '2rem' }
+              }}>
                 {product.heading}
               </Typography>
               <Typography variant="body2" color="text.secondary">

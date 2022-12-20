@@ -55,7 +55,7 @@ export default function Products() {
     setProducts(results);
     setProductCategoryHeader(productCategoryHeader);
   }, []);
-  
+
   const handleProductSorting = (event) => {
     const sortBy = event.target.value;
     let results;
@@ -104,7 +104,7 @@ export default function Products() {
     setSearchQuery(searchInput);
     setProducts(results);
 
-    if(results.length < 1){
+    if (results.length < 1) {
       setNoResultsFound(`No results found for the product ${searchInput}. Please provide a valid product name and try again.`)
     }
   };
@@ -120,58 +120,65 @@ export default function Products() {
         <Box sx={{
           display: 'flex',
           justifyContent: 'space-between',
-          pt: 4,
-          px: 1,
+          flexDirection: { xs: 'column', sm: 'row' },
+          pt: {xs: 2, sm: 4},
+          px: {xs: 0, md: 1},
           pb: 2
         }}>
           <Typography
             variant="h1"
             sx={{
-              textAlign: 'left',
-              fontSize: '2.5rem',
+              textAlign: {xs: 'center', sm: 'left'},
+              fontSize: {xs: '2rem', sm: '2rem', md: '2.5rem' },
               flexBasis: { md: '50%' },
               textTransform: 'capitalize'
             }}
           >
             {productCategoryHeader}
           </Typography>
-          <FormControl size="small" sx={{
-            flexBasis: { md: '400px' },
-            mr: 2
+          <Box sx={{
+            display: 'flex',
+            width: { xs: '100%', sm: '50%' },
+            mt: {xs: 2, sm: 0},
+            justifyContent: 'end',
           }}>
-            <TextField
-              id="outlined-search"
-              label='Search on this page'
-              type="search"
-              size="small"
-              value={searchQuery}
-              onChange={handlePageSearch}
-            />
-          </FormControl>
-          <FormControl size="small" sx={{
-            flexBasis: { md: '200px' }
-          }}>
-            <InputLabel id="select-label">Sort products by</InputLabel>
-            <Select
-              labelId="select-label"
-              id="demo-select-small"
-              value={sortProductsBy}
-              onChange={handleProductSorting}
-              label="Sort products by"
-            >
-              <MenuItem value={'nameAsc'}>Name - A to Z</MenuItem>
-              <MenuItem value={'nameDesc'}>Name - Z to A</MenuItem>
-              <MenuItem value={'priceAsc'}>Price - Low to High</MenuItem>
-              <MenuItem value={'priceDesc'}>Price - High to Low</MenuItem>
-            </Select>
-          </FormControl>
+            <FormControl size="small" sx={{
+              flexBasis: { md: '400px' },
+              mr: 2
+            }}>
+              <TextField
+                id="outlined-search"
+                label='Search on this page'
+                type="search"
+                size="small"
+                value={searchQuery}
+                onChange={handlePageSearch}
+              />
+            </FormControl>
+            <FormControl size="small" sx={{
+              flexBasis: { md: '200px' }
+            }}>
+              <InputLabel id="select-label">Sort products by</InputLabel>
+              <Select
+                labelId="select-label"
+                id="demo-select-small"
+                value={sortProductsBy}
+                onChange={handleProductSorting}
+                label="Sort products by"
+              >
+                <MenuItem value={'nameAsc'}>Name - A to Z</MenuItem>
+                <MenuItem value={'nameDesc'}>Name - Z to A</MenuItem>
+                <MenuItem value={'priceAsc'}>Price - Low to High</MenuItem>
+                <MenuItem value={'priceDesc'}>Price - High to Low</MenuItem>
+              </Select>
+            </FormControl>
+          </Box>
         </Box>
         <Box sx={{
-          flexDirection: { xs: 'column', sm: 'row' },
-          // justifyContent: { sm: 'space-between' },
+          flexDirection: {sm: 'row' },
           display: 'flex',
-          flexWrap: { sm: 'wrap' },
-          pb: { xs: 0 },
+          justifyContent: 'space-between',
+          flexWrap: { xs: 'wrap' },
         }}>
           {products.length > 0
             ? products.map((product) => (

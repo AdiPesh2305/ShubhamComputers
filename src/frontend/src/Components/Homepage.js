@@ -19,7 +19,7 @@ export default function Homepage() {
       <NavBar />
       <HeroImage />
       <Box sx={{
-        px: 4,
+        px: { xs: 2, md: 4 },
         pt: 4,
         backgroundColor: '#EDEDED'
       }}
@@ -28,7 +28,8 @@ export default function Homepage() {
           variant="h2"
           noWrap
           sx={{
-            textAlign: 'center'
+            textAlign: 'center',
+            fontSize: {xs: '1.5rem', sm: '2rem', md: '3.75rem' }
           }}
         >
           Welcome to Shubham Computers

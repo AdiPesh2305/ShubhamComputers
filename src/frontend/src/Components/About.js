@@ -18,7 +18,8 @@ export default function About() {
       <NavBar />
       <HeroImage />
       <Box sx={{
-        p: 4,
+        px: { xs: 2, md: 4 },
+        py: 4,
         backgroundColor: '#EDEDED'
       }}
       >
@@ -26,7 +27,8 @@ export default function About() {
           variant="h2"
           noWrap
           sx={{
-            textAlign: 'center'
+            textAlign: 'center',
+            fontSize: {xs: '1.5rem', sm: '2rem', md: '3.75rem' }
           }}
         >
           About Shubham Computers

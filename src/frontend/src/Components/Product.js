@@ -8,26 +8,29 @@ import { CardActionArea } from '@mui/material';
 import "../styles/Product.scss";
 
 export default function Product(props) {
-  // console.log(111, props.data)
   const product = props.data;
   const productMainImg = require("../assets/images/products/" + product.mainImg.src);
 
   return (
     <Card sx={{
-      flexBasis: { sm: '48%', md: '23%' },
-      margin: { sm: '1%' },
+      flexBasis: { xs: '48%', sm: '23%', md: '23%' },
+      my: {xs: '0.5rem', sm: '1rem'},
       position: 'relative'
     }} key={product.id} className='product-list'>
       <CardActionArea component={Link} to={`/products/view/${product.id}`}>
         <CardMedia
           component="img"
-          height="180"
           image={productMainImg}
           alt={product.mainImg.alt}
+          sx={{
+            height: { xs: '100px', sm: '125px', md: '180px' },
+          }}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div" sx={{
-            mb: 0
+            mb: 0,
+            fontSize: {xs: '1.25rem', md: '1.5rem'},
+            lineHeight: 1
           }}>
             {product.name}
           </Typography>

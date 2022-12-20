@@ -110,3 +110,9 @@
     margin-bottom: 0.5rem;
   }
 }
+
+@media screen and (max-width: 1024px) and (orientation: landscape) {
+  .social-media-wrap {
+    margin: 2.5rem auto
+  }
+}

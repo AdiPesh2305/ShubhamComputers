@@ -2,11 +2,10 @@ import React from "react";
 import "../../styles/HeroImage.scss";
 import HeroBkgImage from '../../assets/images/1.jpg';
 
-export default function HeroImage(props) {
+export default function HeroImage() {
 
   return (
     <div className='hero-wrapper'>
-      {/* <video src='/videos/video-1.mp4' autoPlay loop muted /> */}
       <img
         src={HeroBkgImage}
         alt="logo"

@@ -35,7 +35,7 @@ export default function ProductDetails(props) {
 
   return (
     <Box sx={{
-      p: 4,
+      p: { sm: 0, md: 4 },
       backgroundColor: '#EDEDED'
     }}
     >

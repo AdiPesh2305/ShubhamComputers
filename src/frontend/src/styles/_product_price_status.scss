@@ -33,3 +33,23 @@
   font-weight: 600;
   background-color: #e22727
 }
+
+@media screen and (max-width: 768px) {
+  .product-discount {
+    padding: 0.25rem;
+  }
+
+  .product-price-wrapper {
+    margin: 4px 0;
+  }
+}
+
+@media screen and (max-width: 1024px) and (orientation: landscape) {
+  .product-discount {
+    padding: 0.25rem;
+  }
+
+  .product-price-wrapper {
+    margin: 4px 0;
+  }
+}

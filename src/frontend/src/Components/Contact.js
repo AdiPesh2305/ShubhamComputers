@@ -19,7 +19,8 @@ export default function Contact() {
       </Helmet>
         <NavBar />
         <Box sx={{
-          p: 4,
+          px: { xs: 2, md: 4 },
+          py: 2,
           backgroundColor: '#EDEDED'
         }}
         >

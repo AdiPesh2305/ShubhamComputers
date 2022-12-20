@@ -25,7 +25,7 @@ function Footer() {
           <a href="#">
             <FacebookIcon />Facebook
           </a>
-          <a href="https://web.whatsapp.com/send?phone=919322249976&text=https://www.shubhamcomputers.com/%0A%0AI'm interested in your products and I have a few questions. Can you help?">
+          <a href="https://web.whatsapp.com/send?phone=919322249976&text=https://www.shubhamcomputers.com/%0A%0AI'm interested in your products and I have a few questions. Can you help?" target="_blank">
             <WhatsAppIcon /> WhatsApp
           </a>
           <a href="#">
@@ -55,9 +55,9 @@ function Footer() {
             Shubham Computers
           </Link>
         </div>
-        <div className="website-rights">Copyright © 2015-2022 All Rights Reserved</div>
+        <div className="website-rights">Copyright © 2015-<span>{new Date().getFullYear()}</span> All Rights Reserved</div>
       </div>
-      <Fab color="success" component="a" href="https://web.whatsapp.com/send?phone=919322249976&text=https://www.shubhamcomputers.com/%0A%0AI'm interested in your products and I have a few questions. Can you help?" aria-label="WhatsApp" className="fabButton">
+      <Fab color="success" component="a" href="https://web.whatsapp.com/send?phone=919322249976&text=https://www.shubhamcomputers.com/%0A%0AI'm interested in your products and I have a few questions. Can you help?" aria-label="WhatsApp" className="fabButton" target="_blank">
         <WhatsAppIcon />
       </Fab>
     </div>
