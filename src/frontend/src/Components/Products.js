@@ -175,9 +175,9 @@ export default function Products() {
           </Box>
         </Box>
         <Box sx={{
-          flexDirection: {sm: 'row' },
           display: 'flex',
-          justifyContent: 'space-between',
+          gap: {xs: '14px', sm: '20px', md: '16px' },
+          mb: 2,
           flexWrap: { xs: 'wrap' },
         }}>
           {products.length > 0

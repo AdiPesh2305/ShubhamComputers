@@ -13,8 +13,7 @@ export default function Product(props) {
 
   return (
     <Card sx={{
-      flexBasis: { xs: '48%', sm: '23%', md: '23%' },
-      my: {xs: '0.5rem', sm: '1rem'},
+      flexBasis: { xs: '48%', sm: '23%', md: '24%' },
       position: 'relative'
     }} key={product.id} className='product-list'>
       <CardActionArea component={Link} to={`/products/view/${product.id}`}>
