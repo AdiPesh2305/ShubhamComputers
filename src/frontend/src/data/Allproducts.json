@@ -18,6 +18,14 @@
 			{
 				"src": "ic.jpg",
 				"alt": "IC"
+			},
+			{
+				"src": "charger.jpg",
+				"alt": "IC"
+			},
+			{
+				"src": "stand.jpg",
+				"alt": "IC"
 			}
 		],
 		"price": 100,

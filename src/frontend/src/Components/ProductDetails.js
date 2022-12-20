@@ -1,16 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/ProductDetails.scss";
 import Box from '@mui/material/Box';
-import { useParams } from "react-router-dom";
 import Typography from '@mui/material/Typography';
 
 export default function ProductDetails(props) {
-  console.log('useParams ', useParams(), props)
 
   let productDetails;
   let productFeatures = [];
-  // console.log('props.product ', props)
-  props.product.map((product) => (productDetails = product));
+
+  productDetails = props.product[0];
   productDetails.priceAfterDiscount = (productDetails.price - (productDetails.price * productDetails.discount / 100)).toFixed(2);
 
   productFeatures = productDetails.features;
@@ -20,8 +18,19 @@ export default function ProductDetails(props) {
     </li>
   ));
 
-  const handleThumbClick = (event) => {
-    console.log(event)
+  const [isActive, setIsActive] = useState(0);
+  const [mainImg, setMainImg] = useState({
+    src: productDetails.mainImg.src,
+    alt: productDetails.mainImg.alt
+  });
+
+  const handleThumbClick = (thumbnail, index) => {
+    console.log(thumbnail, index);
+    setIsActive(index);
+    setMainImg({
+      src: thumbnail.src,
+      alt: thumbnail.alt
+    })
   };
 
   return (
@@ -32,25 +41,23 @@ export default function ProductDetails(props) {
     >
       <div className="product-wrapper">
         <div className="product-image-wrapper">
-          <img
-            className="product-image-main"
-            src={require("../assets/images/products/" +
-              productDetails.mainImg.src)}
-            alt={productDetails.mainImg.alt}
-          />
-          <div className="product-thumb-images-wrapper">
-          <div className="active" onClick={handleThumbClick} tabIndex="0">
-              <img src={require("../assets/images/products/" +
-                productDetails.thumbnails[0].src)}
-                alt={productDetails.thumbnails[0].alt} />
-            </div>
-            <div>
-              <img src="" alt="" />
-            </div>
-            <div className="active">
-              <img src="" alt="" />
-            </div>
+          <div className="product-image-main">
+            <img
+              src={require("../assets/images/products/" +
+                mainImg.src)}
+              alt={mainImg.alt}
+            />
           </div>
+          {productDetails.thumbnails.length > 0 &&
+            <div className="product-thumb-images-wrapper">
+              {productDetails.thumbnails.map((thumb, index) => (
+                <div className={isActive === index ? 'active' : ''} onClick={() => handleThumbClick(thumb, index)} key={index}>
+                  <img src={require("../assets/images/products/" + thumb.src)}
+                    alt={thumb.alt} />
+                </div>
+              ))}
+            </div>
+          }
         </div>
         <div className="product-details-wrapper">
           <Typography gutterBottom variant="h1" sx={{

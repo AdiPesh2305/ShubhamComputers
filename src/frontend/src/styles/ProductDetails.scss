@@ -18,7 +18,15 @@
   align-items: center;
 
   .product-image-main {
-    width: 300px;
+    width: 400px;
+    height: 400px;
+    display: flex;
+    border: 1.5px solid #CCC;
+    padding: 1rem; 
+
+    img{
+      width: 100%;
+    }
   }
 
   .product-thumb-images-wrapper {
@@ -31,6 +39,7 @@
       display: flex;
       border: 1.5px solid #CCC;
       margin: 0 4px;
+      cursor: pointer;
 
       img{
         width: 100%;
@@ -38,7 +47,7 @@
     }
 
     &>div.active {
-      border: 1.5px solid red;
+      border: 1.5px solid #000;
     }
   }
 }
