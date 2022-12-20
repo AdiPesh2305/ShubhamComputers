@@ -16,12 +16,10 @@ export default function Catalog(props) {
     selectedProduct = data.filter((product) => product.id === id);
   }
 
-  console.log('selectedProduct ', selectedProduct)
-
   return (
     <div>
       <Helmet>
-        <title>Shubham Computers - Product Details</title>
+        <title>Shubham Computers - {selectedProduct[0].name}</title>
         <meta name="description" content="Shubham Computers - Product Details" />
       </Helmet>
       <NavBar />
