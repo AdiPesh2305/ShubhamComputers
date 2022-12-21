@@ -131,8 +131,8 @@ const NavBar = (props) => {
             <Typography
               variant="h5"
               noWrap
-              component="a"
-              href="/"
+              component={Link} 
+              to="/"
               sx={{
                 mr: 2,
                 display: { xs: 'none', sm: 'block' },
@@ -167,8 +167,8 @@ const NavBar = (props) => {
             <Typography
               variant="h5"
               noWrap
-              component="a"
-              href="/"
+              component={Link} 
+              to="/"
               sx={{
                 mr: 2,
                 display: { sm: 'flex', md: 'none' },
