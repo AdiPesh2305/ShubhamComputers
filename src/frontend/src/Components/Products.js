@@ -106,7 +106,7 @@ export default function Products() {
     setProducts(results);
 
     if (results.length < 1) {
-      setNoResultsFound(`No results found for the product ${searchInput}. Please provide a valid product name and try again.`)
+      setNoResultsFound(`Your search for ${searchInput} did not yield any results. Please refine your search and try again.`)
     }
   };
 
@@ -122,15 +122,15 @@ export default function Products() {
           display: 'flex',
           justifyContent: 'space-between',
           flexDirection: { xs: 'column', sm: 'row' },
-          pt: {xs: 2, sm: 4},
-          px: {xs: 0, md: 1},
+          pt: { xs: 2, sm: 4 },
+          px: { xs: 0, md: 1 },
           pb: 2
         }}>
           <Typography
             variant="h1"
             sx={{
-              textAlign: {xs: 'center', sm: 'left'},
-              fontSize: {xs: '2rem', sm: '2rem', md: '2.5rem' },
+              textAlign: { xs: 'center', sm: 'left' },
+              fontSize: { xs: '2rem', sm: '2rem', md: '2.5rem' },
               flexBasis: { md: '50%' },
               textTransform: 'capitalize'
             }}
@@ -140,7 +140,7 @@ export default function Products() {
           <Box sx={{
             display: 'flex',
             width: { xs: '100%', sm: '50%' },
-            mt: {xs: 2, sm: 0},
+            mt: { xs: 2, sm: 0 },
             justifyContent: 'end',
           }}>
             <FormControl size="small" sx={{
@@ -177,7 +177,7 @@ export default function Products() {
         </Box>
         <Box sx={{
           display: 'flex',
-          gap: {xs: '14px', sm: '20px', md: '15px', lg: '16px' },
+          gap: { xs: '14px', sm: '20px', md: '15px', lg: '16px' },
           mb: 2,
           flexWrap: { xs: 'wrap' },
         }}>
@@ -186,7 +186,14 @@ export default function Products() {
               <Product data={product} key={product.id} />
             ))
             : (
-              <h3>{noResultsFound}</h3>
+              <Typography
+                variant="body1"
+                sx={{
+                  fontSize: { xs: '1rem', md: '1.25rem' },
+                }}
+              >
+                {noResultsFound}
+              </Typography>
             )}
         </Box>
       </Container>
