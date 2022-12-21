@@ -25,7 +25,6 @@ export default function ProductDetails(props) {
   });
 
   const handleThumbClick = (thumbnail, index) => {
-    console.log(thumbnail, index);
     setIsActive(index);
     setMainImg({
       src: thumbnail.src,
@@ -68,17 +67,18 @@ export default function ProductDetails(props) {
           </Typography>
           <section className="product-price-wrapper">
             <div className="product-price-after-discount">
-              &#8377;
-              {
-                (productDetails.price - (productDetails.price * productDetails.discount / 100)).toFixed(2)
-              }
+              &#8377; {productDetails.priceAfterDiscount}
             </div>
-            <div className="product-price-before-discount">
-              &#8377; {productDetails.price.toFixed()}
-            </div>
-            <div className="product-discount-rate">
-              {productDetails.discount}%
-            </div>
+            {productDetails.discount > 0 && (
+              <div className="product-price-before-discount">
+                &#8377; {productDetails.price.toFixed()}
+              </div>
+            )}
+            {productDetails.discount > 0 && (
+              <div className="product-discount-rate">
+                {productDetails.discount}%
+              </div>
+            )}
           </section>
           {productDetails.description &&
             <div>

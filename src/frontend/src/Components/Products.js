@@ -29,6 +29,7 @@ export default function Products() {
     switch (collectionname) {
       case "ic":
         results = data.filter((product) => product.category === collectionname);
+        // results = data.filter((product) => product.categories.includes(collectionname));
         productCategoryHeader = collectionname;
         break;
       case "stand":
