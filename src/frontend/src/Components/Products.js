@@ -176,7 +176,7 @@ export default function Products() {
         </Box>
         <Box sx={{
           display: 'flex',
-          gap: {xs: '14px', sm: '20px', md: '16px' },
+          gap: {xs: '14px', sm: '20px', md: '15px', lg: '16px' },
           mb: 2,
           flexWrap: { xs: 'wrap' },
         }}>
