@@ -34,35 +34,22 @@ export default function Contact() {
             Contact Us
           </Typography>
           <Box sx={{
-            my: 2
-          }} className="map-wrapper">
-            <Typography
+            mt: 1
+          }} className="contact-details-wrapper">
+            <div className="map-wrapper">
+              <Typography
                 variant="h2"
                 sx={{
                   fontSize: '1.5rem',
                   borderBottom: '2px solid #CCC',
+                  letterSpacing: 1,
                   mb: 1,
                   pb: 0.5
                 }}
               >
                 GOOGLE MAPS
               </Typography>
-          </Box>
-          <Box sx={{
-            mt: 1
-          }} className="contact-details-wrapper">
-            <div className="contact-form-wrapper">
-              <Typography
-                variant="h2"
-                sx={{
-                  fontSize: '1.5rem',
-                  borderBottom: '2px solid #CCC',
-                  mb: 1,
-                  pb: 0.5
-                }}
-              >
-                SEND US A MESSAGE
-              </Typography>
+              <div>Google maps will load here...</div>
             </div>
             <div className="address-details-wrapper">
               <Typography
@@ -70,6 +57,7 @@ export default function Contact() {
                 sx={{
                   fontSize: '1.5rem',
                   borderBottom: '2px solid #CCC',
+                  letterSpacing: 1,
                   mb: 1,
                   pb: 0.5
                 }}
@@ -93,6 +81,19 @@ export default function Contact() {
               <a href="mailto:mailto:shubhamcomputers@hotmail.com?subject=Inquiry%20about%20Shubham%20Computers%20Products%20&body=Hi, %0D%0A%0D%0A">
                 <EmailIcon /> shubhamcomputers@hotmail.com
               </a>
+              <Typography
+                variant="h2"
+                sx={{
+                  fontSize: '1.5rem',
+                  borderBottom: '2px solid #CCC',
+                  letterSpacing: 1,
+                  mb: 1,
+                  mt: 3,
+                  pb: 0.5
+                }}
+              >
+                OTHER WAYS TO REACH US
+              </Typography>
             </div>
           </Box>
         </Box>

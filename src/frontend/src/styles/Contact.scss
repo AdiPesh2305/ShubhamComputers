@@ -1,20 +1,17 @@
 @import "colors";
 
-.map-wrapper {
-  display: flex;
-  background-color: $white;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  padding: 16px;
-}
-
 .contact-details-wrapper {
   display: flex;
   justify-content: space-between;
-
+  
   &>div {
     background-color: $white;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     padding: 16px;
+  }
+
+  .map-wrapper {
+    flex-basis: 60%;
   }
 
   .address-details-wrapper {
@@ -36,10 +33,6 @@
         margin-right: 0.5rem;
       }
     }
-  }
-
-  .contact-form-wrapper {
-    flex-basis: 60%;
   }
 }
 
