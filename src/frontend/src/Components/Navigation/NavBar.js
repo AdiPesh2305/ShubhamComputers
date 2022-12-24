@@ -113,6 +113,12 @@ const NavBar = (props) => {
     }
   };
 
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter' || event.which === 13) {
+      handleSearchClick();
+    }
+  }
+
   return (
     <AppBar position="sticky" sx={{
       background: '#000',
@@ -193,6 +199,7 @@ const NavBar = (props) => {
                 placeholder="Search Shubham Computers..."
                 inputProps={{ 'aria-label': 'search' }}
                 ref={searchInputRef}
+                onKeyDown={handleKeyDown}
               />
               <SearchIconWrapper>
                 <SearchIcon onClick={handleSearchClick} />
