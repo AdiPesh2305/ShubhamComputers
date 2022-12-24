@@ -29,7 +29,6 @@ function App() {
             <Route exact path="/search" element={<SearchProducts />} />
             <Route
               exact
-              // path="/products/view/:id/:productname"
               path="/products/view/:id"
               element={<Catalog />}
             />
