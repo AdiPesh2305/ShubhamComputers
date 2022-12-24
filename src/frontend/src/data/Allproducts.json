@@ -30,7 +30,6 @@
 		],
 		"price": 100,
 		"discount": "10",
-		"category": "ic",
 		"categories": ["ic", "charger"],
 		"subCategories": []
 	},
@@ -57,7 +56,6 @@
 		],
 		"price": 100,
 		"discount": "11",
-		"category": "charger",
 		"categories": ["charger"],
 		"subCategories": []
 	},
@@ -84,7 +82,6 @@
 		],
 		"price": 100,
 		"discount": "12",
-		"category": "stand",
 		"categories": ["ic", "stand"],
 		"subCategories": []
 	},
@@ -111,8 +108,7 @@
 		],
 		"price": 100,
 		"discount": "13",
-		"category": "connector",
-		"categories": ["connector", "ic"],
+		"categories": ["connector"],
 		"subCategories": []
 	}
 ]

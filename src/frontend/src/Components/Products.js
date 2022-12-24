@@ -28,20 +28,19 @@ export default function Products() {
     let results, productCategoryHeader;
     switch (collectionname) {
       case "ic":
-        results = data.filter((product) => product.category === collectionname);
-        // results = data.filter((product) => product.categories.includes(collectionname));
+        results = data.filter((product) => product.categories.includes(collectionname));
         productCategoryHeader = collectionname;
         break;
       case "stand":
-        results = data.filter((product) => product.category === collectionname);
+        results = data.filter((product) => product.categories.includes(collectionname));
         productCategoryHeader = collectionname;
         break;
       case "connector":
-        results = data.filter((product) => product.category === collectionname);
+        results = data.filter((product) => product.categories.includes(collectionname));
         productCategoryHeader = collectionname;
         break;
       case "charger":
-        results = data.filter((product) => product.category === collectionname);
+        results = data.filter((product) => product.categories.includes(collectionname));
         productCategoryHeader = collectionname;
         break;
       default:
