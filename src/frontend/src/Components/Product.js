@@ -35,12 +35,12 @@ export default function Product(props) {
           </Typography>
           <section className="product-price-wrapper">
             <div className="product-price-after-discount">₹ {product.priceAfterDiscount}</div>
-            {product.discount > 0 && (
+            {/* {product.discount > 0 && (
             <div className="product-price-before-discount">₹ {product.price.toFixed()}</div>
             )}
             {product.discount > 0 && (
             <div className="product-discount">{product.discount}% Off</div>
-            )}
+            )} */}
           </section>
         </CardContent>
       </CardActionArea>

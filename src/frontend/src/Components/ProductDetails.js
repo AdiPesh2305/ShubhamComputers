@@ -69,7 +69,7 @@ export default function ProductDetails(props) {
             <div className="product-price-after-discount">
               &#8377; {productDetails.priceAfterDiscount}
             </div>
-            {productDetails.discount > 0 && (
+            {/* {productDetails.discount > 0 && (
               <div className="product-price-before-discount">
                 &#8377; {productDetails.price.toFixed()}
               </div>
@@ -78,7 +78,7 @@ export default function ProductDetails(props) {
               <div className="product-discount-rate">
                 {productDetails.discount}%
               </div>
-            )}
+            )} */}
           </section>
           {productDetails.description &&
             <div>
