@@ -10,7 +10,6 @@ const Products = lazy(() => import("./Components/Products"));
 const Catalog = lazy(() => import("./Components/Catalog"));
 
 const SearchProducts = lazy(() => import("./Components/SearchProducts"));
-const PageNotFound = lazy(() => import("./Components/PageNotFound"));
 
 function App() {
   return (
@@ -34,8 +33,6 @@ function App() {
               path="/products/view/:id"
               element={<Catalog />}
             />
-
-            <Route element={<PageNotFound />} />
           </Routes>
         </HelmetProvider>
       </Suspense>
