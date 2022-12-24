@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
+import { useNavigate } from "react-router-dom";
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -35,16 +36,14 @@ const navItems = [
     'id': 'contact',
     'text': 'Contact',
     'routeTo': '/contact-us'
-    // 'routeTo': '/products/kids'
   }
 ];
 
 const NavBar = (props) => {
-  // const [anchorElNav, setAnchorElNav] = React.useState(null);
-  // const [anchorElUser, setAnchorElUser] = React.useState(null);
-
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const searchInputRef = React.useRef(null);
+  const navigate = useNavigate();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -88,28 +87,31 @@ const NavBar = (props) => {
     padding: theme.spacing(0, 2),
     height: '100%',
     position: 'absolute',
-    pointerEvents: 'none',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    right: '0',
+    top: '0',
+    cursor: 'pointer'
   }));
 
   const StyledInputBase = styled(InputBase)(({ theme }) => ({
     color: 'inherit',
-    '& .MuiInputBase-input': {
-      padding: theme.spacing(1, 1, 1, 0),
-      // vertical padding + font size from searchIcon
-      paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-      transition: theme.transitions.create('width'),
+    '&': {
       width: '100%',
-      [theme.breakpoints.up('sm')]: {
-        width: '12ch',
-        '&:focus': {
-          width: '20ch',
-        },
-      },
+      paddingRight: `calc(1em + ${theme.spacing(5)})`,
     },
+    '& .MuiInputBase-input': {
+      padding: theme.spacing(1, 1, 1, 2),
+    }
   }));
+
+  const handleSearchClick = () => {
+    const searchInput = searchInputRef.current.children[0].value.trim();
+    if (searchInput.length > 0) {
+      navigate(`/products/${searchInput}`);
+    }
+  };
 
   return (
     <AppBar position="sticky" sx={{
@@ -131,7 +133,7 @@ const NavBar = (props) => {
             <Typography
               variant="h5"
               noWrap
-              component={Link} 
+              component={Link}
               to="/"
               sx={{
                 mr: 2,
@@ -167,7 +169,7 @@ const NavBar = (props) => {
             <Typography
               variant="h5"
               noWrap
-              component={Link} 
+              component={Link}
               to="/"
               sx={{
                 mr: 2,
@@ -187,13 +189,14 @@ const NavBar = (props) => {
           }}
           >
             <Search>
-              <SearchIconWrapper>
-                <SearchIcon />
-              </SearchIconWrapper>
               <StyledInputBase
-                placeholder="Search…"
+                placeholder="Search Shubham Computers..."
                 inputProps={{ 'aria-label': 'search' }}
+                ref={searchInputRef}
               />
+              <SearchIconWrapper>
+                <SearchIcon onClick={handleSearchClick} />
+              </SearchIconWrapper>
             </Search>
           </Box>
           <Box sx={{ display: { xs: 'none', md: 'block' } }}>
@@ -208,4 +211,4 @@ const NavBar = (props) => {
     </AppBar>
   );
 };
-export default NavBar;
+export default React.memo(NavBar);

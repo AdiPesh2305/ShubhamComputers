@@ -54,7 +54,7 @@ export default function Products() {
 
     setProducts(results);
     setProductCategoryHeader(productCategoryHeader);
-  }, []);
+  }, [collectionname]);
 
   const handleProductSorting = (event) => {
     const sortBy = event.target.value;
