@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
+import "../../styles/NavBar.scss";
 import { useNavigate } from "react-router-dom";
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -42,11 +43,16 @@ const navItems = [
 const NavBar = (props) => {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [mobileSearchOpen, setMobileSearchOpen] = React.useState(false);
   const searchInputRef = React.useRef(null);
   const navigate = useNavigate();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
+  };
+
+  const handleMobileSearchToggle = () => {
+    setMobileSearchOpen(!mobileSearchOpen);
   };
 
   const drawer = (
@@ -77,6 +83,9 @@ const NavBar = (props) => {
     },
     marginLeft: 0,
     width: '100%',
+    [theme.breakpoints.only('xs')]: {
+      backgroundColor: alpha(theme.palette.common.black, 1)
+    },
     [theme.breakpoints.up('sm')]: {
       marginLeft: theme.spacing(1),
       width: 'auto',
@@ -134,7 +143,7 @@ const NavBar = (props) => {
           >
             <MenuIcon />
           </IconButton>
-          <Box sx={{ flexGrow: 2, display: { xs: 'none', sm: 'flex' } }}>
+          <Box sx={{ flexGrow: 2, display: { xs: 'none', sm: 'flex' }, alignItems: 'center' }}>
             <img className="branding-logo" src={Logo} alt="logo" />
             <Typography
               variant="h5"
@@ -145,13 +154,14 @@ const NavBar = (props) => {
                 mr: 2,
                 display: { xs: 'none', sm: 'block' },
                 color: 'inherit',
-                textDecoration: 'none'
+                textDecoration: 'none',
+                fontSize: {sm: '1.25rem', md: '1.5rem'}
               }}
             >
-              Shubham Computers
+              Shubham Computers 1
             </Typography>
           </Box>
-
+          
           <Box component="nav">
             <Drawer
               container={container}
@@ -170,7 +180,7 @@ const NavBar = (props) => {
             </Drawer>
           </Box>
 
-          <Box sx={{ display: { xs: 'flex', sm: 'none' } }}>
+          <Box sx={{ display: { xs: 'flex', sm: 'none' }, alignItems: 'center', flexGrow: 2 }}>
             <img className="branding-logo" src={Logo} alt="logo" />
             <Typography
               variant="h5"
@@ -180,19 +190,30 @@ const NavBar = (props) => {
               sx={{
                 mr: 2,
                 display: { sm: 'flex', md: 'none' },
-                flexGrow: 2,
                 color: 'inherit',
                 textDecoration: 'none',
+                fontSize: '1.25rem'
               }}
             >
-              Shubham Computers
+              {/* Mobile Portrait Header */}
+              Shubham Computers 2
             </Typography>
           </Box>
+          <IconButton
+            color="inherit"
+            aria-label="open search"
+            edge="end"
+            onClick={handleMobileSearchToggle}
+            sx={{display: { sm: 'none' } }}
+          >
+            <SearchIcon />
+          </IconButton>
           <Box sx={{
             flexGrow: 1,
-            display: { xs: 'none', sm: 'block' },
-            mr: 3,
+            display: { sm: 'block' },
+            mr: {md: 3},
           }}
+          className={mobileSearchOpen ? 'search-wrapper show' : 'search-wrapper'}
           >
             <Search>
               <StyledInputBase
