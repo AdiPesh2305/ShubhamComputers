@@ -51,4 +51,4 @@ function GoogleMaps() {
     )
 }
 
-export default React.memo(GoogleMaps)
+export default React.memo(GoogleMaps);
