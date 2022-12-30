@@ -158,7 +158,7 @@ const NavBar = (props) => {
                 fontSize: {sm: '1.25rem', md: '1.5rem'}
               }}
             >
-              Shubham Computers 1
+              Shubham Computers
             </Typography>
           </Box>
           
@@ -196,7 +196,7 @@ const NavBar = (props) => {
               }}
             >
               {/* Mobile Portrait Header */}
-              Shubham Computers 2
+              Shubham Computers
             </Typography>
           </Box>
           <IconButton

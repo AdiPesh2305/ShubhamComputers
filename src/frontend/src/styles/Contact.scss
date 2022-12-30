@@ -51,5 +51,15 @@
 }
 
 @media screen and (max-width: 1024px) and (orientation: landscape) {
-  
+  .contact-details-wrapper {
+    flex-direction: column;
+
+    &>div {
+      flex-basis: 100%;
+    }
+  }
+
+  .address-details-wrapper {
+    margin-top: 1rem;
+  }
 }

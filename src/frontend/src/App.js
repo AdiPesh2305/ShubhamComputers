@@ -8,8 +8,8 @@ const About = lazy(() => import("./Components/About"));
 const Contact = lazy(() => import("./Components/Contact"));
 const Products = lazy(() => import("./Components/Products"));
 const Catalog = lazy(() => import("./Components/Catalog"));
+const PageNotFound = lazy(() => import("./Components/PageNotFound"));
 
-const SearchProducts = lazy(() => import("./Components/SearchProducts"));
 
 function App() {
   return (
@@ -26,12 +26,12 @@ function App() {
             <Route exact path="/contact-us" element={<Contact />} />
             <Route exact path="/products" element={<Products />} />
             <Route exact path="/products/:collectionname" element={<Products />} />
-            <Route exact path="/search" element={<SearchProducts />} />
             <Route
               exact
               path="/products/view/:id"
               element={<Catalog />}
             />
+            <Route component={PageNotFound} />
           </Routes>
         </HelmetProvider>
       </Suspense>

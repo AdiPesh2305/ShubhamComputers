@@ -9,6 +9,7 @@ import EmailIcon from '@mui/icons-material/Email';
 
 const NavBar = React.lazy(() => import("./Navigation/NavBar"));
 const Footer = React.lazy(() => import("./Navigation/Footer"));
+const GoogleMaps = React.lazy(() => import("./GoogleMaps"));
 
 export default function Contact() {
   return (
@@ -47,9 +48,9 @@ export default function Contact() {
                   pb: 0.5
                 }}
               >
-                GOOGLE MAPS
+                FIND US ON GOOGLE MAPS
               </Typography>
-              <div>Google maps will load here...</div>
+              <GoogleMaps/>
             </div>
             <div className="address-details-wrapper">
               <Typography

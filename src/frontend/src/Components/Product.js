@@ -9,7 +9,8 @@ import "../styles/Product.scss";
 
 export default function Product(props) {
   const product = props.data;
-  const productMainImg = require("../assets/images/products/" + product.mainImg.src);
+  const productMainImg = require("../assets/images/products/" + product?.mainImg?.src);
+  // const productMainImg = "/ic.jpg" /takes the path from images folder in public folder/;
 
   return (
     <Card sx={{
