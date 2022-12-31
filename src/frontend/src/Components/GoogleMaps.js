@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from "react";
 import Box from '@mui/material/Box';
-import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
+import { GoogleMap, useJsApiLoader, MarkerF } from '@react-google-maps/api';
 
 const containerStyle = {
     width: '100%',
@@ -43,7 +43,7 @@ function GoogleMaps() {
                     onLoad={onLoad}
                     onUnmount={onUnmount}
                 >
-                    <Marker position={{ lat: 18.96107363466559, lng: 72.81740892600374 }} title="Shubham Computers" />
+                    <MarkerF position={{ lat: 18.96107363466559, lng: 72.81740892600374 }} title="Shubham Computers" />
                 </GoogleMap>
             ) : <h1>Loading google maps</h1>
             }

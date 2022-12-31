@@ -2,6 +2,7 @@ import React, { Suspense, lazy } from "react";
 import "./styles/App.scss";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { HelmetProvider } from 'react-helmet-async';
+import Loader from "./Components/Loader";
 
 const Homepage = lazy(() => import("./Components/Homepage"));
 const About = lazy(() => import("./Components/About"));
@@ -10,13 +11,12 @@ const Products = lazy(() => import("./Components/Products"));
 const Catalog = lazy(() => import("./Components/Catalog"));
 const PageNotFound = lazy(() => import("./Components/PageNotFound"));
 
-
 function App() {
   return (
     <Router>
       <Suspense
         fallback={
-          <h1>Loading Shubham Computers...</h1>
+          <Loader />
         }
       >
         <HelmetProvider>
