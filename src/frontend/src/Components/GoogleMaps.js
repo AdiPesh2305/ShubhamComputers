@@ -33,10 +33,9 @@ function GoogleMaps() {
     }, []);
 
     return (
-        <Box sx={{ mt: 1 }}>
+        <Box>
             {isLoaded ? (
                 <GoogleMap
-                    className="kalpesh"
                     mapContainerStyle={containerStyle}
                     center={center}
                     zoom={15}
@@ -45,7 +44,7 @@ function GoogleMaps() {
                 >
                     <MarkerF position={{ lat: 18.96107363466559, lng: 72.81740892600374 }} title="Shubham Computers" />
                 </GoogleMap>
-            ) : <h1>Loading google maps</h1>
+            ) : <></>
             }
         </Box>
     )

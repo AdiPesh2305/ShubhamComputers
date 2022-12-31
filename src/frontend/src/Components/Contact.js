@@ -44,7 +44,7 @@ export default function Contact() {
                   fontSize: '1.5rem',
                   borderBottom: '2px solid #CCC',
                   letterSpacing: 1,
-                  mb: 1,
+                  mb: '0.75rem',
                   pb: 0.5
                 }}
               >
