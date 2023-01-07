@@ -9,8 +9,8 @@ import "../styles/Product.scss";
 
 export default function Product(props) {
   const product = props.data;
-  const productMainImg = require("../assets/images/products/" + product?.mainImg?.src);
-  // const productMainImg = "/ic.jpg" /takes the path from images folder in public folder/;
+  // const productMainImg = require("../assets/images/products/" + product?.mainImg?.src);
+  // const productMainImg = "images/ic.jpg" /takes the path from images folder in public folder/;
 
   return (
     <Card sx={{
@@ -20,7 +20,7 @@ export default function Product(props) {
       <CardActionArea component={Link} to={`/products/view/${product.id}`}>
         <CardMedia
           component="img"
-          image={productMainImg}
+          image={"/images/products/" + product?.mainImg?.src}
           alt={product.mainImg.alt}
           sx={{
             height: { xs: '100px', sm: '125px', md: '180px' },

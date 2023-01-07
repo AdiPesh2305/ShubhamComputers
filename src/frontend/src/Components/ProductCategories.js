@@ -7,17 +7,12 @@ import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions } from '@mui/material';
 import { Link } from 'react-router-dom';
 
-import icImage from '../assets/images/products/ic.jpg';
-import standImage from '../assets/images/products/stand.jpg';
-import chargerImage from '../assets/images/products/charger.jpg';
-import connectorImage from '../assets/images/products/connector.jpg';
-
 export default function MultiActionAreaCard() {
   const productCategories = [
     {
       'id': 'product1',
       'heading': 'IC',
-      'imgSrc': icImage,
+      'imgSrc': 'ic.jpg',
       'imgAlt': 'IC image',
       'description': 'An integrated circuit (IC), sometimes called a chip, microchip or microelectronic circuit, is a semiconductor wafer on which thousands or millions of tiny resistors, capacitors, diodes and transistors are fabricated.',
       'btnText': 'Learn More',
@@ -26,7 +21,7 @@ export default function MultiActionAreaCard() {
     {
       'id': 'product2',
       'heading': 'IC',
-      'imgSrc': standImage,
+      'imgSrc': 'stand.jpg',
       'imgAlt': 'IC image',
       'description': 'An integrated circuit (IC), sometimes called a chip, microchip or microelectronic circuit, is a semiconductor wafer on which thousands or millions of tiny resistors, capacitors, diodes and transistors are fabricated.',
       'btnText': 'Learn More',
@@ -35,7 +30,7 @@ export default function MultiActionAreaCard() {
     {
       'id': 'product3',
       'heading': 'IC',
-      'imgSrc': chargerImage,
+      'imgSrc': 'charger.jpg',
       'imgAlt': 'IC image',
       'description': 'An integrated circuit (IC), sometimes called a chip, microchip or microelectronic circuit, is a semiconductor wafer on which thousands or millions of tiny resistors, capacitors, diodes and transistors are fabricated.',
       'btnText': 'Learn More',
@@ -44,7 +39,7 @@ export default function MultiActionAreaCard() {
     {
       'id': 'product4',
       'heading': 'IC',
-      'imgSrc': connectorImage,
+      'imgSrc': 'connector.jpg',
       'imgAlt': 'IC image',
       'description': 'An integrated circuit (IC), sometimes called a chip, microchip or microelectronic circuit, is a semiconductor wafer on which thousands or millions of tiny resistors, capacitors, diodes and transistors are fabricated.',
       'btnText': 'Learn More',
@@ -73,7 +68,8 @@ export default function MultiActionAreaCard() {
               sx={{
                 height: { xs: '225px', md: '180px' },
               }}
-              image={product.imgSrc}
+              // image={product.imgSrc}
+              image={"/images/homePageProducts/" + product.imgSrc}
               alt={product.imgAlt}
             />
             <CardContent>

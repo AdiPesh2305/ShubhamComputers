@@ -42,8 +42,7 @@ export default function ProductDetails(props) {
         <div className="product-image-wrapper">
           <div className="product-image-main">
             <img
-              src={require("../assets/images/products/" +
-                mainImg.src)}
+              src={"/images/products/" + mainImg.src}
               alt={mainImg.alt}
             />
           </div>
@@ -51,7 +50,7 @@ export default function ProductDetails(props) {
             <div className="product-thumb-images-wrapper">
               {productDetails.thumbnails.map((thumb, index) => (
                 <div className={isActive === index ? 'active' : ''} onClick={() => handleThumbClick(thumb, index)} key={index}>
-                  <img src={require("../assets/images/products/" + thumb.src)}
+                  <img src={"/images/products/" + thumb.src}
                     alt={thumb.alt} />
                 </div>
               ))}

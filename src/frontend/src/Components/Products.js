@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import Typography from '@mui/material/Typography';
 import data from "../data/Allproducts.json";
 import "../styles/Products.scss";
+import axios from 'axios';
 import Product from "./Product";
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
@@ -12,6 +13,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import TextField from "@mui/material/TextField";
 import Select from '@mui/material/Select';
+import { gapi } from "gapi-script";
 
 const NavBar = React.lazy(() => import("./Navigation/NavBar"));
 const Footer = React.lazy(() => import("./Navigation/Footer"));
@@ -24,7 +26,81 @@ export default function Products() {
   const [searchQuery, setSearchQuery] = React.useState('');
   const [noResultsFound, setNoResultsFound] = React.useState('');
 
+  const getData = async () => {
+    try {
+      const SHEET_ID = '1ZvGw6Rj62R7tGGzCXn8GdiRQKOe0TrEWBlQSm2EPnCc';
+      const ACCESS_TOKEN = 'ya29.a0AX9GBdVgqsrwmgPx-ktc3VV333qxNGw1cwDkTkbBT6lReNUTr1jxDlTvsnyZDrTZhkzTwiodHChv7dGJtlPee_pHktqQOzoRiYQ8M6-FtFXEtXwFm7QP0yAm_0sygeF6P2EuJEP6eXhPwQRfa4NgPfO2hcSGaCgYKAUcSARMSFQHUCsbCI1GlCJNyITo27UVmEmTxAQ0163';
+      const API_KEY = 'AIzaSyCCbae3DmuiVLEbiG4czrgRx6XJrR60RJ0';
+      const REFRESH_TOKEN = '1//04Js7Sf1jN_NCCgYIARAAGAQSNwF-L9IrOPE7WaD_yZy0CKU4qe16iXGWSHI5l1hMi1VEDiFtO_Kiz2ffmq8JxNxldLQ561ALIHI';
+      // axios.defaults.headers.common['Authorization'] = `Bearer ${ACCESS_TOKEN}`;
+      // axios.defaults.headers.common['Access-Control-Allow-Origin'] = "*";
+      // axios.defaults.headers.common['Access-Control-Allow-Headers'] = "*";
+      // axios.defaults.headers.common['Content-Type'] = "application/json";
+      const res = await axios.get(`https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/kalpesh`, {
+        params: {
+          key:API_KEY,
+          // client_id: '601161573077-poh4g65v62grkbdmpge4ed9igktkm0s4.apps.googleusercontent.com',
+          // client_secret: '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'
+        }
+      });
+      console.log(res)
+      // res.data.values.shift(); //Remove first column headers from data
+      // const data = res.data.values.map((item, index) => {
+      //   return {
+      //     "name": item[0],
+      //     "email": item[1],
+      //     "age": item[2]
+      //   }
+      // });
+      // console.log(data)
+
+      function initiate() {
+        gapi.client
+          .init({
+            apiKey: API_KEY,
+            // clientId: '601161573077-poh4g65v62grkbdmpge4ed9igktkm0s4.apps.googleusercontent.com'
+          })
+          .then(function () {
+            return gapi.client.request({
+              path: `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/kalpesh`,
+            });
+            // return gapi.client.sheets.spreadsheets.values.get({
+            //   spreadsheetId: SHEET_ID,
+            //   range: 'kalpesh',
+            // })
+          })
+          .then(
+            (response) => {
+              let events = response;
+              console.log(events);
+            },
+            function (err) {
+              return [false, err];
+            }
+          );
+      }
+
+      gapi.load("client", initiate);
+    }
+    catch (error) {
+      console.log(error);
+    }
+  }
+
   useEffect(() => {
+    console.log('component rendered')
+    if(sessionStorage.getItem("kalpesh")){
+      console.log(sessionStorage.getItem("kalpesh"))
+      console.log(1)
+    }
+    else{
+      sessionStorage.setItem("kalpesh", "jain");
+      console.log(2)
+    }
+  }, [])
+
+  useEffect(() => {
+    getData();
     let results, productCategoryHeader;
     switch (collectionname) {
       case "ic":
@@ -54,6 +130,7 @@ export default function Products() {
 
     setProducts(results);
     setProductCategoryHeader(productCategoryHeader);
+    console.log('product header updates')
   }, [collectionname]);
 
   const handleProductSorting = (event) => {
