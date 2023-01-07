@@ -31,7 +31,7 @@ function App() {
               path="/products/view/:id"
               element={<ProductView />}
             />
-            <Route component={PageNotFound} />
+            <Route path="/*" element={<PageNotFound/>} />
           </Routes>
         </HelmetProvider>
       </Suspense>
