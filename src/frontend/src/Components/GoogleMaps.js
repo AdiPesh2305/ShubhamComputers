@@ -26,13 +26,10 @@ function GoogleMaps() {
         map.fitBounds(bounds);
 
         setMap(map);
-        console.log(process.env.REACT_APP_GOOGLE_API_KEY)
-
     }, []);
 
     const onUnmount = useCallback(function callback(map) {
         setMap(null);
-
     }, []);
 
     return (
