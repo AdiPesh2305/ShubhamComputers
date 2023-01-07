@@ -16,7 +16,7 @@ const center = {
 function GoogleMaps() {
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
-        googleMapsApiKey: "AIzaSyCCbae3DmuiVLEbiG4czrgRx6XJrR60RJ0"
+        googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY
     })
 
     const [map, setMap] = useState(null);
@@ -26,10 +26,13 @@ function GoogleMaps() {
         map.fitBounds(bounds);
 
         setMap(map);
+        console.log(process.env.REACT_APP_GOOGLE_API_KEY)
+
     }, []);
 
     const onUnmount = useCallback(function callback(map) {
         setMap(null);
+
     }, []);
 
     return (
