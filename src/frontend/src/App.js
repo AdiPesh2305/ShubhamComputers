@@ -28,7 +28,7 @@ function App() {
             <Route exact path="/products/:collectionname" element={<Products />} />
             <Route
               exact
-              path="/products/view/:id"
+              path="/products/view/:name"
               element={<ProductView />}
             />
             <Route path="/*" element={<PageNotFound/>} />

@@ -5,14 +5,12 @@ import Typography from '@mui/material/Typography';
 
 export default function ProductDetails(props) {
 
-  let productDetails;
-  let productFeatures = [];
+  let productDetails = null;
 
-  productDetails = props.product[0];
+  productDetails = props.product;
   productDetails.priceAfterDiscount = (productDetails.price - (productDetails.price * productDetails.discount / 100)).toFixed(2);
 
-  productFeatures = productDetails.features;
-  const features = productFeatures.map((desc, index) => (
+  const features = productDetails.features.map((desc, index) => (
     <li key={desc + index}>
       {desc}
     </li>
@@ -62,7 +60,7 @@ export default function ProductDetails(props) {
             fontSize: '2.5rem',
             mb: 0
           }}>
-            {productDetails.name}
+            {productDetails.name.toUpperCase()}
           </Typography>
           <section className="product-price-wrapper">
             <div className="product-price-after-discount">
@@ -90,7 +88,7 @@ export default function ProductDetails(props) {
               <div className="product-description">{productDetails.description}</div>
             </div>
           }
-          {productFeatures.length > 0 &&
+          {productDetails.features.length > 0 &&
             <div>
               <Typography gutterBottom variant="h3" sx={{
                 fontSize: '1.25rem',

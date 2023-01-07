@@ -13,7 +13,6 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import TextField from "@mui/material/TextField";
 import Select from '@mui/material/Select';
-import { gapi } from "gapi-script";
 
 const NavBar = React.lazy(() => import("./Navigation/NavBar"));
 const Footer = React.lazy(() => import("./Navigation/Footer"));
@@ -28,20 +27,13 @@ export default function Products() {
 
   const getData = async () => {
     try {
-      
-      // axios.defaults.headers.common['Authorization'] = `Bearer ${ACCESS_TOKEN}`;
-      // axios.defaults.headers.common['Access-Control-Allow-Origin'] = "*";
-      // axios.defaults.headers.common['Access-Control-Allow-Headers'] = "*";
-      // axios.defaults.headers.common['Content-Type'] = "application/json";
-      const res = await axios.get(`https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/kalpesh`, {
+      const response = await axios.get(`https://sheets.googleapis.com/v4/spreadsheets/${process.env.REACT_APP_GOOGLE_SHEET_ID}/values/sheet`, {
         params: {
-          key:API_KEY,
-          // client_id: '601161573077-poh4g65v62grkbdmpge4ed9igktkm0s4.apps.googleusercontent.com',
-          // client_secret: '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'
+          key: process.env.REACT_APP_GOOGLE_API_KEY,
         }
       });
-      console.log(res)
-      // res.data.values.shift(); //Remove first column headers from data
+      console.log(response)
+      response.data.values.shift(); //Remove first column headers from data
       // const data = res.data.values.map((item, index) => {
       //   return {
       //     "name": item[0],
@@ -49,52 +41,26 @@ export default function Products() {
       //     "age": item[2]
       //   }
       // });
-      // console.log(data)
-
-      function initiate() {
-        gapi.client
-          .init({
-            apiKey: API_KEY,
-            // clientId: '601161573077-poh4g65v62grkbdmpge4ed9igktkm0s4.apps.googleusercontent.com'
-          })
-          .then(function () {
-            return gapi.client.request({
-              path: `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/kalpesh`,
-            });
-            // return gapi.client.sheets.spreadsheets.values.get({
-            //   spreadsheetId: SHEET_ID,
-            //   range: 'kalpesh',
-            // })
-          })
-          .then(
-            (response) => {
-              let events = response;
-              console.log(events);
-            },
-            function (err) {
-              return [false, err];
-            }
-          );
-      }
-
-      gapi.load("client", initiate);
+      console.log('after')
+      console.log(response)
     }
     catch (error) {
       console.log(error);
     }
   }
 
-  useEffect(() => {
-    console.log('component rendered')
-    if(sessionStorage.getItem("kalpesh")){
-      console.log(sessionStorage.getItem("kalpesh"))
-      console.log(1)
-    }
-    else{
-      sessionStorage.setItem("kalpesh", "jain");
-      console.log(2)
-    }
-  }, [])
+  // To check for session storage
+  // useEffect(() => {
+  //   console.log('component rendered')
+  //   if(sessionStorage.getItem("kalpesh")){
+  //     console.log(sessionStorage.getItem("kalpesh"))
+  //     console.log(1)
+  //   }
+  //   else{
+  //     sessionStorage.setItem("kalpesh", "jain");
+  //     console.log(2)
+  //   }
+  // }, [])
 
   useEffect(() => {
     getData();
@@ -127,7 +93,6 @@ export default function Products() {
 
     setProducts(results);
     setProductCategoryHeader(productCategoryHeader);
-    console.log('product header updates')
   }, [collectionname]);
 
   const handleProductSorting = (event) => {
@@ -256,7 +221,7 @@ export default function Products() {
         }}>
           {products.length > 0
             ? products.map((product) => (
-              <Product data={product} key={product.id} />
+              <Product data={product} key={product.name} />
             ))
             : (
               <Typography

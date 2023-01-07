@@ -2,28 +2,20 @@ import React from "react";
 import { Helmet } from 'react-helmet-async';
 import NavBar from "./Navigation/NavBar";
 import Footer from "./Navigation/Footer";
-
-import data from "../data/Allproducts.json";
 import ProductDetails from "./ProductDetails";
-import { useParams } from "react-router-dom";
 
-export default function Catalog(props) {
-  const { id } = useParams();
+export default function Catalog() {
 
-  let selectedProduct = "";
-
-  if (id != null) {
-    selectedProduct = data.filter((product) => product.id === id);
-  }
+  const product = JSON.parse(sessionStorage.getItem('product'));
 
   return (
     <div>
       <Helmet>
-        <title>Shubham Computers - {selectedProduct[0].name}</title>
+        <title>Shubham Computers - {product.name}</title>
         <meta name="description" content="Shubham Computers - Product Details" />
       </Helmet>
       <NavBar />
-      <ProductDetails product={selectedProduct} key={selectedProduct.id} />
+      <ProductDetails product={product} />
       <Footer />
     </div>
   );

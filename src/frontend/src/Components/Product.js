@@ -3,21 +3,27 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { Link } from 'react-router-dom';
 import { CardActionArea } from '@mui/material';
 import "../styles/Product.scss";
+import { useNavigate } from "react-router-dom";
 
 export default function Product(props) {
+  const navigate = useNavigate();
   const product = props.data;
   // const productMainImg = require("../assets/images/products/" + product?.mainImg?.src);
   // const productMainImg = "images/ic.jpg" /takes the path from images folder in public folder/;
+
+  const handleProductClick = () => {
+    sessionStorage.setItem("product", JSON.stringify(product));
+    navigate(`/products/view/${product.name}`);
+  };
 
   return (
     <Card sx={{
       flexBasis: { xs: '48%', sm: '23%', md: '24%' },
       position: 'relative'
     }} key={product.id} className='product-list'>
-      <CardActionArea component={Link} to={`/products/view/${product.id}`}>
+      <CardActionArea onClick={handleProductClick}>
         <CardMedia
           component="img"
           image={"/images/products/" + product?.mainImg?.src}

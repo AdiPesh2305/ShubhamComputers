@@ -1,8 +1,7 @@
 [
 	{
 		"id": "ic",
-		"name": "IC",
-		"brand": "Ericson",
+		"name": "ic",
 		"description": "An integrated circuit (IC), sometimes called a chip",
 		"features": [
 			"Logic Gate ICs",
@@ -36,7 +35,6 @@
 	{
 		"id": "charger",
 		"name": "Charger",
-		"brand": "Ericson",
 		"description": "An integrated circuit (IC), sometimes called a chip",
 		"features": [
 			"Logic Gate ICs",
@@ -62,7 +60,6 @@
 	{
 		"id": "stand",
 		"name": "Stand",
-		"brand": "Ericson",
 		"description": "An integrated circuit (IC), sometimes called a chip",
 		"features": [
 			"Logic Gate ICs",
@@ -88,7 +85,6 @@
 	{
 		"id": "connector",
 		"name": "Connector",
-		"brand": "Ericson",
 		"description": "An integrated circuit (IC), sometimes called a chip",
 		"features": [
 			"Logic Gate ICs",
