@@ -28,10 +28,7 @@ export default function Products() {
 
   const getData = async () => {
     try {
-      const SHEET_ID = '1ZvGw6Rj62R7tGGzCXn8GdiRQKOe0TrEWBlQSm2EPnCc';
-      const ACCESS_TOKEN = 'ya29.a0AX9GBdVgqsrwmgPx-ktc3VV333qxNGw1cwDkTkbBT6lReNUTr1jxDlTvsnyZDrTZhkzTwiodHChv7dGJtlPee_pHktqQOzoRiYQ8M6-FtFXEtXwFm7QP0yAm_0sygeF6P2EuJEP6eXhPwQRfa4NgPfO2hcSGaCgYKAUcSARMSFQHUCsbCI1GlCJNyITo27UVmEmTxAQ0163';
-      const API_KEY = 'AIzaSyCCbae3DmuiVLEbiG4czrgRx6XJrR60RJ0';
-      const REFRESH_TOKEN = '1//04Js7Sf1jN_NCCgYIARAAGAQSNwF-L9IrOPE7WaD_yZy0CKU4qe16iXGWSHI5l1hMi1VEDiFtO_Kiz2ffmq8JxNxldLQ561ALIHI';
+      
       // axios.defaults.headers.common['Authorization'] = `Bearer ${ACCESS_TOKEN}`;
       // axios.defaults.headers.common['Access-Control-Allow-Origin'] = "*";
       // axios.defaults.headers.common['Access-Control-Allow-Headers'] = "*";
