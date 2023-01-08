@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Helmet } from 'react-helmet-async';
+import axios from "../services";
 import Typography from '@mui/material/Typography';
 import data from "../data/Allproducts.json";
 import "../styles/Products.scss";
-import axios from 'axios';
 import Product from "./Product";
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
@@ -13,6 +13,8 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import TextField from "@mui/material/TextField";
 import Select from '@mui/material/Select';
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
 
 const NavBar = React.lazy(() => import("./Navigation/NavBar"));
 const Footer = React.lazy(() => import("./Navigation/Footer"));
@@ -24,25 +26,23 @@ export default function Products() {
   const [sortProductsBy, setSortProductsBy] = useState('nameAsc');
   const [searchQuery, setSearchQuery] = React.useState('');
   const [noResultsFound, setNoResultsFound] = React.useState('');
+  const [page, setPage] = React.useState(1);
 
   const getData = async () => {
     try {
-      const response = await axios.get(`https://sheets.googleapis.com/v4/spreadsheets/${process.env.REACT_APP_GOOGLE_SHEET_ID}/values/sheet`, {
-        params: {
-          key: process.env.REACT_APP_GOOGLE_API_KEY,
+      const response = await axios.get(`/${process.env.REACT_APP_GOOGLE_SHEET_ID}/values/products`);
+      console.log(response)
+      // response.data.values.shift(); //Remove first row which is column headers from data
+      const data = response.data.values.map((item, index) => {
+        console.log('item ', item)
+        return {
+          "name": item[0],
+          "email": item[1],
+          "age": item[2]
         }
       });
-      console.log(response)
-      response.data.values.shift(); //Remove first column headers from data
-      // const data = res.data.values.map((item, index) => {
-      //   return {
-      //     "name": item[0],
-      //     "email": item[1],
-      //     "age": item[2]
-      //   }
-      // });
-      console.log('after')
-      console.log(response)
+      // console.log('after')
+      // console.log(data)
     }
     catch (error) {
       console.log(error);
@@ -148,6 +148,12 @@ export default function Products() {
     }
   };
 
+  const handlePageChange = async (event, value) => {
+    setPage(value);
+    const response = await axios.get(`/${process.env.REACT_APP_GOOGLE_SHEET_ID}/values/products!A${value}:J${value}`);
+    console.log(response)
+  }
+
   return (
     <div>
       <Helmet>
@@ -234,6 +240,21 @@ export default function Products() {
               </Typography>
             )}
         </Box>
+        <Stack sx={{
+          alignItems: 'center',
+          my: 3
+        }}>
+          <Pagination 
+            size="large"
+            color="primary"
+            count={20} 
+            boundaryCount={0}
+            shape="rounded" 
+            variant="outlined" 
+            onChange={handlePageChange} 
+            className="pagination-wrapper"
+          />
+        </Stack>
       </Container>
       <Footer />
     </div>

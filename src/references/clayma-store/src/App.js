@@ -41,7 +41,7 @@ function App() {
                 component={Catalog}
               />
 
-              <Route component={PageNotFound} />
+              <Route element={<PageNotFound/>} />
             </Switch>
           </Suspense>
         </Router>
