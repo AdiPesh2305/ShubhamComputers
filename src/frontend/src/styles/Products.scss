@@ -2,14 +2,12 @@
 
 .products-wrapper {
   margin: 0 auto;
-  // padding-top: 2rem;
-
 }
 
 @media screen and (max-width: 768px) {
-  .pagination-wrapper button{
-    // min-width: 32px;
-    // height: 32px;
+  .pagination-wrapper li:first-child, 
+  .pagination-wrapper li:last-child{
+    display: none;
   }
 }
 

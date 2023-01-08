@@ -251,6 +251,8 @@ export default function Products() {
             boundaryCount={0}
             shape="rounded" 
             variant="outlined" 
+            showFirstButton 
+            showLastButton
             onChange={handlePageChange} 
             className="pagination-wrapper"
           />
