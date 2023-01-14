@@ -6,7 +6,6 @@ import Typography from '@mui/material/Typography';
 export default function ProductDetails(props) {
 
   let productDetails = null;
-
   productDetails = props.product;
   productDetails.priceAfterDiscount = (productDetails.price - (productDetails.price * productDetails.discount / 100)).toFixed(2);
 

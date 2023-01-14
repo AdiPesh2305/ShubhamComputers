@@ -15,7 +15,7 @@ export default function Product(props) {
 
   const handleProductClick = () => {
     sessionStorage.setItem("product", JSON.stringify(product));
-    navigate(`/products/view/${product.name}`);
+    navigate(`/products/view/${product.name}`, {state: product});
   };
 
   return (
