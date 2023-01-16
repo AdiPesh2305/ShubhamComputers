@@ -77,7 +77,7 @@ export default function ProductDetails(props) {
             )} */}
           </section>
           {productDetails.description &&
-            <div>
+            <>
               <Typography gutterBottom variant="h3" sx={{
                 fontSize: '1.25rem',
                 m: 0
@@ -85,10 +85,10 @@ export default function ProductDetails(props) {
                 Product Description
               </Typography>
               <div className="product-description">{productDetails.description}</div>
-            </div>
+            </>
           }
           {productDetails.features.length > 0 &&
-            <div>
+            <>
               <Typography gutterBottom variant="h3" sx={{
                 fontSize: '1.25rem',
                 m: 0
@@ -98,7 +98,7 @@ export default function ProductDetails(props) {
               <ul className="product-features-list">
                 {features}
               </ul>
-            </div>
+            </>
           }
         </div>
       </div>
