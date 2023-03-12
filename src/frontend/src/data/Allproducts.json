@@ -1,6 +1,5 @@
 [
 	{
-		"id": "ic",
 		"name": "ic",
 		"description": "An integrated circuit (IC), sometimes called a chip",
 		"features": [
@@ -33,7 +32,6 @@
 		"subCategories": []
 	},
 	{
-		"id": "charger",
 		"name": "Charger",
 		"description": "An integrated circuit (IC), sometimes called a chip",
 		"features": [
@@ -58,7 +56,6 @@
 		"subCategories": []
 	},
 	{
-		"id": "stand",
 		"name": "Stand",
 		"description": "An integrated circuit (IC), sometimes called a chip",
 		"features": [
@@ -83,7 +80,6 @@
 		"subCategories": []
 	},
 	{
-		"id": "connector",
 		"name": "Connector",
 		"description": "An integrated circuit (IC), sometimes called a chip",
 		"features": [

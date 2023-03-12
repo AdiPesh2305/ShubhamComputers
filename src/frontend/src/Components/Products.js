@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { Helmet } from 'react-helmet-async';
 import axios from "../services";
 import Typography from '@mui/material/Typography';
-import data from "../data/Allproducts.json";
+// import allProducts from "../allProducts/Allproducts.json";
 import "../styles/Products.scss";
 import Product from "./Product";
 import Container from '@mui/material/Container';
@@ -28,27 +28,6 @@ export default function Products() {
   const [noResultsFound, setNoResultsFound] = React.useState('');
   const [page, setPage] = React.useState(1);
 
-  const getData = async () => {
-    try {
-      const response = await axios.get(`/${process.env.REACT_APP_GOOGLE_SHEET_ID}/values/products`);
-      console.log(response)
-      // response.data.values.shift(); //Remove first row which is column headers from data
-      const data = response.data.values.map((item, index) => {
-        console.log('item ', item)
-        return {
-          "name": item[0],
-          "email": item[1],
-          "age": item[2]
-        }
-      });
-      // console.log('after')
-      // console.log(data)
-    }
-    catch (error) {
-      console.log(error);
-    }
-  }
-
   // To check for session storage
   // useEffect(() => {
   //   console.log('component rendered')
@@ -62,38 +41,71 @@ export default function Products() {
   //   }
   // }, [])
 
-  useEffect(() => {
-    getData();
-    let results, productCategoryHeader;
-    switch (collectionname) {
-      case "ic":
-        results = data.filter((product) => product.categories.includes(collectionname));
-        productCategoryHeader = collectionname;
-        break;
-      case "stand":
-        results = data.filter((product) => product.categories.includes(collectionname));
-        productCategoryHeader = collectionname;
-        break;
-      case "connector":
-        results = data.filter((product) => product.categories.includes(collectionname));
-        productCategoryHeader = collectionname;
-        break;
-      case "charger":
-        results = data.filter((product) => product.categories.includes(collectionname));
-        productCategoryHeader = collectionname;
-        break;
-      default:
-        results = data;
-        productCategoryHeader = 'All products';
+  // useEffect(() => {
+
+
+  //   fetchAllProducts();
+  // }, []);
+
+  const fetchAllProducts = async () => {
+    try {
+      let allProducts = null;
+      const response = await axios.get(`/${process.env.REACT_APP_GOOGLE_SHEET_ID}/values/products`);
+      response.data.values.shift(); //Remove first row which is column headers from data
+
+      allProducts = response.data.values.map((product, index) => {
+        let allFeatures = product[2].split('.');
+        let allCategories = product[5].split('.');
+        let allThumbnailsSrc = product[8].split('.');
+        let allThumbnailsAlt = product[9].split('.');
+        return {
+          "name": product[0].toLowerCase(),
+          "description": product[1],
+          "features": allFeatures.map(feature => feature.trim()),
+          "price": product[3],
+          "discount": product[4],
+          "categories": allCategories.map(category => category.trim().toLowerCase().replaceAll(' ', '-')),
+          "mainImg": {
+            "src": product[6],
+            "alt": product[7],
+          },
+          "thumbnails": allThumbnailsSrc.map((thumbnail, index) => {
+            return {
+              "src": thumbnail.trim(),
+              "alt": allThumbnailsAlt[index].trim()
+            }
+          })
+        }
+      });
+
+      if (allProducts.length) {
+        let results, productCategoryHeader;
+        console.log('collectionname ', collectionname)
+        if(collectionname){
+          results = allProducts.filter((product) => product.categories.includes(collectionname));
+          productCategoryHeader = collectionname.replaceAll('-', ' ');
+        }
+        else{
+          results = allProducts;
+          productCategoryHeader = 'All products';
+        }
+
+        results.map((product) => {
+          product.priceAfterDiscount = (product.price - (product.price * product.discount / 100)).toFixed(2);
+        });
+
+        setProducts(results);
+        setProductCategoryHeader(productCategoryHeader);
+      }
     }
+    catch (error) {
+      console.log(error);
+    }
+  }
 
-    results.map((product) => {
-      product.priceAfterDiscount = (product.price - (product.price * product.discount / 100)).toFixed(2);
-    });
-
-    setProducts(results);
-    setProductCategoryHeader(productCategoryHeader);
-  }, [collectionname]);
+  useEffect(() => {
+    fetchAllProducts();
+  }, []);
 
   const handleProductSorting = (event) => {
     const sortBy = event.target.value;
@@ -101,28 +113,28 @@ export default function Products() {
 
     switch (sortBy) {
       case "nameAsc":
-        results = data.sort((p1, p2) => {
+        results = products.sort((p1, p2) => {
           if (p1.name < p2.name) {
             return -1;
           }
         });
         break;
       case "nameDesc":
-        results = data.sort((p1, p2) => {
+        results = products.sort((p1, p2) => {
           if (p1.name > p2.name) {
             return -1;
           }
         });
         break;
       case "priceAsc":
-        results = data.sort((p1, p2) => {
+        results = products.sort((p1, p2) => {
           if (p1.priceAfterDiscount < p2.priceAfterDiscount) {
             return -1;
           }
         });
         break;
       case "priceDesc":
-        results = data.sort((p1, p2) => {
+        results = products.sort((p1, p2) => {
           if (p1.priceAfterDiscount > p2.priceAfterDiscount) {
             return -1;
           }
@@ -136,7 +148,7 @@ export default function Products() {
 
   const handlePageSearch = (event) => {
     const searchInput = event.target.value;
-    const results = data.filter((product) =>
+    const results = products.filter((product) =>
       product.name.toLowerCase().includes(searchInput.toLowerCase())
     );
 
@@ -176,7 +188,7 @@ export default function Products() {
               textAlign: { xs: 'center', sm: 'left' },
               fontSize: { xs: '2rem', sm: '2rem', md: '2.5rem' },
               flexBasis: { md: '50%' },
-              textTransform: 'capitalize'
+              textTransform: 'uppercase'
             }}
           >
             {productCategoryHeader}
@@ -244,16 +256,16 @@ export default function Products() {
           alignItems: 'center',
           my: 3
         }}>
-          <Pagination 
+          <Pagination
             size="large"
             color="primary"
-            count={20} 
+            count={20}
             boundaryCount={0}
-            shape="rounded" 
-            variant="outlined" 
-            showFirstButton 
+            shape="rounded"
+            variant="outlined"
+            showFirstButton
             showLastButton
-            onChange={handlePageChange} 
+            onChange={handlePageChange}
             className="pagination-wrapper"
           />
         </Stack>

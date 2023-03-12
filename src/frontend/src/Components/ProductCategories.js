@@ -10,47 +10,59 @@ import { Link } from 'react-router-dom';
 export default function MultiActionAreaCard() {
   const productCategories = [
     {
-      'id': 'product1',
-      'heading': 'IC',
-      'imgSrc': 'ic.jpg',
-      'imgAlt': 'IC image',
-      'description': 'An integrated circuit (IC), sometimes called a chip, microchip or microelectronic circuit, is a semiconductor wafer on which thousands or millions of tiny resistors, capacitors, diodes and transistors are fabricated.',
+      'heading': 'Motherboard testing & repairing',
+      'imgSrc': 'image1.jpg',
+      'imgAlt': 'image1',
+      'description': 'Motherboard testing & repairing...',
       'btnText': 'Learn More',
-      'routeTo': '/products/ic',
+      'routeTo': '/products/motherboard-testing-and-repairing',
     },
     {
-      'id': 'product2',
-      'heading': 'IC',
-      'imgSrc': 'stand.jpg',
-      'imgAlt': 'IC image',
-      'description': 'An integrated circuit (IC), sometimes called a chip, microchip or microelectronic circuit, is a semiconductor wafer on which thousands or millions of tiny resistors, capacitors, diodes and transistors are fabricated.',
+      'heading': 'Hard disk testing & repairing',
+      'imgSrc': 'image2.jpg',
+      'imgAlt': 'image2',
+      'description': 'Hard disk testing & repairing...',
       'btnText': 'Learn More',
-      'routeTo': '/products/connector',
+      'routeTo': '/products/hard-disk-testing-and-repairing',
     },
     {
-      'id': 'product3',
-      'heading': 'IC',
-      'imgSrc': 'charger.jpg',
-      'imgAlt': 'IC image',
-      'description': 'An integrated circuit (IC), sometimes called a chip, microchip or microelectronic circuit, is a semiconductor wafer on which thousands or millions of tiny resistors, capacitors, diodes and transistors are fabricated.',
+      'heading': 'LCD LED TV Monitor testing & repairing',
+      'imgSrc': 'image3.jpg',
+      'imgAlt': 'image3',
+      'description': 'LCD LED TV Monitor testing & repairing...',
       'btnText': 'Learn More',
-      'routeTo': '/products/charger',
+      'routeTo': '/products/lcd-led-tv-monitor-testing-and-repairing',
     },
     {
-      'id': 'product4',
-      'heading': 'IC',
-      'imgSrc': 'connector.jpg',
-      'imgAlt': 'IC image',
-      'description': 'An integrated circuit (IC), sometimes called a chip, microchip or microelectronic circuit, is a semiconductor wafer on which thousands or millions of tiny resistors, capacitors, diodes and transistors are fabricated.',
+      'heading': 'Ram testing & repairing',
+      'imgSrc': 'image4.jpg',
+      'imgAlt': 'image4',
+      'description': 'Ram testing & repairing...',
       'btnText': 'Learn More',
-      'routeTo': '/products/stand',
+      'routeTo': '/products/ram-testing-and-repairing',
+    },
+    {
+      'heading': 'Display card testing & repairing',
+      'imgSrc': 'image5.jpg',
+      'imgAlt': 'image5',
+      'description': 'Display card testing & repairing...',
+      'btnText': 'Learn More',
+      'routeTo': '/products/display-card-testing-and-repairing',
+    },
+    {
+      'heading': 'Battery testing & repairing',
+      'imgSrc': 'image6.jpg',
+      'imgAlt': 'image6',
+      'description': 'Battery testing & repairing...',
+      'btnText': 'Learn More',
+      'routeTo': '/products/battery-testing-and-repairing',
     }
   ];
 
   return (
     <Container maxWidth="xl" sx={{
       flexDirection: { xs: 'column', sm: 'row' },
-      justifyContent: { sm: 'space-between' },
+      gap: { sm: '15px', lg: '2rem' },
       display: 'flex',
       flexWrap: { sm: 'wrap' },
       p: { xs: 2, md: 4 },
@@ -61,20 +73,21 @@ export default function MultiActionAreaCard() {
         <Card sx={{
           flexBasis: { sm: '49%', md: '23%' },
           mb: { xs: 2, md: 0 }
-        }} key={product.id}>
+        }} key={product.heading}>
           <CardActionArea>
             <CardMedia
               component="img"
               sx={{
-                height: { xs: '225px', md: '180px' },
+                // height: { xs: '225px', md: '180px' }
               }}
               // image={product.imgSrc}
-              image={"/images/homePageProducts/" + product.imgSrc}
+              image={`/images/homePageProducts/${product?.imgSrc}`}
               alt={product.imgAlt}
             />
             <CardContent>
               <Typography gutterBottom variant="h3" sx={{
-                fontSize: { xs: '2rem' }
+                fontSize: { xs: '1.5rem' },
+                textTransform: 'uppercase'
               }}>
                 {product.heading}
               </Typography>
