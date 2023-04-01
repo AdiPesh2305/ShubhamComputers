@@ -5,8 +5,8 @@ import Typography from '@mui/material/Typography';
 
 export default function ProductDetails(props) {
 
-  let productDetails = null;
-  productDetails = props.product;
+  let productDetails = props.product;
+  
   productDetails.priceAfterDiscount = (productDetails.price - (productDetails.price * productDetails.discount / 100)).toFixed(2);
 
   const features = productDetails.features.map((desc, index) => (
@@ -39,7 +39,7 @@ export default function ProductDetails(props) {
         <div className="product-image-wrapper">
           <div className="product-image-main">
             <img
-              src={"/images/products/" + mainImg.src}
+              src={`/images/products/${mainImg?.src}.jpg`}
               alt={mainImg.alt}
             />
           </div>
@@ -47,8 +47,10 @@ export default function ProductDetails(props) {
             <div className="product-thumb-images-wrapper">
               {productDetails.thumbnails.map((thumb, index) => (
                 <div className={isActive === index ? 'active' : ''} onClick={() => handleThumbClick(thumb, index)} key={index}>
-                  <img src={"/images/products/" + thumb.src}
-                    alt={thumb.alt} />
+                  <img 
+                    src={`/images/products/${thumb?.src}.jpg`}
+                    alt={thumb.alt} 
+                  />
                 </div>
               ))}
             </div>
