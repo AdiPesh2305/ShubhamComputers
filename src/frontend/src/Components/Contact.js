@@ -6,6 +6,10 @@ import Typography from '@mui/material/Typography';
 
 import CallIcon from '@mui/icons-material/Call';
 import EmailIcon from '@mui/icons-material/Email';
+import TelegramIcon from '@mui/icons-material/Telegram';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import TwitterIcon from '@mui/icons-material/Twitter';
 
 const NavBar = React.lazy(() => import("./Navigation/NavBar"));
 const Footer = React.lazy(() => import("./Navigation/Footer"));
@@ -18,87 +22,99 @@ export default function Contact() {
         <title>Shubham Computers - Contact Us</title>
         <meta name="description" content="Shubham Computers - Contact Us" />
       </Helmet>
-        <NavBar />
-        <Box sx={{
-          px: { xs: 2, md: 4 },
-          py: 2,
-          backgroundColor: '#EDEDED'
-        }}
+      <NavBar />
+      <Box sx={{
+        px: { xs: 2, md: 4 },
+        py: 2,
+        backgroundColor: '#EDEDED'
+      }}
+      >
+        <Typography
+          variant="h1"
+          sx={{
+            textAlign: 'center',
+            fontSize: '2.5rem'
+          }}
         >
-          <Typography
-            variant="h1"
-            sx={{
-              textAlign: 'center',
-              fontSize: '2.5rem'
-            }}
-          >
-            Contact Us
-          </Typography>
-          <Box sx={{
-            mt: 1
-          }} className="contact-details-wrapper">
-            <div className="map-wrapper">
-              <Typography
-                variant="h2"
-                sx={{
-                  fontSize: '1.5rem',
-                  borderBottom: '2px solid #CCC',
-                  letterSpacing: 1,
-                  mb: '0.75rem',
-                  pb: 0.5
-                }}
-              >
-                FIND US ON GOOGLE MAPS
-              </Typography>
-              <GoogleMaps/>
-            </div>
-            <div className="address-details-wrapper">
-              <Typography
-                variant="h2"
-                sx={{
-                  fontSize: '1.5rem',
-                  borderBottom: '2px solid #CCC',
-                  letterSpacing: 1,
-                  mb: 1,
-                  pb: 0.5
-                }}
-              >
-                SHOP ADDRESS
-              </Typography>
-              <address>
-                Office #100, 3rd Floor, <br />
-                Rajesh Building, <br />
-                Opposite Lamington Road Police Station, <br />
-                Grant Road (East), <br />
-                Mumbai 400 007, <br />
-                Maharashtra, India <br />
-              </address>
-              <a href="tel:9322249976">
-                <CallIcon /> +91 9322249976
-              </a>
-              <a href="tel:9222785781">
-                <CallIcon /> +91 9222785781
-              </a>
-              <a href="mailto:mailto:shubhamcomputers@hotmail.com?subject=Inquiry%20about%20Shubham%20Computers%20Products%20&body=Hi, %0D%0A%0D%0A">
-                <EmailIcon /> shubhamcomputers@hotmail.com
-              </a>
-              <Typography
-                variant="h2"
-                sx={{
-                  fontSize: '1.5rem',
-                  borderBottom: '2px solid #CCC',
-                  letterSpacing: 1,
-                  mb: 1,
-                  mt: 3,
-                  pb: 0.5
-                }}
-              >
-                OTHER WAYS TO REACH US
-              </Typography>
-            </div>
-          </Box>
+          Contact Us
+        </Typography>
+        <Box sx={{
+          mt: 1
+        }} className="contact-details-wrapper">
+          <div className="map-wrapper">
+            <Typography
+              variant="h2"
+              sx={{
+                fontSize: '1.5rem',
+                borderBottom: '2px solid #CCC',
+                letterSpacing: 1,
+                mb: '0.75rem',
+                pb: 0.5
+              }}
+            >
+              FIND US ON GOOGLE MAPS
+            </Typography>
+            <GoogleMaps />
+          </div>
+          <div className="address-details-wrapper">
+            <Typography
+              variant="h2"
+              sx={{
+                fontSize: '1.5rem',
+                borderBottom: '2px solid #CCC',
+                letterSpacing: 1,
+                mb: 1,
+                pb: 0.5
+              }}
+            >
+              SHOP ADDRESS
+            </Typography>
+            <address>
+              Office #100, 3rd Floor, <br />
+              Rajesh Building, <br />
+              Opposite Lamington Road Police Station, <br />
+              Grant Road (East), <br />
+              Mumbai 400 007, <br />
+              Maharashtra, India <br />
+            </address>
+            <a href="tel:9322249976">
+              <CallIcon /> +91 9322249976
+            </a>
+            <a href="tel:9222785781">
+              <CallIcon /> +91 9222785781
+            </a>
+            <a href="mailto:mailto:shubhamcomputers@hotmail.com?subject=Inquiry%20about%20Shubham%20Computers%20Products%20&body=Hi, %0D%0A%0D%0A">
+              <EmailIcon /> shubhamcomputers@hotmail.com
+            </a>
+            <Typography
+              variant="h2"
+              sx={{
+                fontSize: '1.5rem',
+                borderBottom: '2px solid #CCC',
+                letterSpacing: 1,
+                mb: 1,
+                mt: 3,
+                pb: 0.5
+              }}
+            >
+              OTHER WAYS TO REACH US
+            </Typography>
+            <a href="#">
+              <FacebookIcon />Facebook
+            </a>
+            <a href="https://web.whatsapp.com/send?phone=919322249976&text=https://www.shubhamcomputers.com/%0A%0AI'm interested in your products and I have a few questions. Can you help?" target="_blank">
+              <WhatsAppIcon /> WhatsApp
+            </a>
+            <a href="#">
+              <TwitterIcon />Twitter
+            </a>
+            <a href="#">
+              <TelegramIcon />Telegram
+            </a>
+          </div>
         </Box>
-        <Footer />
+      </Box>
+      <Footer />
     </div>
   );
 }
