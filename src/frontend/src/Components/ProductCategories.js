@@ -75,15 +75,14 @@ export default function MultiActionAreaCard() {
           mb: { xs: 2, md: 0 }
         }} key={product.heading}>
           <CardActionArea>
-            <CardMedia
-              component="img"
-              sx={{
-                // height: { xs: '225px', md: '180px' }
-              }}
-              // image={product.imgSrc}
-              image={`/images/homePageProducts/${product?.imgSrc}`}
-              alt={product.imgAlt}
-            />
+            <div className='card-media-wrapper'>
+              <CardMedia
+                component="img"
+                // image={product.imgSrc}
+                image={`/images/homePageProducts/${product?.imgSrc}`}
+                alt={product.imgAlt}
+              />
+            </div>
             <CardContent>
               <Typography gutterBottom variant="h3" sx={{
                 fontSize: { xs: '1.5rem' },

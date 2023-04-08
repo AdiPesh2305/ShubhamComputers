@@ -33,19 +33,19 @@ export default function Product(props) {
       position: 'relative'
     }} key={product.id} className='product-list'>
       <CardActionArea onClick={handleProductClick}>
-        <CardMedia
-          component="img"
-          image={`/images/products/${product?.mainImg?.src}.jpg`}
-          alt={product.mainImg.alt}
-          sx={{
-            height: { xs: '100px', sm: '125px', md: '180px' },
-          }}
-        />
+        <div className='card-media-wrapper'>
+          <CardMedia
+            component="img"
+            image={`/images/products/${product?.mainImg?.src}.jpg`}
+            alt={product.mainImg.alt}
+          />
+        </div>
         <CardContent>
           <Typography gutterBottom variant="h5" component="div" sx={{
             mb: 0,
             fontSize: {xs: '1.25rem', md: '1.5rem'},
-            lineHeight: 1
+            lineHeight: 1,
+            textTransform: "uppercase"
           }}>
             {product.name}
           </Typography>
