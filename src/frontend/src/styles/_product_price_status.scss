@@ -4,51 +4,16 @@
   align-items: center;
   justify-content: flex-start;
   margin: 12px 0 0;
-}
-
-.product-price-after-discount,
-.product-price-before-discount {
   font-size: larger;
-  color: $blackColor;
-}
-
-.product-price-before-discount {
-  text-decoration: line-through;
-  margin-left: 12px;
-}
-
-.product-discount-rate {
-  color: $colorGreen;
-  margin-left: 12px;
-}
-
-.product-discount {
-  padding: 0.5rem;
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: 2;
-  color: #fff;
-  font-size: 0.75rem;
-  font-weight: 600;
-  background-color: #e22727
 }
 
 @media screen and (max-width: 768px) {
-  .product-discount {
-    padding: 0.25rem;
-  }
-
   .product-price-wrapper {
     margin: 4px 0;
   }
 }
 
 @media screen and (max-width: 1024px) and (orientation: landscape) {
-  .product-discount {
-    padding: 0.25rem;
-  }
-
   .product-price-wrapper {
     margin: 4px 0;
   }

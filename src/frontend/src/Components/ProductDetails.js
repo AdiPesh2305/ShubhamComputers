@@ -7,8 +7,6 @@ export default function ProductDetails(props) {
 
   let productDetails = props.product;
   
-  productDetails.priceAfterDiscount = (productDetails.price - (productDetails.price * productDetails.discount / 100)).toFixed(2);
-
   const features = productDetails.features.map((desc, index) => (
     <li key={desc + index}>
       {desc}
@@ -63,21 +61,9 @@ export default function ProductDetails(props) {
           }}>
             {productDetails.name.toUpperCase()}
           </Typography>
-          <section className="product-price-wrapper">
-            <div className="product-price-after-discount">
-              &#8377; {productDetails.priceAfterDiscount}
-            </div>
-            {/* {productDetails.discount > 0 && (
-              <div className="product-price-before-discount">
-                &#8377; {productDetails.price.toFixed()}
-              </div>
-            )}
-            {productDetails.discount > 0 && (
-              <div className="product-discount-rate">
-                {productDetails.discount}%
-              </div>
-            )} */}
-          </section>
+          <div className="product-price-wrapper">
+            &#8377; {productDetails.price}
+          </div>
           {productDetails.description &&
             <>
               <Typography gutterBottom variant="h3" sx={{

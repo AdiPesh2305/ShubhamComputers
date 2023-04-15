@@ -49,15 +49,7 @@ export default function Product(props) {
           }}>
             {product.name}
           </Typography>
-          <section className="product-price-wrapper">
-            <div className="product-price-after-discount">₹ {product.priceAfterDiscount}</div>
-            {/* {product.discount > 0 && (
-            <div className="product-price-before-discount">₹ {product.price.toFixed()}</div>
-            )}
-            {product.discount > 0 && (
-            <div className="product-discount">{product.discount}% Off</div>
-            )} */}
-          </section>
+          <div className="product-price-wrapper">&#8377; {product.price}</div>
         </CardContent>
       </CardActionArea>
     </Card>

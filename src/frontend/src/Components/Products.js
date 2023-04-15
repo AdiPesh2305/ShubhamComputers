@@ -54,20 +54,21 @@ export default function Products() {
       response.data.values.shift(); //Remove first row which is column headers from data
 
       allProducts = response.data.values.map((product, index) => {
-        let allFeatures = product[2].split('.');
-        let allCategories = product[5].split('.');
-        let allThumbnailsSrc = product[8].split('.');
-        let allThumbnailsAlt = product[9].split('.');
+        let allFeatures = product[3].split('.');
+        let allCategories = product[0].split('.');
+        let allThumbnailsSrc = product[9].split('.');
+        let allThumbnailsAlt = product[10].split('.');
         return {
-          "name": product[0].toLowerCase(),
-          "description": product[1],
+          "name": product[1].toLowerCase(),
+          "description": product[2],
           "features": allFeatures.map(feature => feature.trim()),
-          "price": product[3],
-          "discount": product[4],
+          "price": product[5],
+          "link": product[4],
           "categories": allCategories.map(category => category.trim().toLowerCase().replaceAll(' ', '-')),
+          "keywords":product[1].split(' '),
           "mainImg": {
-            "src": product[6],
-            "alt": product[7],
+            "src": product[7],
+            "alt": product[8],
           },
           "thumbnails": allThumbnailsSrc.map((thumbnail, index) => {
             return {
@@ -79,20 +80,25 @@ export default function Products() {
       });
 
       if (allProducts.length) {
-        let results, productCategoryHeader;
-        console.log('collectionname ', collectionname)
+        let results = [];
+        let productCategoryHeader = "";
         if(collectionname){
-          results = allProducts.filter((product) => product.categories.includes(collectionname));
+          let searchInput = collectionname.replaceAll('-', ' ');
+          allProducts.forEach((product) => {
+            console.log(product.keywords, product.keywords.includes(searchInput))
+            if(product.keywords.includes(searchInput)){
+              results.push(product);
+            }
+            else{
+              setNoResultsFound(`Your search for ${searchInput} did not yield any results. Please refine your search and try again.`);
+            }
+          });
           productCategoryHeader = collectionname.replaceAll('-', ' ');
         }
         else{
           results = allProducts;
           productCategoryHeader = 'All products';
         }
-
-        results.map((product) => {
-          product.priceAfterDiscount = (product.price - (product.price * product.discount / 100)).toFixed(2);
-        });
 
         setProducts(results);
         setProductCategoryHeader(productCategoryHeader);
@@ -128,14 +134,14 @@ export default function Products() {
         break;
       case "priceAsc":
         results = products.sort((p1, p2) => {
-          if (p1.priceAfterDiscount < p2.priceAfterDiscount) {
+          if (p1.price < p2.price) {
             return -1;
           }
         });
         break;
       case "priceDesc":
         results = products.sort((p1, p2) => {
-          if (p1.priceAfterDiscount > p2.priceAfterDiscount) {
+          if (p1.price > p2.price) {
             return -1;
           }
         });
@@ -156,7 +162,7 @@ export default function Products() {
     setProducts(results);
 
     if (results.length < 1) {
-      setNoResultsFound(`Your search for ${searchInput} did not yield any results. Please refine your search and try again.`)
+      setNoResultsFound(`Your search for ${searchInput} did not yield any results. Please refine your search and try again.`);
     }
   };
 
