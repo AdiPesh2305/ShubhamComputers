@@ -10,24 +10,27 @@ import { Link } from 'react-router-dom';
 
 export default function ProductCategories() {
 
-  const [productCategories, setproductCategories] = useState([]);
+  const [productCategories, setProductCategories] = useState([]);
 
   const fetchProductCategories = async () => {
     try {
+      let allCategories = null;
+      
       const response = await axios.get(`/${process.env.REACT_APP_GOOGLE_SHEET_ID}/values/categories`);
       response.data.values.shift(); //Remove first row which is column headers from data
 
-      productCategories = response.data.values.map((category, index) => {
+      allCategories = response.data.values.map((category, index) => {
         return {
           "heading": category[0].toLowerCase(),
           "description": category[1],
           "imgSrc": category[2],
           "imgAlt": category[3],
           "routeTo": category[4],
-          'btnText': 'Learn More'
+          'btnText': 'Learn More',
         }
       });
-      setproductCategories(productCategories);
+
+      setProductCategories(allCategories);
     }
     catch (error) {
       console.log(error);
