@@ -25,7 +25,7 @@ function App() {
             <Route exact path="/about" element={<About />} />
             <Route exact path="/contact-us" element={<Contact />} />
             <Route exact path="/products" element={<Products />} />
-            <Route exact path="/products/:collectionname" element={<Products />} />
+            <Route exact path="/products/:route" element={<Products />} />
             <Route exact path="/products/view/:name" element={<ProductView />} />
             <Route path="/*" element={<PageNotFound />} />
           </Routes>

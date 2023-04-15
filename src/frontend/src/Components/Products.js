@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import { Helmet } from 'react-helmet-async';
 import axios from "../services";
 import Typography from '@mui/material/Typography';
-// import allProducts from "../allProducts/Allproducts.json";
 import "../styles/Products.scss";
 import Product from "./Product";
 import Container from '@mui/material/Container';
@@ -19,8 +18,11 @@ const NavBar = React.lazy(() => import("./Navigation/NavBar"));
 const Footer = React.lazy(() => import("./Navigation/Footer"));
 
 export default function Products() {
-  const productsPerPage = 3;
-  const { collectionname } = useParams();
+  const productsPerPage = 6;
+  const { route } = useParams();
+  const [searchParams] = useSearchParams();
+
+  const [allProducts, setAllProducts] = useState([]);
   const [products, setProducts] = useState([]);
   const [index, setIndex] = useState(productsPerPage);
   const [productCategoryHeader, setProductCategoryHeader] = useState('');
@@ -28,23 +30,34 @@ export default function Products() {
   const [searchQuery, setSearchQuery] = React.useState('');
   const [noResultsFound, setNoResultsFound] = React.useState('');
 
-  // To check for session storage
-  // useEffect(() => {
-  //   console.log('component rendered')
-  //   if(sessionStorage.getItem("kalpesh")){
-  //     console.log(sessionStorage.getItem("kalpesh"))
-  //     console.log(1)
-  //   }
-  //   else{
-  //     sessionStorage.setItem("kalpesh", "jain");
-  //     console.log(2)
-  //   }
-  // }, [])
+  const initializeProducts = (allProducts) => {
+    console.log('fn called');
 
-  // useEffect(() => {
+    let results = [];
+    let productCategoryHeader = "";
+    
+    if (route) {//filter allProducts by route
+      let productCategory = route.replaceAll('-', ' ');
+      results = allProducts.filter((product) => {
+        return product.categories.includes(productCategory);
+      });
+      productCategoryHeader = productCategory;
+    }
+    else if(searchParams.get('search')){//filter allProducts by search field in navbar
+      let searchQuery = searchParams.get('search');
+      results = allProducts.filter((product) => {
+        return product.name.includes(searchQuery);
+      });
+      productCategoryHeader = searchQuery;
+    }
+    else {
+      results = allProducts;
+      productCategoryHeader = 'All products';
+    }
 
-  //   fetchAllProducts();
-  // }, []);
+    setProducts(results);
+    setProductCategoryHeader(productCategoryHeader);
+  }
 
   const fetchAllProducts = async () => {
     try {
@@ -63,8 +76,9 @@ export default function Products() {
           "features": allFeatures.map(feature => feature.trim()),
           "price": product[6],
           "link": product[5],
-          "categories": allCategories.map(category => category.trim().toLowerCase().replaceAll(' ', '-')),
-          "keywords": product[1].split(' '),
+          // "categories": allCategories.map(category => category.trim().toLowerCase().replaceAll(' ', '-')),
+          "categories": allCategories.map(category => category.trim().toLowerCase()),
+          "keywords": product[7].split(' '),
           "mainImg": {
             "src": product[8],
             "alt": product[9],
@@ -79,28 +93,8 @@ export default function Products() {
       });
 
       if (allProducts.length) {
-        let results = [];
-        let productCategoryHeader = "";
-        if (collectionname) {
-          let searchInput = collectionname.replaceAll('-', ' ');
-          allProducts.forEach((product) => {
-            console.log(product.keywords, product.keywords.includes(searchInput))
-            if (product.keywords.includes(searchInput)) {
-              results.push(product);
-            }
-            else {
-              setNoResultsFound(`Your search for ${searchInput} did not yield any results. Please refine your search and try again.`);
-            }
-          });
-          productCategoryHeader = collectionname.replaceAll('-', ' ');
-        }
-        else {
-          results = allProducts;
-          productCategoryHeader = 'All products';
-        }
-
-        setProducts(results);
-        setProductCategoryHeader(productCategoryHeader);
+        setAllProducts(allProducts);
+        initializeProducts(allProducts);
       }
     }
     catch (error) {
@@ -110,6 +104,35 @@ export default function Products() {
 
   useEffect(() => {
     fetchAllProducts();
+  }, []);
+
+  useEffect(() => {
+    if (allProducts.length) {
+      initializeProducts(allProducts);
+    }
+  }, [route, searchParams]);
+
+  // To check for session storage
+  useEffect(() => {
+    const hours = 0.1; // to clear the sessionStorage after 1 hour
+
+    const now = new Date().getTime();
+    let setupTime = sessionStorage.getItem('setupTime');
+
+    if (setupTime == null) {
+      sessionStorage.setItem('setupTime', now);
+      console.log('session set')
+    }
+    else {
+      if (now - setupTime > hours * 60 * 60 * 1000) {
+        sessionStorage.removeItem('setupTime');
+        sessionStorage.setItem('setupTime', now);
+        console.log('session refreshed')
+      }
+      else {
+        console.log('session exists')
+      }
+    }
   }, []);
 
   const handleProductSorting = (event) => {

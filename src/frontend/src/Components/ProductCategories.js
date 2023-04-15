@@ -25,7 +25,7 @@ export default function ProductCategories() {
           "description": category[1],
           "imgSrc": category[2],
           "imgAlt": category[3],
-          "routeTo": category[4],
+          "routeTo": `/products/${category[4]}`,
           'btnText': 'Learn More',
         }
       });

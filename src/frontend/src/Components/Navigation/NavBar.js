@@ -118,7 +118,11 @@ const NavBar = (props) => {
   const handleSearchClick = () => {
     const searchInput = searchInputRef.current.children[0].value.trim();
     if (searchInput.length > 0) {
-      navigate(`/products/${searchInput}`);
+      // navigate(`/products/${searchInput}`);
+      navigate({
+        pathname: '/products',
+        search: `?search=${searchInput}`
+      });
     }
   };
 
