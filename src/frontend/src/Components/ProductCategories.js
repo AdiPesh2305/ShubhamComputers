@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React, { useState, useEffect } from "react";
+import axios from "../services";
 import Container from '@mui/material/Container';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -7,57 +8,35 @@ import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions } from '@mui/material';
 import { Link } from 'react-router-dom';
 
-export default function MultiActionAreaCard() {
-  const productCategories = [
-    {
-      'heading': 'Motherboard testing & repairing',
-      'imgSrc': 'image1.jpg',
-      'imgAlt': 'image1',
-      'description': 'Motherboard testing & repairing...',
-      'btnText': 'Learn More',
-      'routeTo': '/products/motherboard-testing-and-repairing',
-    },
-    {
-      'heading': 'Hard disk testing & repairing',
-      'imgSrc': 'image2.jpg',
-      'imgAlt': 'image2',
-      'description': 'Hard disk testing & repairing...',
-      'btnText': 'Learn More',
-      'routeTo': '/products/hard-disk-testing-and-repairing',
-    },
-    {
-      'heading': 'LCD LED TV Monitor testing & repairing',
-      'imgSrc': 'image3.jpg',
-      'imgAlt': 'image3',
-      'description': 'LCD LED TV Monitor testing & repairing...',
-      'btnText': 'Learn More',
-      'routeTo': '/products/lcd-led-tv-monitor-testing-and-repairing',
-    },
-    {
-      'heading': 'Ram testing & repairing',
-      'imgSrc': 'image4.jpg',
-      'imgAlt': 'image4',
-      'description': 'Ram testing & repairing...',
-      'btnText': 'Learn More',
-      'routeTo': '/products/ram-testing-and-repairing',
-    },
-    {
-      'heading': 'Display card testing & repairing',
-      'imgSrc': 'image5.jpg',
-      'imgAlt': 'image5',
-      'description': 'Display card testing & repairing...',
-      'btnText': 'Learn More',
-      'routeTo': '/products/display-card-testing-and-repairing',
-    },
-    {
-      'heading': 'Battery testing & repairing',
-      'imgSrc': 'image6.jpg',
-      'imgAlt': 'image6',
-      'description': 'Battery testing & repairing...',
-      'btnText': 'Learn More',
-      'routeTo': '/products/battery-testing-and-repairing',
+export default function ProductCategories() {
+
+  const [productCategories, setproductCategories] = useState([]);
+
+  const fetchProductCategories = async () => {
+    try {
+      const response = await axios.get(`/${process.env.REACT_APP_GOOGLE_SHEET_ID}/values/categories`);
+      response.data.values.shift(); //Remove first row which is column headers from data
+
+      productCategories = response.data.values.map((category, index) => {
+        return {
+          "heading": category[0].toLowerCase(),
+          "description": category[1],
+          "imgSrc": category[2],
+          "imgAlt": category[3],
+          "routeTo": category[4],
+          'btnText': 'Learn More'
+        }
+      });
+      setproductCategories(productCategories);
     }
-  ];
+    catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    fetchProductCategories();
+  }, []);
 
   return (
     <Container maxWidth="xl" sx={{
