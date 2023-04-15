@@ -13,20 +13,20 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import TextField from "@mui/material/TextField";
 import Select from '@mui/material/Select';
-import Pagination from '@mui/material/Pagination';
-import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
 
 const NavBar = React.lazy(() => import("./Navigation/NavBar"));
 const Footer = React.lazy(() => import("./Navigation/Footer"));
 
 export default function Products() {
+  const productsPerPage = 3;
   const { collectionname } = useParams();
   const [products, setProducts] = useState([]);
+  const [index, setIndex] = useState(productsPerPage);
   const [productCategoryHeader, setProductCategoryHeader] = useState('');
   const [sortProductsBy, setSortProductsBy] = useState('nameAsc');
   const [searchQuery, setSearchQuery] = React.useState('');
   const [noResultsFound, setNoResultsFound] = React.useState('');
-  const [page, setPage] = React.useState(1);
 
   // To check for session storage
   // useEffect(() => {
@@ -43,32 +43,31 @@ export default function Products() {
 
   // useEffect(() => {
 
-
   //   fetchAllProducts();
   // }, []);
 
   const fetchAllProducts = async () => {
     try {
       let allProducts = null;
-      const response = await axios.get(`/${process.env.REACT_APP_GOOGLE_SHEET_ID}/values/products`);
+      const response = await axios.get(`/${process.env.REACT_APP_GOOGLE_SHEET_ID}/values/testing`);
       response.data.values.shift(); //Remove first row which is column headers from data
 
       allProducts = response.data.values.map((product, index) => {
-        let allFeatures = product[3].split('.');
+        let allFeatures = product[4].split('.');
         let allCategories = product[0].split('.');
-        let allThumbnailsSrc = product[9].split('.');
-        let allThumbnailsAlt = product[10].split('.');
+        let allThumbnailsSrc = product[10].split('.');
+        let allThumbnailsAlt = product[11].split('.');
         return {
-          "name": product[1].toLowerCase(),
-          "description": product[2],
+          "name": product[2].toLowerCase(),
+          "description": product[3],
           "features": allFeatures.map(feature => feature.trim()),
-          "price": product[5],
-          "link": product[4],
+          "price": product[6],
+          "link": product[5],
           "categories": allCategories.map(category => category.trim().toLowerCase().replaceAll(' ', '-')),
-          "keywords":product[1].split(' '),
+          "keywords": product[1].split(' '),
           "mainImg": {
-            "src": product[7],
-            "alt": product[8],
+            "src": product[8],
+            "alt": product[9],
           },
           "thumbnails": allThumbnailsSrc.map((thumbnail, index) => {
             return {
@@ -82,20 +81,20 @@ export default function Products() {
       if (allProducts.length) {
         let results = [];
         let productCategoryHeader = "";
-        if(collectionname){
+        if (collectionname) {
           let searchInput = collectionname.replaceAll('-', ' ');
           allProducts.forEach((product) => {
             console.log(product.keywords, product.keywords.includes(searchInput))
-            if(product.keywords.includes(searchInput)){
+            if (product.keywords.includes(searchInput)) {
               results.push(product);
             }
-            else{
+            else {
               setNoResultsFound(`Your search for ${searchInput} did not yield any results. Please refine your search and try again.`);
             }
           });
           productCategoryHeader = collectionname.replaceAll('-', ' ');
         }
-        else{
+        else {
           results = allProducts;
           productCategoryHeader = 'All products';
         }
@@ -166,10 +165,8 @@ export default function Products() {
     }
   };
 
-  const handlePageChange = async (event, value) => {
-    setPage(value);
-    const response = await axios.get(`/${process.env.REACT_APP_GOOGLE_SHEET_ID}/values/products!A${value}:J${value}`);
-    console.log(response)
+  const handleLoadMore = () => {
+    setIndex(index + productsPerPage);
   }
 
   return (
@@ -244,7 +241,7 @@ export default function Products() {
           flexWrap: { xs: 'wrap' },
         }}>
           {products.length > 0
-            ? products.map((product) => (
+            ? products.slice(0, index).map((product) => (
               <Product data={product} key={product.name} />
             ))
             : (
@@ -258,23 +255,17 @@ export default function Products() {
               </Typography>
             )}
         </Box>
-        <Stack sx={{
-          alignItems: 'center',
+        <Box sx={{
+          display: 'flex',
+          justifyContent: 'center',
           my: 3
         }}>
-          <Pagination
-            size="large"
-            color="primary"
-            count={20}
-            boundaryCount={0}
-            shape="rounded"
-            variant="outlined"
-            showFirstButton
-            showLastButton
-            onChange={handlePageChange}
-            className="pagination-wrapper"
-          />
-        </Stack>
+          {index < products?.length && (
+            <Button variant="contained" size="large" onClick={handleLoadMore}>
+              Show more products
+            </Button>
+          )}
+        </Box>
       </Container>
       <Footer />
     </div>
