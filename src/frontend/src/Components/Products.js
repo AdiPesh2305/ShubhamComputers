@@ -22,20 +22,19 @@ export default function Products() {
   const { route } = useParams();
   const [searchParams] = useSearchParams();
 
-  const [allProducts, setAllProducts] = useState([]);
+  const [allProducts, setAllProducts] = useState(JSON.parse(sessionStorage.getItem('allProducts')) || []);
   const [products, setProducts] = useState([]);
   const [index, setIndex] = useState(productsPerPage);
   const [productCategoryHeader, setProductCategoryHeader] = useState('');
   const [sortProductsBy, setSortProductsBy] = useState('nameAsc');
-  const [searchQuery, setSearchQuery] = React.useState('');
   const [noResultsFound, setNoResultsFound] = React.useState('');
 
   const initializeProducts = (allProducts) => {
-    console.log('fn called');
+    // console.log('fn called');
 
     let results = [];
     let productCategoryHeader = "";
-    
+
     if (route) {//filter allProducts by route
       let productCategory = route.replaceAll('-', ' ');
       results = allProducts.filter((product) => {
@@ -43,10 +42,10 @@ export default function Products() {
       });
       productCategoryHeader = productCategory;
     }
-    else if(searchParams.get('search')){//filter allProducts by search field in navbar
+    else if (searchParams.get('search')) {//filter allProducts by search field in navbar
       let searchQuery = searchParams.get('search');
       results = allProducts.filter((product) => {
-        return product.name.includes(searchQuery);
+        return product.name.toLowerCase().includes(searchQuery.toLowerCase());
       });
       productCategoryHeader = searchQuery;
     }
@@ -93,6 +92,8 @@ export default function Products() {
       });
 
       if (allProducts.length) {
+        // console.log('allProducts fetched ', allProducts)
+        sessionStorage.setItem('allProducts', JSON.stringify(allProducts));
         setAllProducts(allProducts);
         initializeProducts(allProducts);
       }
@@ -102,11 +103,12 @@ export default function Products() {
     }
   }
 
-  useEffect(() => {
-    fetchAllProducts();
-  }, []);
+  // useEffect(() => {
+  //   fetchAllProducts();
+  // }, []);
 
   useEffect(() => {
+    // console.log('allProducts ', allProducts)
     if (allProducts.length) {
       initializeProducts(allProducts);
     }
@@ -114,25 +116,37 @@ export default function Products() {
 
   // To check for session storage
   useEffect(() => {
-    const hours = 0.1; // to clear the sessionStorage after 1 hour
 
-    const now = new Date().getTime();
-    let setupTime = sessionStorage.getItem('setupTime');
+    const storeProducts = async () => {
+      const hours = 0.1; // to clear the sessionStorage after 1 hour
 
-    if (setupTime == null) {
-      sessionStorage.setItem('setupTime', now);
-      console.log('session set')
-    }
-    else {
-      if (now - setupTime > hours * 60 * 60 * 1000) {
-        sessionStorage.removeItem('setupTime');
+      const now = new Date().getTime();
+      let setupTime = sessionStorage.getItem('setupTime');
+
+      if (setupTime == null) {
         sessionStorage.setItem('setupTime', now);
-        console.log('session refreshed')
+        await fetchAllProducts();
+        console.log('session set')
       }
       else {
-        console.log('session exists')
+        if (now - setupTime > hours * 60 * 60 * 1000) {
+          sessionStorage.removeItem('setupTime');
+          sessionStorage.setItem('setupTime', now);
+          await fetchAllProducts();
+          console.log('session refreshed')
+        }
+        else {
+          console.log('session exists')
+          console.log('allProducts from session ', allProducts)
+          if (allProducts.length) {
+            initializeProducts(allProducts);
+          }
+        }
       }
     }
+
+    storeProducts();
+
   }, []);
 
   const handleProductSorting = (event) => {
@@ -175,16 +189,20 @@ export default function Products() {
   };
 
   const handlePageSearch = (event) => {
-    const searchInput = event.target.value;
-    const results = products.filter((product) =>
-      product.name.toLowerCase().includes(searchInput.toLowerCase())
-    );
+    const currentProducts = JSON.parse (JSON.stringify(products));
+    const results = (products.length ? products : allProducts).filter((product) => product.name.toLowerCase().includes(event.target.value.toLowerCase()));
 
-    setSearchQuery(searchInput);
-    setProducts(results);
+    // console.log(searchQuery, results, products, event.target.value, allProducts)
 
-    if (results.length < 1) {
-      setNoResultsFound(`Your search for ${searchInput} did not yield any results. Please refine your search and try again.`);
+    if (event.target.value === "") {
+      initializeProducts(allProducts);
+    }
+    else if (results.length) {
+      setProducts(results);
+    }
+    else {
+      setProducts([]);
+      setNoResultsFound(`No products were found for '${event.target.value}'. Please refine your search and try again.`);
     }
   };
 
@@ -205,7 +223,7 @@ export default function Products() {
           justifyContent: 'space-between',
           flexDirection: { xs: 'column', sm: 'row' },
           pt: { xs: 2, sm: 4 },
-          px: { xs: 0, md: 1 },
+          px: { xs: 0 },
           pb: 2
         }}>
           <Typography
@@ -234,8 +252,7 @@ export default function Products() {
                 label='Search on this page'
                 type="search"
                 size="small"
-                value={searchQuery}
-                onChange={handlePageSearch}
+                onInput={handlePageSearch}
               />
             </FormControl>
             <FormControl size="small" sx={{
