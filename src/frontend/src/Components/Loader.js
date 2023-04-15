@@ -12,7 +12,7 @@ export default function Loader() {
             justifyContent: 'center',
             flexDirection: 'column'
         }}>
-            <CircularProgress size={50} />
+            <CircularProgress size={50} color="inherit" />
             {/* <img src="images/loading.gif" alt="" />
             <img src="images/loading2.gif" alt="" />
             <img src="images/loading3.gif" alt="" /> */}
