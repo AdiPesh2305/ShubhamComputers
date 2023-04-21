@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import ReportGmailerrorredIcon from '@mui/icons-material/ReportGmailerrorred';
+import Button from '@mui/material/Button';
 
 export default function PageNotFound() {
   return (
@@ -13,22 +15,30 @@ export default function PageNotFound() {
       flexDirection: 'column'
     }}>
       <Typography
-        variant="h2"
+        variant="h5"
         noWrap
         sx={{
-          fontSize: { xs: '1.5rem', sm: '2rem', md: '3.75rem' },
-          my: 2
+          fontSize: { xs: '1.5rem', sm: '2rem', md: '3rem' },
+          textAlign: 'center'
+        }}
+      >
+        <ReportGmailerrorredIcon sx={{ fontSize: '5rem' }} />
+        <div>Oops! Page not found</div>
+      </Typography>
+      <Typography
+        variant="body1"
+        noWrap
+        sx={{
+          fontSize: { xs: '1.5rem', sm: '1.5rem', md: '1.5rem' },
+          mb: 2,
+          mt: 1
         }}
       >
         Could not find the page you are looking for!
       </Typography>
-      <Typography
-        variant="body2"
-      >
-        <Link to='/'>
-          Take me to home page
-        </Link>
-      </Typography>
+      <Button variant="contained" size="large" component={Link} to='/'>
+        Go to home page
+      </Button>
     </Box>
   );
 }
