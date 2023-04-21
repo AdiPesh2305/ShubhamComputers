@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "../services";
+import axios from "../api/services";
 import Container from '@mui/material/Container';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -10,12 +10,12 @@ import { Link } from 'react-router-dom';
 
 export default function ProductCategories() {
 
-  const [productCategories, setProductCategories] = useState([]);
+  const [productCategories, setProductCategories] = useState(JSON.parse(sessionStorage.getItem('productCategories')) || []);
 
   const fetchProductCategories = async () => {
     try {
       let allCategories = null;
-      
+
       const response = await axios.get(`/${process.env.REACT_APP_GOOGLE_SHEET_ID}/values/categories`);
       response.data.values.shift(); //Remove first row which is column headers from data
 
@@ -30,15 +30,49 @@ export default function ProductCategories() {
         }
       });
 
-      setProductCategories(allCategories);
+      sessionStorage.setItem('productCategories', JSON.stringify(allCategories));
+      initializeProductCategories(allCategories);
     }
     catch (error) {
       console.log(error);
     }
   }
 
+  const initializeProductCategories = (allProductCategories) => {
+    setProductCategories(allProductCategories);
+  }
+
+  // To check for session storage
+  const storeProductCategories = async () => {
+    const hours = 0.1; // to clear the sessionStorage after 1 hour
+
+    const now = new Date().getTime();
+    let setupTime = sessionStorage.getItem('setupTime');
+
+    if (setupTime == null) {
+      sessionStorage.setItem('setupTime', now);
+      await fetchProductCategories();
+      console.log('session set')
+    }
+    else {
+      if (now - setupTime > hours * 60 * 60 * 1000) {
+        sessionStorage.removeItem('setupTime');
+        sessionStorage.setItem('setupTime', now);
+        await fetchProductCategories();
+        console.log('session refreshed')
+      }
+      else {
+        console.log('session exists')
+        console.log('productCategories from session ', productCategories)
+        if (productCategories.length) {
+          initializeProductCategories(productCategories);
+        }
+      }
+    }
+  }
+
   useEffect(() => {
-    fetchProductCategories();
+    storeProductCategories();
   }, []);
 
   return (

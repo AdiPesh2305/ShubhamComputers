@@ -9,21 +9,9 @@ import { useNavigate } from "react-router-dom";
 
 export default function Product(props) {
   const navigate = useNavigate();
-  const product = props.data;
-  // const productMainImg = require("../assets/images/products/" + product?.mainImg?.src);
-  // const productMainImg = "images/ic.jpg" /takes the path from images folder in public folder/;
-
-   // Single Product
-    // const response = await axios.get(`https://docs.google.com/spreadsheets/d/1ZvGw6Rj62R7tGGzCXn8GdiRQKOe0TrEWBlQSm2EPnCc/gviz/tq?tqx=out:csv&range=A2:K&sheet=products&tq=SELECT%20*%20WHERE%20A%20=%20%27RAM%27`);
-
-    // console.log(response)
-    // const jain = response.data.replace(/(\r\n|\n|\r|")/gm, " ")
-    
-    // console.log(jain)
-    // console.log(jain.split(' ,'))
+  const {product} = props;
 
   const handleProductClick = () => {
-    sessionStorage.setItem("product", JSON.stringify(product));
     navigate(`/products/view/${product.name}`, {state: product});
   };
 

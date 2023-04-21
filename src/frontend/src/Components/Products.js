@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 import { Helmet } from 'react-helmet-async';
-import axios from "../services";
+import axios from "../api/services";
 import Typography from '@mui/material/Typography';
 import "../styles/Products.scss";
 import Product from "./Product";
@@ -29,39 +29,10 @@ export default function Products() {
   const [sortProductsBy, setSortProductsBy] = useState('nameAsc');
   const [noResultsFound, setNoResultsFound] = React.useState('');
 
-  const initializeProducts = (allProducts) => {
-    // console.log('fn called');
-
-    let results = [];
-    let productCategoryHeader = "";
-
-    if (route) {//filter allProducts by route
-      let productCategory = route.replaceAll('-', ' ');
-      results = allProducts.filter((product) => {
-        return product.categories.includes(productCategory);
-      });
-      productCategoryHeader = productCategory;
-    }
-    else if (searchParams.get('search')) {//filter allProducts by search field in navbar
-      let searchQuery = searchParams.get('search');
-      results = allProducts.filter((product) => {
-        return product.name.toLowerCase().includes(searchQuery.toLowerCase());
-      });
-      productCategoryHeader = searchQuery;
-    }
-    else {
-      results = allProducts;
-      productCategoryHeader = 'All products';
-    }
-
-    setProducts(results);
-    setProductCategoryHeader(productCategoryHeader);
-  }
-
   const fetchAllProducts = async () => {
     try {
       let allProducts = null;
-      const response = await axios.get(`/${process.env.REACT_APP_GOOGLE_SHEET_ID}/values/testing`);
+      const response = await axios(`/${process.env.REACT_APP_GOOGLE_SHEET_ID}/values/testing`);
       response.data.values.shift(); //Remove first row which is column headers from data
 
       allProducts = response.data.values.map((product, index) => {
@@ -103,51 +74,73 @@ export default function Products() {
     }
   }
 
-  // useEffect(() => {
-  //   fetchAllProducts();
-  // }, []);
+  const initializeProducts = (allProducts) => {
+    // console.log('fn called');
+
+    let results = [];
+    let productCategoryHeader = "";
+
+    if (route) {//filter allProducts by route
+      let productCategory = route.replaceAll('-', ' ');
+      results = allProducts.filter((product) => {
+        return product.categories.includes(productCategory);
+      });
+      productCategoryHeader = productCategory;
+    }
+    else if (searchParams.get('search')) {//filter allProducts by search field in navbar
+      let searchQuery = searchParams.get('search');
+      results = allProducts.filter((product) => {
+        return product.name.toLowerCase().includes(searchQuery.toLowerCase());
+      });
+      productCategoryHeader = searchQuery;
+    }
+    else {
+      results = allProducts;
+      productCategoryHeader = 'All products';
+    }
+
+    setProducts(results);
+    setProductCategoryHeader(productCategoryHeader);
+  }
+
+  // To check for session storage
+  const storeProducts = async () => {
+    const hours = 0.1; // to clear the sessionStorage after 1 hour
+
+    const currentTime = new Date().getTime();
+    let setupTime = sessionStorage.getItem('setupTime');
+
+    if (setupTime == null) {
+      sessionStorage.setItem('setupTime', currentTime);
+      await fetchAllProducts();
+      console.log('session set')
+    }
+    else {
+      if (currentTime - setupTime > hours * 60 * 60 * 1000) {
+        sessionStorage.removeItem('setupTime');
+        sessionStorage.setItem('setupTime', currentTime);
+        await fetchAllProducts();
+        console.log('session refreshed')
+      }
+      else {
+        console.log('session exists')
+        console.log('allProducts from session ', allProducts)
+        if (allProducts.length) {
+          initializeProducts(allProducts);
+        }
+      }
+    }
+  }
 
   useEffect(() => {
-    // console.log('allProducts ', allProducts)
+    storeProducts();
+  }, []);
+
+  useEffect(() => {
     if (allProducts.length) {
       initializeProducts(allProducts);
     }
   }, [route, searchParams]);
-
-  // To check for session storage
-  useEffect(() => {
-
-    const storeProducts = async () => {
-      const hours = 0.1; // to clear the sessionStorage after 1 hour
-
-      const now = new Date().getTime();
-      let setupTime = sessionStorage.getItem('setupTime');
-
-      if (setupTime == null) {
-        sessionStorage.setItem('setupTime', now);
-        await fetchAllProducts();
-        console.log('session set')
-      }
-      else {
-        if (now - setupTime > hours * 60 * 60 * 1000) {
-          sessionStorage.removeItem('setupTime');
-          sessionStorage.setItem('setupTime', now);
-          await fetchAllProducts();
-          console.log('session refreshed')
-        }
-        else {
-          console.log('session exists')
-          console.log('allProducts from session ', allProducts)
-          if (allProducts.length) {
-            initializeProducts(allProducts);
-          }
-        }
-      }
-    }
-
-    storeProducts();
-
-  }, []);
 
   const handleProductSorting = (event) => {
     const sortBy = event.target.value;
@@ -189,7 +182,6 @@ export default function Products() {
   };
 
   const handlePageSearch = (event) => {
-    const currentProducts = JSON.parse (JSON.stringify(products));
     const results = (products.length ? products : allProducts).filter((product) => product.name.toLowerCase().includes(event.target.value.toLowerCase()));
 
     // console.log(searchQuery, results, products, event.target.value, allProducts)
@@ -282,7 +274,7 @@ export default function Products() {
         }}>
           {products.length > 0
             ? products.slice(0, index).map((product) => (
-              <Product data={product} key={product.name} />
+              <Product product={product} key={product.name} />
             ))
             : (
               <Typography
