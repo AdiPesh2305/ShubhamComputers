@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import CircularProgress from '@mui/material/CircularProgress';
 
-export default function Loader() {
+export default function Loader({message}) {
     return (
         <Box sx={{
             display:'flex',
@@ -24,7 +24,7 @@ export default function Loader() {
                     mt: 2
                 }}
             >
-                Loading Shubham Computers...
+                {message || 'Loading Shubham Computers...'}
             </Typography>
         </Box>
     );

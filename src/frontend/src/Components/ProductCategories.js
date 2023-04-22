@@ -3,10 +3,12 @@ import axios from "../api/services";
 import Container from '@mui/material/Container';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import PlaceholderImage from '../assets/images/placeholder.png';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 export default function ProductCategories() {
 
@@ -44,7 +46,7 @@ export default function ProductCategories() {
 
   // To check for session storage
   const storeProductCategories = async () => {
-    const hours = 0.1; // to clear the sessionStorage after 1 hour
+    const hours = 0.01; // to clear the sessionStorage after 1 hour
 
     const now = new Date().getTime();
     let setupTime = sessionStorage.getItem('setupTime');
@@ -92,11 +94,11 @@ export default function ProductCategories() {
         }} key={product.heading}>
           <CardActionArea>
             <div className='card-media-wrapper'>
-              <CardMedia
-                component="img"
-                // image={product.imgSrc}
-                image={`/images/homePageProducts/${product?.imgSrc}`}
+              <LazyLoadImage 
+                src={`/images/homePageProducts/${product?.imgSrc}`}
+                placeholderSrc={PlaceholderImage}
                 alt={product.imgAlt}
+                effect="blur"
               />
             </div>
             <CardContent>

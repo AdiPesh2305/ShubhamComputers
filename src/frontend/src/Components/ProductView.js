@@ -7,6 +7,9 @@ import Footer from "./Navigation/Footer";
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import axios from "../api/services";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import PlaceholderImage from '../assets/images/placeholder.png';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 export default function Catalog() {
   const { name } = useParams();
@@ -102,9 +105,15 @@ export default function Catalog() {
               <div className="product-thumb-images-wrapper">
                 {product.thumbnails.map((thumb, index) => (
                   <div className={isActive === index ? 'active' : ''} onClick={() => handleThumbClick(thumb, index)} key={index}>
-                    <img
+                    {/* <img
                       src={`/images/products/${thumb?.src}.jpg`}
                       alt={thumb.alt}
+                    /> */}
+                     <LazyLoadImage 
+                      src={`/images/products/${thumb?.src}.jpg`}
+                      alt={thumb.alt}
+                      placeholderSrc={PlaceholderImage}
+                      effect="blur"
                     />
                   </div>
                 ))}

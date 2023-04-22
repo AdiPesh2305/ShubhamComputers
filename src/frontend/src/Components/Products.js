@@ -105,7 +105,7 @@ export default function Products() {
 
   // To check for session storage
   const storeProducts = async () => {
-    const hours = 0.1; // to clear the sessionStorage after 1 hour
+    const hours = 0.01; // to clear the sessionStorage after 1 hour
 
     const currentTime = new Date().getTime();
     let setupTime = sessionStorage.getItem('setupTime');
