@@ -26,8 +26,8 @@ export default function Product(props) {
         <div className='card-media-wrapper'>
           <LazyLoadImage 
             src={`/images/products/${product?.mainImg?.src}.jpg`}
-            placeholderSrc={PlaceholderImage}
             alt={product.mainImg.alt}
+            placeholderSrc={PlaceholderImage}
             effect="blur"
           />
         </div>

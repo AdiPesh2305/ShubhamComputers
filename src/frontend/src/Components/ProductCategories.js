@@ -96,8 +96,8 @@ export default function ProductCategories() {
             <div className='card-media-wrapper'>
               <LazyLoadImage 
                 src={`/images/homePageProducts/${product?.imgSrc}`}
-                placeholderSrc={PlaceholderImage}
                 alt={product.imgAlt}
+                placeholderSrc={PlaceholderImage}
                 effect="blur"
               />
             </div>
