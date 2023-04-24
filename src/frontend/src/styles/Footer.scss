@@ -15,7 +15,8 @@
 .footer-links {
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: unset;
+  padding: 0 0.5rem;
 }
 
 .footer-link-items {
@@ -23,28 +24,25 @@
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
-  flex-basis: 12%;
-  margin: 0 2rem;
   box-sizing: border-box;
-}
+  flex-basis: 100%;
+  margin: 0 0.5rem;
 
-.footer-link-items h2 {
-  margin-bottom: 16px;
-}
+  h2 {
+    margin-bottom: 16px;
+    font-size: 16px;
+  }
 
-.footer-link-items a {
-  text-decoration: none;
-  margin-bottom: 0.5rem;
-  display: flex;
-}
+  a {
+    text-decoration: none;
+    margin-bottom: 0.5rem;
+    display: flex;
+    font-size: 14px;
+  }
 
-.footer-link-items svg {
-  margin-right: 0.5rem;
-}
-
-.footer-link-items a:hover {
-  color: #e9e9e9;
-  transition: 0.3s ease-out;
+  svg {
+    margin-right: 0.5rem;
+  }
 }
 
 .social-icon-link {
@@ -57,17 +55,19 @@
   align-items: center;
   max-width: 1000px;
   width: 100%;
-  margin: 2.5rem auto 0;
+  flex-direction: column;
+  margin: 1rem auto 3rem;
 }
 
 .social-logo {
   justify-self: start;
-  margin-left: 20px;
   cursor: pointer;
   text-decoration: none;
   font-size: 2rem;
   display: flex;
   align-items: center;
+  margin-left: 0;
+  margin-bottom: 0.5rem;
 }
 
 .fabButton{
@@ -81,38 +81,37 @@
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 600px) {
   .footer-links {
-    justify-content: unset;
-    padding: 0 0.5rem;
+    justify-content: center;
+    padding: 0;
   }
 
   .footer-link-items {
-    flex-basis: 100%;
-    margin: 0 0.5rem;
-
+    flex-basis: 25%;
+    margin:0 2rem;
+  
     h2 {
-      font-size: 16px;
+      font-size: 24px;
     }
-
+  
     a {
-      font-size: 14px;
+      font-size: 16px;
     }
   }
 
   .social-media-wrap {
-    flex-direction: column;
-    margin: 1rem auto 3rem;
-  }
-
-  .social-logo {
-    margin-left: 0;
-    margin-bottom: 0.5rem;
+    display: flex;
+    flex-direction: row;
   }
 }
 
-@media screen and (max-width: 1024px) and (orientation: landscape) {
+@media screen and (min-width: 900px) {
+  .footer-link-items {
+    margin: 0;
+  }
+
   .social-media-wrap {
-    margin: 0.5rem auto 2.5rem;
+    margin: 2.5rem auto 0;
   }
 }
