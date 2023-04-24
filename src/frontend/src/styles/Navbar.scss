@@ -1,15 +1,32 @@
+.social-icons-wrapper {
+    margin-top: 1rem;
+
+    a {
+        text-decoration: none;
+        margin-bottom: 0.5rem;
+        color: #000;
+        display: flex;
+        padding-left: 1rem;
+
+        svg {
+            margin-right: 0.5rem;
+        }
+    }
+}
+
 @media screen and (max-width: 768px) {
     .search-wrapper {
-        transition: opacity 100ms;
-        opacity: 0;
+        transition: height 300ms;
+        height: 0;
         position: fixed;
         top: 56px;
         left: 0;
         right: 0;
         background-color: #000;
+        overflow: hidden;
 
         &.show {
-            opacity: 1;
+            height: 50px;
         }
 
         &>div {
