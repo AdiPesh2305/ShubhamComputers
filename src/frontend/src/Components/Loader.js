@@ -13,9 +13,6 @@ export default function Loader({message}) {
             flexDirection: 'column'
         }}>
             <CircularProgress size={50} color="inherit" />
-            {/* <img src="images/loading.gif" alt="" />
-            <img src="images/loading2.gif" alt="" />
-            <img src="images/loading3.gif" alt="" /> */}
             <Typography
                 variant="h2"
                 noWrap
