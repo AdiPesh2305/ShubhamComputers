@@ -6,8 +6,7 @@ import { CardActionArea } from '@mui/material';
 import "../styles/Product.scss";
 import { useNavigate } from "react-router-dom";
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import PlaceholderImage from '../assets/images/placeholder.png';
-import 'react-lazy-load-image-component/src/effects/blur.css';
+import PlaceholderImage from '../assets/images/logo.png';
 
 export default function Product(props) {
   const navigate = useNavigate();
@@ -20,7 +19,8 @@ export default function Product(props) {
   return (
     <Card sx={{
       flexBasis: { xs: '48%', sm: '23%', md: '24%' },
-      position: 'relative'
+      position: 'relative',
+      border: '1.5px solid #ccc'
     }} key={product.id} className='product-list'>
       <CardActionArea onClick={handleProductClick}>
         <div className='card-media-wrapper'>

@@ -8,8 +8,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import axios from "../api/services";
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import PlaceholderImage from '../assets/images/placeholder.png';
-import 'react-lazy-load-image-component/src/effects/blur.css';
+import PlaceholderImage from '../assets/images/logo.png';
 
 export default function Catalog() {
   const { name } = useParams();
@@ -90,7 +89,7 @@ export default function Catalog() {
       <NavBar />
       <Box sx={{
         p: { sm: 0, md: 4 },
-        backgroundColor: '#EDEDED'
+        backgroundColor: '#FAFAFA'
       }}
       >
         <div className="product-wrapper">

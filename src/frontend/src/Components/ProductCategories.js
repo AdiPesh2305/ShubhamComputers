@@ -7,8 +7,7 @@ import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import PlaceholderImage from '../assets/images/placeholder.png';
-import 'react-lazy-load-image-component/src/effects/blur.css';
+import PlaceholderImage from '../assets/images/logo.png';
 
 export default function ProductCategories() {
 
@@ -85,12 +84,13 @@ export default function ProductCategories() {
       flexWrap: { sm: 'wrap' },
       p: { xs: 2, md: 4 },
       pb: { xs: 0, md: 4 },
-      backgroundColor: '#EDEDED',
+      backgroundColor: '#FAFAFA',
     }}>
       {productCategories.map((product) => (
         <Card sx={{
           flexBasis: { sm: '49%', md: '23%' },
-          mb: { xs: 2, md: 0 }
+          mb: { xs: 2, md: 0 },
+          border: '1.5px solid #ccc'
         }} key={product.heading}>
           <CardActionArea>
             <div className='card-media-wrapper'>
