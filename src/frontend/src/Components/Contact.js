@@ -3,13 +3,8 @@ import { Helmet } from 'react-helmet-async';
 import "../styles/Contact.scss";
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-
 import CallIcon from '@mui/icons-material/Call';
 import EmailIcon from '@mui/icons-material/Email';
-import TelegramIcon from '@mui/icons-material/Telegram';
-import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import TwitterIcon from '@mui/icons-material/Twitter';
 
 const NavBar = React.lazy(() => import("./Navigation/NavBar"));
 const Footer = React.lazy(() => import("./Navigation/Footer"));
@@ -26,18 +21,9 @@ export default function Contact() {
       <Box sx={{
         px: { xs: 2, md: 4 },
         py: 2,
-        backgroundColor: '#EDEDED'
+        backgroundColor: '#FAFAFA'
       }}
       >
-        <Typography
-          variant="h1"
-          sx={{
-            textAlign: 'center',
-            fontSize: '2.5rem'
-          }}
-        >
-          Contact Us
-        </Typography>
         <Box sx={{
           mt: 1
         }} className="contact-details-wrapper">
@@ -77,6 +63,19 @@ export default function Contact() {
               Mumbai 400 007, <br />
               Maharashtra, India <br />
             </address>
+            <Typography
+              variant="h2"
+              sx={{
+                fontSize: '1.5rem',
+                borderBottom: '2px solid #CCC',
+                letterSpacing: 1,
+                mb: 1,
+                mt: 3,
+                pb: 0.5
+              }}
+            >
+              CONTACT DETAILS
+            </Typography>
             <a href="tel:9322249976">
               <CallIcon /> +91 9322249976
             </a>
@@ -97,20 +96,14 @@ export default function Contact() {
                 pb: 0.5
               }}
             >
-              OTHER WAYS TO REACH US
+              OPERATING HOURS
             </Typography>
-            <a href="#">
-              <FacebookIcon />Facebook
-            </a>
-            <a href="https://web.whatsapp.com/send?phone=919322249976&text=https://www.shubhamcomputers.com/%0A%0AI'm interested in your products and I have a few questions. Can you help?" target="_blank">
-              <WhatsAppIcon /> WhatsApp
-            </a>
-            <a href="#">
-              <TwitterIcon />Twitter
-            </a>
-            <a href="#">
-              <TelegramIcon />Telegram
-            </a>
+            <div>
+              Monday - Saturday: 9am - 9:30pm
+            </div>
+            <div style={{ marginTop: '8px' }}>
+              Sunday & Public Holidays: Closed
+            </div>
           </div>
         </Box>
       </Box>

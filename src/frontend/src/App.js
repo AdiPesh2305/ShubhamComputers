@@ -1,5 +1,6 @@
 import React, { Suspense, lazy } from "react";
 import "./styles/App.scss";
+import 'react-lazy-load-image-component/src/effects/blur.css';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { HelmetProvider } from 'react-helmet-async';
 import Loader from "./Components/Loader";

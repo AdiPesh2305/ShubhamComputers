@@ -1,21 +1,21 @@
-@import "colors";
-
 .contact-details-wrapper {
   display: flex;
   justify-content: space-between;
+  flex-direction: column;
   
   &>div {
-    background-color: $white;
+    background-color: #FFFFFF;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     padding: 16px;
+    flex-basis: 100%;
   }
 
-  .map-wrapper {
-    flex-basis: 60%;
+  .map-container{
+    height: 350px;
   }
 
   .address-details-wrapper {
-    flex-basis: 38%;
+    margin-top: 1rem;
 
     address {
       font-style: normal;
@@ -26,7 +26,7 @@
     a {
       text-decoration: none;
       margin-bottom: 0.5rem;
-      color: $blackColor;
+      color: #191919;
       display: flex;
 
       svg {
@@ -36,30 +36,25 @@
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 600px){
   .contact-details-wrapper {
-    flex-direction: column;
-
-    &>div {
-      flex-basis: 100%;
+    .map-container{
+      height: 390px;
     }
-  }
-
-  .address-details-wrapper {
-    margin-top: 1rem;
   }
 }
 
-@media screen and (max-width: 1024px) and (orientation: landscape) {
+@media screen and (min-width: 900px){
   .contact-details-wrapper {
-    flex-direction: column;
+    flex-direction: row;
 
     &>div {
-      flex-basis: 100%;
+      flex-basis: 60%;
     }
-  }
 
-  .address-details-wrapper {
-    margin-top: 1rem;
+    .address-details-wrapper {
+      flex-basis: 38%;
+      margin-top: 0;
+    }
   }
 }
