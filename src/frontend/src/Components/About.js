@@ -20,7 +20,7 @@ export default function About() {
       <Box sx={{
         px: { xs: 2, md: 4 },
         py: 4,
-        backgroundColor: '#EDEDED'
+        backgroundColor: '#FAFAFA'
       }}
       >
         <Typography

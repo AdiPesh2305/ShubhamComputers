@@ -21,7 +21,7 @@ export default function Homepage() {
       <Box sx={{
         px: { xs: 2, md: 4 },
         pt: 4,
-        backgroundColor: '#EDEDED'
+        backgroundColor: '#FAFAFA'
       }}
       >
         <Typography
