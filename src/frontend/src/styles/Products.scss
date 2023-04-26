@@ -1,0 +1,13 @@
+.products-page {
+    .card-media-wrapper{
+        height: 150px;
+    }
+}
+
+@media screen and (min-width: 900px){
+    .products-page {
+        .card-media-wrapper{
+            height: 200px;
+        }
+    }
+}

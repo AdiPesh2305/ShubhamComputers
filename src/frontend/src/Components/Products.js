@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 import { Helmet } from 'react-helmet-async';
 import axios from "../api/services";
+import { useNavigate } from "react-router-dom";
 import Typography from '@mui/material/Typography';
 import "../styles/Products.scss";
 import Product from "./Product";
@@ -17,7 +18,8 @@ import Button from '@mui/material/Button';
 const NavBar = React.lazy(() => import("./Navigation/NavBar"));
 const Footer = React.lazy(() => import("./Navigation/Footer"));
 
-export default function Products() {
+export default function Products({productCategories}) {
+  const navigate = useNavigate();
   const productsPerPage = 6;
   const { route } = useParams();
   const [searchParams] = useSearchParams();
@@ -26,6 +28,10 @@ export default function Products() {
   const [products, setProducts] = useState([]);
   const [index, setIndex] = useState(productsPerPage);
   const [productCategoryHeader, setProductCategoryHeader] = useState('');
+  const [allCategories, setAllCategories] = React.useState([]);
+  const [category, setCategory] = React.useState('allProducts');
+  const [subCategories, setSubCategories] = React.useState([]);
+  const [subCategory, setSubCategory] = React.useState('all');
   const [sortProductsBy, setSortProductsBy] = useState('nameAsc');
   const [noResultsFound, setNoResultsFound] = React.useState('');
 
@@ -38,6 +44,7 @@ export default function Products() {
       allProducts = response.data.values.map((product, index) => {
         let allFeatures = product[4].split('.');
         let allCategories = product[0].split('.');
+        let allSubCategories = product[1].split('.');
         let allThumbnailsSrc = product[10].split('.');
         let allThumbnailsAlt = product[11].split('.');
         return {
@@ -48,6 +55,7 @@ export default function Products() {
           "link": product[5],
           // "categories": allCategories.map(category => category.trim().toLowerCase().replaceAll(' ', '-')),
           "categories": allCategories.map(category => category.trim().toLowerCase()),
+          "subCategories": allSubCategories.map(subCategory => subCategory.trim().toLowerCase()),
           "keywords": product[7].split(' '),
           "mainImg": {
             "src": product[8],
@@ -67,6 +75,8 @@ export default function Products() {
         sessionStorage.setItem('allProducts', JSON.stringify(allProducts));
         setAllProducts(allProducts);
         initializeProducts(allProducts);
+        initializeCategories(allProducts);
+        initializeSubCategories(allProducts);
       }
     }
     catch (error) {
@@ -74,11 +84,29 @@ export default function Products() {
     }
   }
 
-  const initializeProducts = (allProducts) => {
-    // console.log('fn called');
+  const initializeCategories = (allProducts) => {
+    let categories = [];
 
+    allProducts.map(product => {
+      categories.push(...product.categories);
+    });
+
+    setAllCategories([...new Set(categories)]);
+  };
+
+  const initializeSubCategories = (allProducts) => {
+    let subCategories = [];
+
+    allProducts.map(product => {
+      subCategories.push(...product.subCategories);
+    });
+
+    setSubCategories([...new Set(subCategories)]);
+  };
+
+  const initializeProducts = (allProducts) => {
     let results = [];
-    let productCategoryHeader = "";
+    let productCategoryHeader = "All products";
 
     if (route) {//filter allProducts by route
       let productCategory = route.replaceAll('-', ' ');
@@ -96,7 +124,6 @@ export default function Products() {
     }
     else {
       results = allProducts;
-      productCategoryHeader = 'All products';
     }
 
     setProducts(results);
@@ -127,6 +154,9 @@ export default function Products() {
         console.log('allProducts from session ', allProducts)
         if (allProducts.length) {
           initializeProducts(allProducts);
+          initializeCategories(allProducts);
+          initializeSubCategories(allProducts);
+          route && setCategory(route.replaceAll('-', ' ')); //set the category on page refresh
         }
       }
     }
@@ -141,6 +171,28 @@ export default function Products() {
       initializeProducts(allProducts);
     }
   }, [route, searchParams]);
+
+  const handleProductFilter = (event, type) => {
+    // console.log(event.target.value)
+    // console.log(type)
+    if (type == 'category') {
+      let route = event.target.value == 'allProducts' ? '' : event.target.value.replaceAll(' ', '-');
+      setCategory(event.target.value);
+      setSubCategory('all'); //reset the sub-categories
+      navigate(`/products/${route}`);
+    }
+    else {
+      let results = allProducts.filter((product) => { //filter all products based on category
+        return product.categories.includes(category);
+      });
+
+      results = results.filter((product) => {//filter all products based on sub-category
+        return event.target.value == 'all' ? product : product.subCategories.includes(event.target.value);
+      });
+      setSubCategory(event.target.value);
+      setProducts(results);
+    }
+  }
 
   const handleProductSorting = (event) => {
     const sortBy = event.target.value;
@@ -208,67 +260,109 @@ export default function Products() {
         <title>Shubham Computers - Our Products</title>
         <meta name="description" content="Shubham Computers - Our Products" />
       </Helmet>
-      <NavBar />
-      <Container maxWidth="xl" className="products-wrapper">
+      <NavBar categories={productCategories}/>
+      <Container maxWidth="xl" className="products-page">
         <Box sx={{
           display: 'flex',
           justifyContent: 'space-between',
+          alignItems: 'start',
           flexDirection: { xs: 'column', sm: 'row' },
-          pt: { xs: 2, sm: 4 },
+          pt: { xs: 2, sm: 2 },
           px: { xs: 0 },
           pb: 2
         }}>
           <Typography
             variant="h1"
             sx={{
-              textAlign: { xs: 'center', sm: 'left' },
-              fontSize: { xs: '2rem', sm: '2rem', md: '2.5rem' },
-              flexBasis: { md: '50%' },
+              textAlign: { sm: 'left' },
+              fontSize: { xs: '1.5em', md: '2em' },
+              flexBasis: { md: '70%' },
               textTransform: 'uppercase'
             }}
           >
             {productCategoryHeader}
           </Typography>
-          <Box sx={{
-            display: 'flex',
-            width: { xs: '100%', sm: '50%' },
-            mt: { xs: 2, sm: 0 },
-            justifyContent: 'end',
+          <FormControl size="small" sx={{
+            flexBasis: { md: '30%' },
+            display: {xs: 'none', md: 'flex'}
           }}>
-            <FormControl size="small" sx={{
-              flexBasis: { md: '400px' },
-              mr: 2
-            }}>
-              <TextField
-                id="outlined-search"
-                label='Search on this page'
-                type="search"
-                size="small"
-                onInput={handlePageSearch}
-              />
-            </FormControl>
-            <FormControl size="small" sx={{
-              flexBasis: { md: '200px' }
-            }}>
-              <InputLabel id="select-label">Sort products by</InputLabel>
-              <Select
-                labelId="select-label"
-                id="demo-select-small"
-                value={sortProductsBy}
-                onChange={handleProductSorting}
-                label="Sort products by"
-              >
-                <MenuItem value={'nameAsc'}>Name - A to Z</MenuItem>
-                <MenuItem value={'nameDesc'}>Name - Z to A</MenuItem>
-                <MenuItem value={'priceAsc'}>Price - Low to High</MenuItem>
-                <MenuItem value={'priceDesc'}>Price - High to Low</MenuItem>
-              </Select>
-            </FormControl>
-          </Box>
+            <TextField
+              id="outlined-search"
+              label='Search products on this page'
+              type="search"
+              size="small"
+              onInput={handlePageSearch}
+            />
+          </FormControl>
         </Box>
         <Box sx={{
           display: 'flex',
-          gap: { xs: '14px', sm: '20px', md: '15px', lg: '16px' },
+          width: { xs: '100%', sm: '100%' },
+          flexDirection: 'row',
+          mt: { xs: 0, sm: 2 },
+          mb: { xs: 2 },
+          justifyContent: 'space-between',
+        }}>
+          <FormControl size="small" sx={{
+            flexBasis: { xs: '48%', sm: '38%' },
+            display: {xs: 'none', sm: 'flex'}
+          }}>
+            <InputLabel id="select-label">Filter products by category</InputLabel>
+            <Select
+              labelId="select-label"
+              id="demo-select-small"
+              value={category}
+              onChange={(event) => handleProductFilter(event, 'category')}
+              label="Filter products by category"
+            >
+              <MenuItem value='allProducts'>All Products</MenuItem>
+              {allCategories.length > 0 &&
+                allCategories.map((category, index) => (
+                  <MenuItem value={category} key={index} sx={{ textTransform: 'capitalize' }}>{category}</MenuItem>
+                ))
+              }
+            </Select>
+          </FormControl>
+          <FormControl size="small" sx={{
+            flexBasis: { xs: '48%', sm: '38%' },
+          }}>
+            <InputLabel id="select-label">Filter products by sub category</InputLabel>
+            <Select
+              labelId="select-label"
+              id="demo-select-small"
+              value={subCategory}
+              onChange={(event) => handleProductFilter(event, 'subCategory')}
+              label="Filter products by sub category"
+            >
+              <MenuItem value='all'>All sub categories</MenuItem>
+              {subCategories.length > 0 &&
+                subCategories.map((subCategory, index) => (
+                  <MenuItem value={subCategory} key={index} sx={{ textTransform: 'capitalize' }}>{subCategory}</MenuItem>
+                ))
+              }
+            </Select>
+          </FormControl>
+          <FormControl size="small" sx={{
+            flexBasis: { md: '20%' }
+          }}>
+            <InputLabel id="select-label">Sort products by</InputLabel>
+            <Select
+              labelId="select-label"
+              id="demo-select-small"
+              value={sortProductsBy}
+              onChange={handleProductSorting}
+              label="Sort products by"
+            >
+              <MenuItem value={'nameAsc'}>Name - A to Z</MenuItem>
+              <MenuItem value={'nameDesc'}>Name - Z to A</MenuItem>
+              <MenuItem value={'priceAsc'}>Price - Low to High</MenuItem>
+              <MenuItem value={'priceDesc'}>Price - High to Low</MenuItem>
+            </Select>
+          </FormControl>
+        </Box>
+        <Box sx={{
+          display: 'flex',
+          gap: { xs: '14px', sm: '25px', lg: '16px' },
           mb: 2,
           flexWrap: { xs: 'wrap' },
         }}>

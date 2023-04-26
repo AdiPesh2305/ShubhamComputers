@@ -18,7 +18,7 @@ export default function Product(props) {
 
   return (
     <Card sx={{
-      flexBasis: { xs: '48%', sm: '23%', md: '24%' },
+      flexBasis: { xs: '48%', sm: '31%', md: '23%' },
       position: 'relative',
       border: '1.5px solid #ccc'
     }} key={product.id} className='product-list'>
