@@ -16,26 +16,40 @@ import Logo from '../../assets/images/logo.png';
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
+import TelegramIcon from '@mui/icons-material/Telegram';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+import Collapse from '@mui/material/Collapse';
 import { Link } from 'react-router-dom';
 
-const drawerWidth = 240;
 const navItems = [
+  {
+    'id': 'home',
+    'text': 'Home',
+    'isExpandable': false,
+    'routeTo': '/'
+  },
   {
     'id': 'products',
     'text': 'Products',
+    'isExpandable': true,
     'routeTo': '/products'
   },
   {
     'id': 'about',
     'text': 'About',
+    'isExpandable': false,
     'routeTo': '/about'
   },
   {
     'id': 'contact',
     'text': 'Contact',
+    'isExpandable': false,
     'routeTo': '/contact-us'
   }
 ];
@@ -44,6 +58,7 @@ const NavBar = (props) => {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [mobileSearchOpen, setMobileSearchOpen] = React.useState(false);
+  const [expandList, setExpandList] = React.useState(false);
   const searchInputRef = React.useRef(null);
   const navigate = useNavigate();
 
@@ -55,21 +70,65 @@ const NavBar = (props) => {
     setMobileSearchOpen(!mobileSearchOpen);
   };
 
+  const handleClick = (e, item) => {
+    if (item.isExpandable) {
+      e.stopPropagation();
+      setExpandList(!expandList);
+    }
+    else {
+      navigate(`${item.routeTo}`);
+    }
+  };
+
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-      <Typography variant="h6" sx={{ my: 2 }}>
+    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'left', width: '300px' }}>
+      <Typography variant="h6" sx={{ my: 2, pl: 2 }}>
+        <img className="branding-logo" src={Logo} alt="logo" style={{ verticalAlign: 'top' }} />
         Shubham Computers
       </Typography>
       <Divider />
-      <List>
-        {navItems.map((item) => (
-          <ListItem key={item.id} disablePadding>
-            <ListItemButton sx={{ textAlign: 'center' }} component={Link} to={item.routeTo}>
-              <ListItemText primary={item.text} />
+      <List component="nav">
+        <ListItemButton sx={{ pl: 2 }} onClick={(event) => handleClick(event, navItems[0])}>
+          <ListItemText primary={navItems[0].text} />
+        </ListItemButton>
+        <ListItemButton sx={{ pl: 2 }} onClick={(event) => handleClick(event, navItems[1])}>
+          <ListItemText primary={navItems[1].text} />
+          {expandList ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+        </ListItemButton>
+        <Collapse in={expandList} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding className="kalpesh">
+            <ListItemButton sx={{ pl: 4 }} component={Link} to="/products">
+              <ListItemText primary="All Products" />
             </ListItemButton>
-          </ListItem>
-        ))}
+            {props.categories.map((category, index) => (
+              <ListItemButton sx={{ pl: 4, textTransform: 'capitalize' }} component={Link} to={category.routeTo} key={index}>
+                <ListItemText primary={category.heading} />
+              </ListItemButton>
+            ))}
+          </List>
+        </Collapse>
+        <ListItemButton sx={{ pl: 2 }} onClick={(event) => handleClick(event, navItems[2])}>
+          <ListItemText primary={navItems[2].text} />
+        </ListItemButton>
+        <ListItemButton sx={{ pl: 2 }} onClick={(event) => handleClick(event, navItems[3])}>
+          <ListItemText primary={navItems[3].text} />
+        </ListItemButton>
       </List>
+      <Divider />
+      <div className="social-icons-wrapper">
+        <a href="#">
+          <FacebookIcon />Facebook
+        </a>
+        <a href="https://web.whatsapp.com/send?phone=919322249976&text=https://www.shubhamcomputers.com/%0A%0AI'm interested in your products and I have a few questions. Can you help?" target="_blank">
+          <WhatsAppIcon /> WhatsApp
+        </a>
+        <a href="#">
+          <TwitterIcon />Twitter
+        </a>
+        <a href="#">
+          <TelegramIcon />Telegram
+        </a>
+      </div>
     </Box>
   );
   const container = window !== undefined ? () => window().document.body : undefined;
@@ -159,13 +218,13 @@ const NavBar = (props) => {
                 display: { xs: 'none', sm: 'block' },
                 color: 'inherit',
                 textDecoration: 'none',
-                fontSize: {sm: '1.25rem', md: '1.5rem'}
+                fontSize: { sm: '1.25rem', md: '1.5rem' }
               }}
             >
               Shubham Computers
             </Typography>
           </Box>
-          
+
           <Box component="nav">
             <Drawer
               container={container}
@@ -177,7 +236,7 @@ const NavBar = (props) => {
               }}
               sx={{
                 display: { xs: 'block', md: 'none' },
-                '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+                '& .MuiDrawer-paper': { boxSizing: 'border-box', width: '300px' },
               }}
             >
               {drawer}
@@ -208,16 +267,16 @@ const NavBar = (props) => {
             aria-label="open search"
             edge="end"
             onClick={handleMobileSearchToggle}
-            sx={{display: { sm: 'none' } }}
+            sx={{ display: { sm: 'none' } }}
           >
             <SearchIcon />
           </IconButton>
           <Box sx={{
             flexGrow: 1,
             display: { sm: 'block' },
-            mr: {md: 3},
+            mr: { md: 3 },
           }}
-          className={mobileSearchOpen ? 'search-wrapper show' : 'search-wrapper'}
+            className={mobileSearchOpen ? 'search-wrapper show' : 'search-wrapper'}
           >
             <Search>
               <StyledInputBase

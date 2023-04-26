@@ -9,14 +9,14 @@ const Footer = React.lazy(() => import("./Navigation/Footer"));
 const ProductCategories = React.lazy(() => import("./ProductCategories"));
 const HeroImage = React.lazy(() => import("./Navigation/HeroImage"));
 
-export default function Homepage() {
+export default function Homepage({productCategories}) {
   return (
     <div>
       <Helmet>
         <title>Shubham Computers - Home</title>
         <meta name="description" content="Shubham Computers - Home" />
       </Helmet>
-      <NavBar />
+      <NavBar categories={productCategories}/>
       <HeroImage />
       <Box sx={{
         px: { xs: 2, md: 4 },
@@ -40,7 +40,7 @@ export default function Homepage() {
           Shubham Computers is a sole proprietorship in the computer business since 1996. We supply Reparing Accessories, Tools, IC Chipsets, COFS, TCON Cards, Logic Cards, Testing Equipment, DATA Recovery solutions, Machinery for repairing electronic/Microprocessor Based devices like TVs, Monitors, Motherboards (Desktop/Laptop/ Industrialetc), RAM, Hard Disk, Displays, PCI Cards, LCD repairing parts, etc. Pan India Delivery. All types of service center supplies under one roof.
         </Box>
       </Box>
-      <ProductCategories />
+      <ProductCategories categories={productCategories} />
       <Footer />
     </div>
   );

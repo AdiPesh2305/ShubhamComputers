@@ -10,7 +10,7 @@ import axios from "../api/services";
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import PlaceholderImage from '../assets/images/logo.png';
 
-export default function Catalog() {
+export default function Catalog({productCategories}) {
   const { name } = useParams();
   const location = useLocation();
   console.log('location ', location, name);
@@ -86,7 +86,7 @@ export default function Catalog() {
         <title>Shubham Computers - {product.name}</title>
         <meta name="description" content="Shubham Computers - Product Details" />
       </Helmet>
-      <NavBar />
+      <NavBar categories={productCategories}/>
       <Box sx={{
         p: { sm: 0, md: 4 },
         backgroundColor: '#FAFAFA'

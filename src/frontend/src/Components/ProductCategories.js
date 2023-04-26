@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import axios from "../api/services";
+import React from "react";
 import Container from '@mui/material/Container';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -9,73 +8,7 @@ import { Link } from 'react-router-dom';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import PlaceholderImage from '../assets/images/logo.png';
 
-export default function ProductCategories() {
-
-  const [productCategories, setProductCategories] = useState(JSON.parse(sessionStorage.getItem('productCategories')) || []);
-
-  const fetchProductCategories = async () => {
-    try {
-      let allCategories = null;
-
-      const response = await axios.get(`/${process.env.REACT_APP_GOOGLE_SHEET_ID}/values/categories`);
-      response.data.values.shift(); //Remove first row which is column headers from data
-
-      allCategories = response.data.values.map((category, index) => {
-        return {
-          "heading": category[0].toLowerCase(),
-          "description": category[1],
-          "imgSrc": category[2],
-          "imgAlt": category[3],
-          "routeTo": `/products/${category[4]}`,
-          'btnText': 'Learn More',
-        }
-      });
-
-      sessionStorage.setItem('productCategories', JSON.stringify(allCategories));
-      initializeProductCategories(allCategories);
-    }
-    catch (error) {
-      console.log(error);
-    }
-  }
-
-  const initializeProductCategories = (allProductCategories) => {
-    setProductCategories(allProductCategories);
-  }
-
-  // To check for session storage
-  const storeProductCategories = async () => {
-    const hours = 0.01; // to clear the sessionStorage after 1 hour
-
-    const now = new Date().getTime();
-    let setupTime = sessionStorage.getItem('setupTime');
-
-    if (setupTime == null) {
-      sessionStorage.setItem('setupTime', now);
-      await fetchProductCategories();
-      console.log('session set')
-    }
-    else {
-      if (now - setupTime > hours * 60 * 60 * 1000) {
-        sessionStorage.removeItem('setupTime');
-        sessionStorage.setItem('setupTime', now);
-        await fetchProductCategories();
-        console.log('session refreshed')
-      }
-      else {
-        console.log('session exists')
-        console.log('productCategories from session ', productCategories)
-        if (productCategories.length) {
-          initializeProductCategories(productCategories);
-        }
-      }
-    }
-  }
-
-  useEffect(() => {
-    storeProductCategories();
-  }, []);
-
+export default function ProductCategories({categories}) {
   return (
     <Container maxWidth="xl" sx={{
       flexDirection: { xs: 'column', sm: 'row' },
@@ -86,7 +19,7 @@ export default function ProductCategories() {
       py: 4,
       backgroundColor: '#FAFAFA',
     }}>
-      {productCategories.map((product) => (
+      {categories.map((product) => (
         <Card sx={{
           flexBasis: { sm: '48%', md: '23%' },
           border: '1.5px solid #ccc'

@@ -8,14 +8,14 @@ const NavBar = React.lazy(() => import("./Navigation/NavBar"));
 const Footer = React.lazy(() => import("./Navigation/Footer"));
 const HeroImage = React.lazy(() => import("./Navigation/HeroImage"));
 
-export default function About() {
+export default function About({productCategories}) {
   return (
     <div>
       <Helmet>
         <title>Shubham Computers - About Us</title>
         <meta name="description" content="Shubham Computers - About Us" />
       </Helmet>
-      <NavBar />
+      <NavBar categories={productCategories}/>
       <HeroImage />
       <Box sx={{
         px: { xs: 2, md: 4 },

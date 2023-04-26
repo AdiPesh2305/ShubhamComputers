@@ -10,14 +10,14 @@ const NavBar = React.lazy(() => import("./Navigation/NavBar"));
 const Footer = React.lazy(() => import("./Navigation/Footer"));
 const GoogleMaps = React.lazy(() => import("./GoogleMaps"));
 
-export default function Contact() {
+export default function Contact({productCategories}) {
   return (
     <div>
       <Helmet>
         <title>Shubham Computers - Contact Us</title>
         <meta name="description" content="Shubham Computers - Contact Us" />
       </Helmet>
-      <NavBar />
+      <NavBar categories={productCategories}/>
       <Box sx={{
         px: { xs: 2, md: 4 },
         py: 2,
