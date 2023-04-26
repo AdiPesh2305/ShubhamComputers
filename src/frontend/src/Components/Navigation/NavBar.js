@@ -291,7 +291,7 @@ const NavBar = (props) => {
             </Search>
           </Box>
           <Box sx={{ display: { xs: 'none', md: 'block' } }}>
-            {navItems.map((item) => (
+            {navItems.slice(1).map((item) => (
               <Button key={item.id} sx={{ color: '#fff' }} component={Link} to={item.routeTo}>
                 {item.text}
               </Button>
