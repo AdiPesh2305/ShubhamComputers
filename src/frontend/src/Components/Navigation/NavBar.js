@@ -218,7 +218,7 @@ const NavBar = (props) => {
                 display: { xs: 'none', sm: 'block' },
                 color: 'inherit',
                 textDecoration: 'none',
-                fontSize: { sm: '1.25rem', md: '1.5rem' }
+                fontSize: { sm: '1.25em', md: '1.5em' }
               }}
             >
               Shubham Computers
@@ -255,7 +255,7 @@ const NavBar = (props) => {
                 display: { sm: 'flex', md: 'none' },
                 color: 'inherit',
                 textDecoration: 'none',
-                fontSize: '1.25rem'
+                fontSize: '1.25em'
               }}
             >
               {/* Mobile Portrait Header */}

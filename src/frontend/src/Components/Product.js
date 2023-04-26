@@ -34,7 +34,7 @@ export default function Product(props) {
         <CardContent>
           <Typography gutterBottom variant="h5" component="div" sx={{
             mb: 0,
-            fontSize: {xs: '1.25rem', md: '1.5rem'},
+            fontSize: {xs: '1.25em', md: '1.5em'},
             lineHeight: 1,
             textTransform: "uppercase"
           }}>

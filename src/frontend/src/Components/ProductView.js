@@ -121,7 +121,7 @@ export default function Catalog({productCategories}) {
           </div>
           <div className="product-details-wrapper">
             <Typography gutterBottom variant="h1" sx={{
-              fontSize: '2.5rem',
+              fontSize: '2.5em',
               mb: 0
             }}>
               {product.name.toUpperCase()}
@@ -132,7 +132,7 @@ export default function Catalog({productCategories}) {
             {product.description &&
               <>
                 <Typography gutterBottom variant="h3" sx={{
-                  fontSize: '1.25rem',
+                  fontSize: '1.25em',
                   m: 0
                 }}>
                   Product Description
@@ -143,7 +143,7 @@ export default function Catalog({productCategories}) {
             {product.features.length > 0 &&
               <>
                 <Typography gutterBottom variant="h3" sx={{
-                  fontSize: '1.25rem',
+                  fontSize: '1.25em',
                   m: 0
                 }}>
                   Product Features

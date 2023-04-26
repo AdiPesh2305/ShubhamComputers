@@ -374,7 +374,7 @@ export default function Products({productCategories}) {
               <Typography
                 variant="body1"
                 sx={{
-                  fontSize: { xs: '1rem', md: '1.25rem' },
+                  fontSize: { xs: '1em', md: '1.25em' },
                 }}
               >
                 {noResultsFound}

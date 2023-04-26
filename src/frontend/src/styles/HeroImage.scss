@@ -22,27 +22,27 @@
 
   h1 {
     color: #fff;
-    font-size: 2rem;
+    font-size: 2em;
     font-weight: normal;
   }
   
   p {
     margin-top: 8px;
     color: #fff;
-    font-size: 1.5rem;
+    font-size: 1.5em;
   }
 }
 
 @media screen and (min-width: 600px){
   .hero-wrapper {
-    height: 15rem;
+    height: 15em;
 
     h1 {
-      font-size: 4rem;
+      font-size: 4em;
     }
   
     p {
-      font-size: 2rem;
+      font-size: 2em;
     }
   }
 }
@@ -52,7 +52,7 @@
     height: 50vh;
 
     h1 {
-      font-size: 5rem;
+      font-size: 5em;
     }
   }
 }

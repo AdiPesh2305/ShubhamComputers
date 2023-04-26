@@ -12,7 +12,7 @@ export default function ProductCategories({categories}) {
   return (
     <Container maxWidth="xl" sx={{
       flexDirection: { xs: 'column', sm: 'row' },
-      gap: { xs: '1.5rem', lg: '2rem' },
+      gap: { xs: '1.5em', lg: '2em' },
       display: 'flex',
       flexWrap: { sm: 'wrap' },
       px: { xs: 2, md: 4 },
@@ -35,7 +35,7 @@ export default function ProductCategories({categories}) {
             </div>
             <CardContent>
               <Typography gutterBottom variant="h3" sx={{
-                fontSize: { xs: '1.25rem' },
+                fontSize: { xs: '1.25em' },
                 textTransform: 'uppercase'
               }}>
                 {product.heading}

@@ -31,10 +31,10 @@ export default function Contact({productCategories}) {
             <Typography
               variant="h2"
               sx={{
-                fontSize: '1.5rem',
+                fontSize: '1.5em',
                 borderBottom: '2px solid #CCC',
                 letterSpacing: 1,
-                mb: '0.75rem',
+                mb: '0.75em',
                 pb: 0.5
               }}
             >
@@ -46,7 +46,7 @@ export default function Contact({productCategories}) {
             <Typography
               variant="h2"
               sx={{
-                fontSize: '1.5rem',
+                fontSize: '1.5em',
                 borderBottom: '2px solid #CCC',
                 letterSpacing: 1,
                 mb: 1,
@@ -66,7 +66,7 @@ export default function Contact({productCategories}) {
             <Typography
               variant="h2"
               sx={{
-                fontSize: '1.5rem',
+                fontSize: '1.5em',
                 borderBottom: '2px solid #CCC',
                 letterSpacing: 1,
                 mb: 1,
@@ -88,7 +88,7 @@ export default function Contact({productCategories}) {
             <Typography
               variant="h2"
               sx={{
-                fontSize: '1.5rem',
+                fontSize: '1.5em',
                 borderBottom: '2px solid #CCC',
                 letterSpacing: 1,
                 mb: 1,

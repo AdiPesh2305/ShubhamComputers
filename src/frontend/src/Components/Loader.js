@@ -17,7 +17,7 @@ export default function Loader({message}) {
                 variant="h2"
                 noWrap
                 sx={{
-                    fontSize: { xs: '1.5rem', sm: '2rem', md: '3.75rem' },
+                    fontSize: { xs: '1.5em', sm: '2em', md: '3.75em' },
                     mt: 2
                 }}
             >
