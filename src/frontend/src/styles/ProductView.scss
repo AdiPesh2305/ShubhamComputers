@@ -3,10 +3,11 @@
   background-color: #FFFFFF;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   display: flex;
-}
+  flex-direction: column;
 
-.product-wrapper>div {
-  flex-basis: 50%;
+  &>div {
+    flex-basis: 50%;
+  }
 }
 
 .product-image-wrapper {
@@ -15,8 +16,8 @@
   align-items: center;
 
   .product-image-main {
-    width: 400px;
-    height: 400px;
+    width: 360px;
+    height: 360px;
     display: flex;
     border: 1.5px solid #CCC;
     padding: 1rem;
@@ -35,7 +36,7 @@
       height: 70px;
       display: flex;
       border: 1.5px solid #CCC;
-      margin: 0 4px;
+      margin: 0 8px;
       cursor: pointer;
 
       img {
@@ -49,58 +50,50 @@
   }
 }
 
-.product-description {
-  margin: 0.5rem 0 1rem;
+.product-details-wrapper {
+  margin-top: 1.5rem;
+
+  .product-description {
+    margin: 0.5rem 0 1rem;
+  }
 }
 
 .product-features-list {
   margin-left: 2rem;
 }
 
-@media screen and (max-width: 768px) {
-  .product-wrapper {
-    flex-direction: column;
-
-    &>div {
-      flex-basis: 100%;
-    }
+@media screen and (min-width: 600px){
+  .product-wrapper{
+    flex-direction: row;
+    gap: 1.5em;
   }
 
-  .product-image-wrapper {
-    .product-image-main {
-      width: 360px;
-      height: 360px;
-    }
+  .product-image-main {
+    width: 300px;
+    height: 300px;
+  }
 
-    .product-thumb-images-wrapper>div {
-      margin: 0 8px;
+  .product-thumb-images-wrapper {
+    display: flex;
+    margin-top: 12px;
+
+    &>div {
+      margin: 0 4px;
     }
   }
 
   .product-details-wrapper {
-    margin-top: 1rem;
+    margin-top: 0;
   }
 }
 
-@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+@media screen and (min-width: 900px){
   .product-wrapper{
-    gap: 1.5rem;
-  }
-}
-
-@media screen and (max-width: 1024px) and (orientation: landscape) {
-  .product-wrapper>div {
-    flex-basis: 100%;
+    gap: 0;
   }
 
-  .product-image-wrapper {
-    .product-image-main {
-      width: 280px;
-      height: 280px;
-    }
-
-    .product-thumb-images-wrapper>div {
-      margin: 0 8px;
-    }
+  .product-image-main {
+    width: 400px;
+    height: 400px;
   }
 }
