@@ -1,6 +1,5 @@
 import React from "react";
 import { Helmet } from 'react-helmet-async';
-import "../styles/Homepage.scss";
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
