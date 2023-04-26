@@ -79,17 +79,16 @@ export default function ProductCategories() {
   return (
     <Container maxWidth="xl" sx={{
       flexDirection: { xs: 'column', sm: 'row' },
-      gap: { sm: '15px', lg: '2rem' },
+      gap: { xs: '1.5rem', lg: '2rem' },
       display: 'flex',
       flexWrap: { sm: 'wrap' },
-      p: { xs: 2, md: 4 },
-      pb: { xs: 0, md: 4 },
+      px: { xs: 2, md: 4 },
+      py: 4,
       backgroundColor: '#FAFAFA',
     }}>
       {productCategories.map((product) => (
         <Card sx={{
-          flexBasis: { sm: '49%', md: '23%' },
-          mb: { xs: 2, md: 0 },
+          flexBasis: { sm: '48%', md: '23%' },
           border: '1.5px solid #ccc'
         }} key={product.heading}>
           <CardActionArea>
@@ -103,7 +102,7 @@ export default function ProductCategories() {
             </div>
             <CardContent>
               <Typography gutterBottom variant="h3" sx={{
-                fontSize: { xs: '1.5rem' },
+                fontSize: { xs: '1.25rem' },
                 textTransform: 'uppercase'
               }}>
                 {product.heading}
