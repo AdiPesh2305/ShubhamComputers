@@ -5,7 +5,7 @@ import Logo from '../../assets/images/logo.png';
 import TelegramIcon from '@mui/icons-material/Telegram';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import FacebookIcon from '@mui/icons-material/Facebook';
-import TwitterIcon from '@mui/icons-material/Twitter';
+import InstagramIcon from '@mui/icons-material/Instagram';
 import CallIcon from '@mui/icons-material/Call';
 import EmailIcon from '@mui/icons-material/Email';
 import Fab from '@mui/material/Fab';
@@ -14,24 +14,18 @@ function Footer() {
   return (
     <div className='footer-wrapper'>
       <div className='footer-links'>
-        {/* <div className='footer-link-items'>
-          <h2>Quick Links</h2>
-          <Link to='/products'>Products</Link>
-          <Link to='/about'>About</Link>
-          <Link to='/contact-us'>Contact</Link>
-        </div> */}
         <div className='footer-link-items'>
           <h2>Social Media</h2>
-          <a href="#">
+          <a href="https://m.facebook.com/1171466706257889/" target="_blank">
             <FacebookIcon />Facebook
           </a>
           <a href="https://web.whatsapp.com/send?phone=919322249976&text=https://www.shubhamcomputers.com/%0A%0AI'm interested in your products and I have a few questions. Can you help?" target="_blank">
             <WhatsAppIcon /> WhatsApp
           </a>
-          <a href="#">
-            <TwitterIcon />Twitter
+          <a href="https://instagram.com/shubhamcomputersbynaresh?igshid=YmMyMTA2M2Y=" target="_blank">
+            <InstagramIcon />Instagram
           </a>
-          <a href="#">
+          <a href="https://t.me/+RRCFqO62AcP8UUpR" target="_blank">
             <TelegramIcon />Telegram
           </a>
         </div>
