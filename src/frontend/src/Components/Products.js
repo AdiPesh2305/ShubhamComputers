@@ -44,41 +44,47 @@ export default function Products({ productCategories }) {
       response.data.values.shift(); //Remove first row which is column headers from data
 
       allProducts = response.data.values.map((product, index) => {
-        let allFeatures = product[4].split('.');
-        let allCategories = product[0].split('.');
-        let allSubCategories = product[1].split('.');
-        let allThumbnailsSrc = product[10].split('.');
-        let allThumbnailsAlt = product[11].split('.');
-        return {
-          "name": product[2].toLowerCase(),
-          "description": product[3],
-          "features": allFeatures.map(feature => feature.trim()),
-          "price": product[6],
-          "link": product[5],
-          // "categories": allCategories.map(category => category.trim().toLowerCase().replaceAll(' ', '-')),
-          "categories": allCategories.map(category => category.trim().toLowerCase()),
-          "subCategories": allSubCategories.map(subCategory => subCategory.trim().toLowerCase()),
-          "keywords": product[7].split(' '),
-          "mainImg": {
-            "src": product[8],
-            "alt": product[9],
-          },
-          "thumbnails": allThumbnailsSrc.map((thumbnail, index) => {
-            return {
-              "src": thumbnail.trim(),
-              "alt": allThumbnailsAlt[index].trim()
-            }
-          })
+        if (product.length) { //empty row check
+          let allFeatures = product[4].split('.');
+          let allCategories = product[0].split('.');
+          let allSubCategories = product[1].split('.');
+          let allThumbnailsSrc = product[10].split('.');
+          let allThumbnailsAlt = product[11].split('.');
+          return {
+            "name": product[2].toLowerCase(),
+            "description": product[3],
+            "features": allFeatures.map(feature => feature.trim()),
+            "price": product[6],
+            "link": product[5],
+            // "categories": allCategories.map(category => category.trim().toLowerCase().replaceAll(' ', '-')),
+            "categories": allCategories.map(category => category.trim().toLowerCase()),
+            "subCategories": allSubCategories.map(subCategory => subCategory.trim().toLowerCase()),
+            "keywords": product[7].split(' '),
+            "mainImg": {
+              "src": product[8],
+              "alt": product[9],
+            },
+            "thumbnails": allThumbnailsSrc.map((thumbnail, index) => {
+              return {
+                "src": thumbnail.trim(),
+                "alt": allThumbnailsAlt[index].trim()
+              }
+            })
+          }
+        }
+        else {
+          return null;
         }
       });
 
-      if (allProducts.length) {
+      const filteredProducts = allProducts.filter((product) => product != null); //filter null entries
+      if (filteredProducts.length) {
         // console.log('allProducts fetched ', allProducts)
-        sessionStorage.setItem('allProducts', JSON.stringify(allProducts));
-        setAllProducts(allProducts);
-        initializeProducts(allProducts);
-        initializeCategories(allProducts);
-        initializeSubCategories(allProducts);
+        sessionStorage.setItem('allProducts', JSON.stringify(filteredProducts));
+        setAllProducts(filteredProducts);
+        initializeProducts(filteredProducts);
+        initializeCategories(filteredProducts);
+        initializeSubCategories(filteredProducts);
       }
     }
     catch (error) {
@@ -107,7 +113,6 @@ export default function Products({ productCategories }) {
   };
 
   const initializeProducts = (allProducts) => {
-    console.log('fnnn called')
     let results = [];
     let productCategoryHeader = "All products";
 
