@@ -13,7 +13,6 @@ import PlaceholderImage from '../assets/images/logo.png';
 export default function Catalog({productCategories}) {
   const { name } = useParams();
   const location = useLocation();
-  console.log('location ', location, name);
 
   const [product, setProduct] = useState(location.state || null);
   const [features, setFeatures] = useState(location.state ? location.state.features.map((desc, index) => <li key={index}>{desc}</li>) : []);
@@ -28,7 +27,6 @@ export default function Catalog({productCategories}) {
       const response = await axios.get(`https://docs.google.com/spreadsheets/d/1ZvGw6Rj62R7tGGzCXn8GdiRQKOe0TrEWBlQSm2EPnCc/gviz/tq?tqx=out:csv&range=A2:L&sheet=testing&tq=SELECT%20*%20WHERE%20C%20=%20%27${name}%27`);
 
       const formattedResponse = response.data.replace(/(\r\n|\n|\r|")/gm, " ").split(' ,');
-      console.log('formattedResponse ', formattedResponse)
 
       let allFeatures = formattedResponse[4].split('.');
       let allCategories = formattedResponse[0].split('.');
@@ -56,7 +54,6 @@ export default function Catalog({productCategories}) {
         })
       }
 
-      console.log('fetchedProduct ', fetchedProduct)
       setProduct(fetchedProduct);
       setFeatures(fetchedProduct.features.map((desc, index) => <li key={index}>{desc}</li>))
       setMainImg(fetchedProduct.mainImg);

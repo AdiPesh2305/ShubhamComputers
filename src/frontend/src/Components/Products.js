@@ -79,7 +79,6 @@ export default function Products({ productCategories }) {
 
       const filteredProducts = allProducts.filter((product) => product != null); //filter null entries
       if (filteredProducts.length) {
-        // console.log('allProducts fetched ', allProducts)
         sessionStorage.setItem('allProducts', JSON.stringify(filteredProducts));
         setAllProducts(filteredProducts);
         initializeProducts(filteredProducts);
@@ -182,8 +181,6 @@ export default function Products({ productCategories }) {
   }, [route, searchParams]);
 
   const handleProductFilter = (event, type) => {
-    // console.log(event.target.value)
-    // console.log(type)
     if (type == 'category') {
       let route = event.target.value == 'allProducts' ? '' : event.target.value.replaceAll(' ', '-');
       setCategory(event.target.value);
@@ -244,8 +241,6 @@ export default function Products({ productCategories }) {
 
   const handlePageSearch = (event) => {
     const results = (products.length ? products : allProducts).filter((product) => product.name.toLowerCase().includes(event.target.value.toLowerCase()));
-
-    // console.log(searchQuery, results, products, event.target.value, allProducts)
 
     if (event.target.value === "") {
       initializeProducts(allProducts);
