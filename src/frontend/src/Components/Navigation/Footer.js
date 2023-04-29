@@ -16,16 +16,16 @@ function Footer() {
       <div className='footer-links'>
         <div className='footer-link-items'>
           <h2>Social Media</h2>
-          <a href="https://m.facebook.com/1171466706257889/" target="_blank">
+          <a href="https://m.facebook.com/1171466706257889/" target="_blank" rel="noopener noreferrer">
             <FacebookIcon />Facebook
           </a>
-          <a href="https://web.whatsapp.com/send?phone=919322249976&text=https://www.shubhamcomputers.com/%0A%0AI'm interested in your products and I have a few questions. Can you help?" target="_blank">
+          <a href="https://web.whatsapp.com/send?phone=919322249976&text=https://www.shubhamcomputers.com/%0A%0AI'm interested in your products and I have a few questions. Can you help?" target="_blank" rel="noopener noreferrer">
             <WhatsAppIcon /> WhatsApp
           </a>
-          <a href="https://instagram.com/shubhamcomputersbynaresh?igshid=YmMyMTA2M2Y=" target="_blank">
+          <a href="https://instagram.com/shubhamcomputersbynaresh?igshid=YmMyMTA2M2Y=" target="_blank" rel="noopener noreferrer">
             <InstagramIcon />Instagram
           </a>
-          <a href="https://t.me/+RRCFqO62AcP8UUpR" target="_blank">
+          <a href="https://t.me/+RRCFqO62AcP8UUpR" target="_blank" rel="noopener noreferrer">
             <TelegramIcon />Telegram
           </a>
         </div>
