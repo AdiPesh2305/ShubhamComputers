@@ -7,7 +7,8 @@ export default function Loader({message}) {
     return (
         <Box sx={{
             display:'flex',
-            height: '100vh',
+            height: message ? 'auto' : '100vh',
+            width: '100%',
             alignItems: 'center',
             justifyContent: 'center',
             flexDirection: 'column'

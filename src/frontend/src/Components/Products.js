@@ -14,11 +14,12 @@ import FormControl from '@mui/material/FormControl';
 import TextField from "@mui/material/TextField";
 import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
+import Loader from "./Loader";
 
 const NavBar = React.lazy(() => import("./Navigation/NavBar"));
 const Footer = React.lazy(() => import("./Navigation/Footer"));
 
-export default function Products({productCategories}) {
+export default function Products({ productCategories }) {
   const navigate = useNavigate();
   const productsPerPage = 6;
   const { route } = useParams();
@@ -34,6 +35,7 @@ export default function Products({productCategories}) {
   const [subCategory, setSubCategory] = React.useState('all');
   const [sortProductsBy, setSortProductsBy] = useState('nameAsc');
   const [noResultsFound, setNoResultsFound] = React.useState('');
+  const [isLoading, setLoading] = React.useState(true);
 
   const fetchAllProducts = async () => {
     try {
@@ -105,6 +107,7 @@ export default function Products({productCategories}) {
   };
 
   const initializeProducts = (allProducts) => {
+    console.log('fnnn called')
     let results = [];
     let productCategoryHeader = "All products";
 
@@ -128,6 +131,7 @@ export default function Products({productCategories}) {
 
     setProducts(results);
     setProductCategoryHeader(productCategoryHeader);
+    setLoading(false);
   }
 
   // To check for session storage
@@ -135,17 +139,17 @@ export default function Products({productCategories}) {
     const hours = 0.01; // to clear the sessionStorage after 1 hour
 
     const currentTime = new Date().getTime();
-    let setupTime = sessionStorage.getItem('setupTime');
+    let productsSession = sessionStorage.getItem('productsSession');
 
-    if (setupTime == null) {
-      sessionStorage.setItem('setupTime', currentTime);
+    if (productsSession == null) {
+      sessionStorage.setItem('productsSession', currentTime);
       await fetchAllProducts();
       console.log('session set')
     }
     else {
-      if (currentTime - setupTime > hours * 60 * 60 * 1000) {
-        sessionStorage.removeItem('setupTime');
-        sessionStorage.setItem('setupTime', currentTime);
+      if (currentTime - productsSession > hours * 60 * 60 * 1000) {
+        sessionStorage.removeItem('productsSession');
+        sessionStorage.setItem('productsSession', currentTime);
         await fetchAllProducts();
         console.log('session refreshed')
       }
@@ -183,10 +187,10 @@ export default function Products({productCategories}) {
     }
     else {
       let results = allProducts.filter((product) => { //filter all products based on category
-        return product.categories.includes(category);
+        return category == 'allProducts' ? product : product.categories.includes(category);
       });
 
-      results = results.filter((product) => {//filter all products based on sub-category
+      results = results.filter((product) => { //filter all products based on sub-category
         return event.target.value == 'all' ? product : product.subCategories.includes(event.target.value);
       });
       setSubCategory(event.target.value);
@@ -260,7 +264,7 @@ export default function Products({productCategories}) {
         <title>Shubham Computers - Our Products</title>
         <meta name="description" content="Shubham Computers - Our Products" />
       </Helmet>
-      <NavBar categories={productCategories}/>
+      <NavBar categories={productCategories} />
       <Container maxWidth="xl" className="products-page">
         <Box sx={{
           display: 'flex',
@@ -284,7 +288,7 @@ export default function Products({productCategories}) {
           </Typography>
           <FormControl size="small" sx={{
             flexBasis: { md: '30%' },
-            display: {xs: 'none', md: 'flex'}
+            display: { xs: 'none', md: 'flex' }
           }}>
             <TextField
               id="outlined-search"
@@ -305,7 +309,7 @@ export default function Products({productCategories}) {
         }}>
           <FormControl size="small" sx={{
             flexBasis: { xs: '48%', sm: '38%' },
-            display: {xs: 'none', sm: 'flex'}
+            display: { xs: 'none', sm: 'flex' }
           }}>
             <InputLabel id="select-label">Filter products by category</InputLabel>
             <Select
@@ -364,22 +368,25 @@ export default function Products({productCategories}) {
           display: 'flex',
           gap: { xs: '14px', sm: '25px', lg: '16px' },
           mb: 2,
-          flexWrap: { xs: 'wrap' },
+          flexWrap: { xs: 'wrap' }
         }}>
-          {products.length > 0
-            ? products.slice(0, index).map((product) => (
-              <Product product={product} key={product.name} />
-            ))
-            : (
-              <Typography
-                variant="body1"
-                sx={{
-                  fontSize: { xs: '1em', md: '1.25em' },
-                }}
-              >
-                {noResultsFound}
-              </Typography>
-            )}
+          {
+            isLoading ? <Loader message="Loading products..." /> :
+              products.length > 0
+                ? products.slice(0, index).map((product) => (
+                  <Product product={product} key={product.name} />
+                ))
+                : (
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      fontSize: { xs: '1em', md: '1.25em' },
+                    }}
+                  >
+                    {noResultsFound}
+                  </Typography>
+
+                )}
         </Box>
         <Box sx={{
           display: 'flex',

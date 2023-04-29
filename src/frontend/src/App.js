@@ -51,17 +51,17 @@ function App() {
     const hours = 0.01; // to clear the sessionStorage after 1 hour
 
     const now = new Date().getTime();
-    let setupTime = sessionStorage.getItem('setupTime');
+    let productCategoriesSession = sessionStorage.getItem('productCategoriesSession');
 
-    if (setupTime == null) {
-      sessionStorage.setItem('setupTime', now);
+    if (productCategoriesSession == null) {
+      sessionStorage.setItem('productCategoriesSession', now);
       await fetchProductCategories();
       console.log('session set')
     }
     else {
-      if (now - setupTime > hours * 60 * 60 * 1000) {
-        sessionStorage.removeItem('setupTime');
-        sessionStorage.setItem('setupTime', now);
+      if (now - productCategoriesSession > hours * 60 * 60 * 1000) {
+        sessionStorage.removeItem('productCategoriesSession');
+        sessionStorage.setItem('productCategoriesSession', now);
         await fetchProductCategories();
         console.log('session refreshed')
       }
