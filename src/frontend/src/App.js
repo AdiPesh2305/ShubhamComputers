@@ -85,7 +85,7 @@ function App() {
     <Router>
       <Suspense
         fallback={
-          <Loader message="Loading Shubham Computers..." />
+          <Loader />
         }
       >
         <NavBar categories={productCategories}/>
