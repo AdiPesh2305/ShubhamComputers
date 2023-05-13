@@ -23,6 +23,7 @@ function GoogleMaps() {
 
     const onLoad = useCallback(function callback(map) {
         const bounds = new window.google.maps.LatLngBounds(center);
+        map.setMapTypeId('hybrid');
         map.fitBounds(bounds);
 
         setMap(map);
