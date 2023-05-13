@@ -3,7 +3,8 @@ import "../../styles/HeroImage.scss";
 import HeroImg from '../../assets/images/hero-image.jpg';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
-export default function HeroImage() {
+const HeroImage = () => {
+  console.log('HeroImage re-rending')
   return (
     <div className='hero-wrapper'>
       <LazyLoadImage
@@ -16,3 +17,5 @@ export default function HeroImage() {
     </div>
   );
 }
+
+export default React.memo(HeroImage);

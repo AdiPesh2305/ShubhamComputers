@@ -5,7 +5,6 @@ import axios from "../api/services";
 import { useNavigate } from "react-router-dom";
 import Typography from '@mui/material/Typography';
 import "../styles/Products.scss";
-import Product from "./Product";
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
@@ -16,10 +15,9 @@ import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
 import Loader from "./Loader";
 
-const NavBar = React.lazy(() => import("./Navigation/NavBar"));
-const Footer = React.lazy(() => import("./Navigation/Footer"));
+const Product = React.lazy(() => import("./Product"));
 
-export default function Products({ productCategories }) {
+const Products = () => {
   const navigate = useNavigate();
   const productsPerPage = 16;
   const { route } = useParams();
@@ -264,7 +262,6 @@ export default function Products({ productCategories }) {
         <title>Shubham Computers - Our Products</title>
         <meta name="description" content="Shubham Computers - Our Products" />
       </Helmet>
-      <NavBar categories={productCategories} />
       <Container maxWidth="xl" className="products-page">
         <Box sx={{
           display: 'flex',
@@ -400,7 +397,8 @@ export default function Products({ productCategories }) {
           )}
         </Box>
       </Container>
-      <Footer />
     </div>
   );
 }
+
+export default React.memo(Products);

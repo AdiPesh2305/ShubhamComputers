@@ -80,6 +80,8 @@ const NavBar = (props) => {
     }
   };
 
+  console.log('Navbars re-rending');
+
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'left', width: '300px' }}>
       <Typography variant="h6" sx={{ my: 2, pl: 2 }}>

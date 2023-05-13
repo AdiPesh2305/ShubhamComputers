@@ -6,18 +6,17 @@ import Typography from '@mui/material/Typography';
 import CallIcon from '@mui/icons-material/Call';
 import EmailIcon from '@mui/icons-material/Email';
 
-const NavBar = React.lazy(() => import("./Navigation/NavBar"));
-const Footer = React.lazy(() => import("./Navigation/Footer"));
 const GoogleMaps = React.lazy(() => import("./GoogleMaps"));
 
-export default function Contact({productCategories}) {
+const Contact = () => {
+  console.log('Contact re-rending');
+
   return (
     <div>
       <Helmet>
         <title>Shubham Computers - Contact Us</title>
         <meta name="description" content="Shubham Computers - Contact Us" />
       </Helmet>
-      <NavBar categories={productCategories}/>
       <Box sx={{
         px: { xs: 2, md: 4 },
         py: 2,
@@ -107,7 +106,8 @@ export default function Contact({productCategories}) {
           </div>
         </Box>
       </Box>
-      <Footer />
     </div>
   );
 }
+
+export default React.memo(Contact);

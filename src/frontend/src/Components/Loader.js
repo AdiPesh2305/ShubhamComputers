@@ -3,7 +3,9 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import CircularProgress from '@mui/material/CircularProgress';
 
-export default function Loader({message}) {
+const Loader = ({message}) => {
+    console.log('Loader re-rending');
+
     return (
         <Box sx={{
             display:'flex',
@@ -27,3 +29,5 @@ export default function Loader({message}) {
         </Box>
     );
 }
+
+export default React.memo(Loader);

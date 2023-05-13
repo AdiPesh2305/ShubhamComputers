@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import PlaceholderImage from '../assets/images/logo.png';
 
-export default function ProductCategories({categories}) {
+const ProductCategories = ({categories}) => {
   return (
     <Container maxWidth="xl" sx={{
       flexDirection: { xs: 'column', sm: 'row' },
@@ -59,3 +59,5 @@ export default function ProductCategories({categories}) {
     </Container>
   );
 }
+
+export default React.memo(ProductCategories);

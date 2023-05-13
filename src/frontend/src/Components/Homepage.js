@@ -3,19 +3,17 @@ import { Helmet } from 'react-helmet-async';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
-const NavBar = React.lazy(() => import("./Navigation/NavBar"));
-const Footer = React.lazy(() => import("./Navigation/Footer"));
 const ProductCategories = React.lazy(() => import("./ProductCategories"));
 const HeroImage = React.lazy(() => import("./Navigation/HeroImage"));
 
-export default function Homepage({productCategories}) {
+const Homepage = ({productCategories}) => {
+  console.log('Homepage re-rending');
   return (
     <div>
       <Helmet>
         <title>Shubham Computers - Home</title>
         <meta name="description" content="Shubham Computers - Home" />
       </Helmet>
-      <NavBar categories={productCategories}/>
       <HeroImage />
       <Box sx={{
         px: { xs: 2, md: 4 },
@@ -40,7 +38,8 @@ export default function Homepage({productCategories}) {
         </Box>
       </Box>
       <ProductCategories categories={productCategories} />
-      <Footer />
     </div>
   );
 }
+
+export default React.memo(Homepage);

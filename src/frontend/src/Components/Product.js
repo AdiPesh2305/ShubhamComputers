@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import PlaceholderImage from '../assets/images/logo.png';
 
-export default function Product(props) {
+const Product = (props) => {
   const navigate = useNavigate();
   const {product} = props;
 
@@ -45,3 +45,5 @@ export default function Product(props) {
     </Card>
   );
 }
+
+export default React.memo(Product);

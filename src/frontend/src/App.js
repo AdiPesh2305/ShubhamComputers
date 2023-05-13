@@ -2,10 +2,12 @@ import React, { Suspense, lazy, useState, useEffect } from "react";
 import axios from "./api/services";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { HelmetProvider } from 'react-helmet-async';
-import Loader from "./Components/Loader";
 import "./styles/App.scss";
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import Loader from "./Components/Loader";
 
+const NavBar = React.lazy(() => import("./Components/Navigation/NavBar"));
+const Footer = React.lazy(() => import("./Components/Navigation/Footer"));
 const Homepage = lazy(() => import("./Components/Homepage"));
 const About = lazy(() => import("./Components/About"));
 const Contact = lazy(() => import("./Components/Contact"));
@@ -15,7 +17,7 @@ const PageNotFound = lazy(() => import("./Components/PageNotFound"));
 
 function App() {
   const [productCategories, setProductCategories] = useState(JSON.parse(sessionStorage.getItem('productCategories')) || []);
-
+  console.log('App re-rending')
   const fetchProductCategories = async () => {
     try {
       let allCategories = null;
@@ -83,20 +85,22 @@ function App() {
     <Router>
       <Suspense
         fallback={
-          <Loader />
+          <Loader message="Loading Shubham Computers..." />
         }
       >
+        <NavBar categories={productCategories}/>
         <HelmetProvider>
           <Routes>
             <Route exact path="/" element={<Homepage productCategories={productCategories} />} />
-            <Route exact path="/about" element={<About productCategories={productCategories} />} />
-            <Route exact path="/contact-us" element={<Contact productCategories={productCategories} />} />
-            <Route exact path="/products" element={<Products productCategories={productCategories} />} />
-            <Route exact path="/products/:route" element={<Products productCategories={productCategories} />} />
-            <Route exact path="/products/view/:name" element={<ProductView productCategories={productCategories}/>} />
+            <Route exact path="/about" element={<About />} />
+            <Route exact path="/contact-us" element={<Contact />} />
+            <Route exact path="/products" element={<Products />} />
+            <Route exact path="/products/:route" element={<Products />} />
+            <Route exact path="/products/view/:name" element={<ProductView />} />
             <Route path="/*" element={<PageNotFound />} />
           </Routes>
         </HelmetProvider>
+        <Footer />
       </Suspense>
     </Router>
   );

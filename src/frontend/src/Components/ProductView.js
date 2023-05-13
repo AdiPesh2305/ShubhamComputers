@@ -2,15 +2,13 @@ import React, { useState, useEffect } from "react";
 import { Helmet } from 'react-helmet-async';
 import { useLocation, useParams } from 'react-router-dom';
 import "../styles/ProductView.scss";
-import NavBar from "./Navigation/NavBar";
-import Footer from "./Navigation/Footer";
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import axios from "../api/services";
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import PlaceholderImage from '../assets/images/logo.png';
 
-export default function Catalog({productCategories}) {
+const Catalog = () => {
   const { name } = useParams();
   const location = useLocation();
 
@@ -83,7 +81,6 @@ export default function Catalog({productCategories}) {
         <title>Shubham Computers - {product.name}</title>
         <meta name="description" content="Shubham Computers - Product Details" />
       </Helmet>
-      <NavBar categories={productCategories}/>
       <Box sx={{
         p: { sm: 0, md: 4 },
         backgroundColor: '#FAFAFA'
@@ -101,10 +98,6 @@ export default function Catalog({productCategories}) {
               <div className="product-thumb-images-wrapper">
                 {product.thumbnails.map((thumb, index) => (
                   <div className={isActive === index ? 'active' : ''} onClick={() => handleThumbClick(thumb, index)} key={index}>
-                    {/* <img
-                      src={`/images/products/${thumb?.src}.jpg`}
-                      alt={thumb.alt}
-                    /> */}
                      <LazyLoadImage 
                       src={`/images/products/${thumb?.src}`}
                       alt={thumb.alt}
@@ -153,7 +146,8 @@ export default function Catalog({productCategories}) {
           </div>
         </div>
       </Box>
-      <Footer />
     </div>
   );
 }
+
+export default React.memo(Catalog);
