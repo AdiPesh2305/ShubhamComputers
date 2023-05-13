@@ -24,7 +24,7 @@ export default function Product(props) {
       <CardActionArea onClick={handleProductClick}>
         <div className='card-media-wrapper'>
           <LazyLoadImage 
-            src={`/images/products/${product?.mainImg?.src}.jpg`}
+            src={`/images/products/${product?.mainImg?.src}`}
             alt={product.mainImg.alt}
             placeholderSrc={PlaceholderImage}
             effect="blur"

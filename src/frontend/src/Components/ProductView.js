@@ -106,7 +106,7 @@ export default function Catalog({productCategories}) {
                       alt={thumb.alt}
                     /> */}
                      <LazyLoadImage 
-                      src={`/images/products/${thumb?.src}.jpg`}
+                      src={`/images/products/${thumb?.src}`}
                       alt={thumb.alt}
                       placeholderSrc={PlaceholderImage}
                       effect="blur"

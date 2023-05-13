@@ -21,10 +21,9 @@ const Footer = React.lazy(() => import("./Navigation/Footer"));
 
 export default function Products({ productCategories }) {
   const navigate = useNavigate();
-  const productsPerPage = 6;
+  const productsPerPage = 16;
   const { route } = useParams();
   const [searchParams] = useSearchParams();
-
   const [allProducts, setAllProducts] = useState(JSON.parse(sessionStorage.getItem('allProducts')) || []);
   const [products, setProducts] = useState([]);
   const [index, setIndex] = useState(productsPerPage);
@@ -48,8 +47,9 @@ export default function Products({ productCategories }) {
           let allFeatures = product[4].split('.');
           let allCategories = product[0].split('.');
           let allSubCategories = product[1].split('.');
-          let allThumbnailsSrc = product[10].split('.');
+          let allThumbnailsSrc = product[10].split(',');
           let allThumbnailsAlt = product[11].split('.');
+          console.log('allThumbnailsSrc ', allThumbnailsSrc)
           return {
             "name": product[2].toLowerCase(),
             "description": product[3],
