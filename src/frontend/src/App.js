@@ -6,8 +6,8 @@ import "./styles/App.scss";
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import Loader from "./Components/Loader";
 
-const NavBar = React.lazy(() => import("./Components/Navigation/NavBar"));
-const Footer = React.lazy(() => import("./Components/Navigation/Footer"));
+const NavBar = lazy(() => import("./Components/Navigation/NavBar"));
+const Footer = lazy(() => import("./Components/Navigation/Footer"));
 const Homepage = lazy(() => import("./Components/Homepage"));
 const About = lazy(() => import("./Components/About"));
 const Contact = lazy(() => import("./Components/Contact"));
