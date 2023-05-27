@@ -4,8 +4,6 @@ import Typography from '@mui/material/Typography';
 import CircularProgress from '@mui/material/CircularProgress';
 
 const Loader = ({message}) => {
-    console.log('Loader re-rending');
-
     return (
         <Box sx={{
             display:'flex',

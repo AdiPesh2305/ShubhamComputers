@@ -17,7 +17,6 @@ const PageNotFound = lazy(() => import("./Components/PageNotFound"));
 
 function App() {
   const [productCategories, setProductCategories] = useState(JSON.parse(sessionStorage.getItem('productCategories')) || []);
-  console.log('App re-rending')
   const fetchProductCategories = async () => {
     try {
       let allCategories = null;

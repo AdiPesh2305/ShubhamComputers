@@ -9,8 +9,6 @@ import EmailIcon from '@mui/icons-material/Email';
 const GoogleMaps = React.lazy(() => import("./GoogleMaps"));
 
 const Contact = () => {
-  console.log('Contact re-rending');
-
   return (
     <div>
       <Helmet>

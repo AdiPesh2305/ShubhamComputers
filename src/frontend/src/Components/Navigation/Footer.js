@@ -11,7 +11,6 @@ import EmailIcon from '@mui/icons-material/Email';
 import Fab from '@mui/material/Fab';
 
 function Footer() {
-  console.log('FooterS re-rending')
   return (
     <div className='footer-wrapper'>
       <div className='footer-links'>

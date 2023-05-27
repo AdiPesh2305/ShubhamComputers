@@ -6,8 +6,6 @@ import Typography from '@mui/material/Typography';
 const HeroImage = React.lazy(() => import("./Navigation/HeroImage"));
 
 const About = () => {
-
-  console.log('About re-rending')
   return (
     <div>
       <Helmet>

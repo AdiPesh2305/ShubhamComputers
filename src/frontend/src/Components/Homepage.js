@@ -7,7 +7,6 @@ const ProductCategories = React.lazy(() => import("./ProductCategories"));
 const HeroImage = React.lazy(() => import("./Navigation/HeroImage"));
 
 const Homepage = ({productCategories}) => {
-  console.log('Homepage re-rending');
   return (
     <div>
       <Helmet>
