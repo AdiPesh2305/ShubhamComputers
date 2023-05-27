@@ -81,7 +81,7 @@ function App() {
   }, []);
 
   return (
-    <Router>
+    <Router basename="/ShubhamComputers">
       <Suspense
         fallback={
           <Loader />
