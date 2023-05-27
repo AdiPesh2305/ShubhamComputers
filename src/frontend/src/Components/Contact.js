@@ -79,7 +79,7 @@ const Contact = () => {
             <a href="tel:9222785781">
               <CallIcon /> +91 9222785781
             </a>
-            <a href="mailto:mailto:shubhamcomputers@hotmail.com?subject=Inquiry%20about%20Shubham%20Computers%20Products%20&body=Hi, %0D%0A%0D%0A">
+            <a href="mailto:shubhamcomputers@hotmail.com?subject=Inquiry%20about%20Shubham%20Computers%20Products%20&body=Hi, %0D%0A%0D%0A">
               <EmailIcon /> shubhamcomputers@hotmail.com
             </a>
             <Typography

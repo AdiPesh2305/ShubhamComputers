@@ -119,7 +119,7 @@ const NavBar = (props) => {
       <a href="https://m.facebook.com/1171466706257889/" target="_blank" rel="noopener noreferrer">
           <FacebookIcon />Facebook
         </a>
-        <a href="https://web.whatsapp.com/send?phone=919322249976&text=https://www.shubhamcomputers.com/%0A%0AI'm interested in your products and I have a few questions. Can you help?" target="_blank" rel="noopener noreferrer">
+        <a href="//api.whatsapp.com/send?phone=919322249976&text=https://www.shubhamcomputers.com/%0A%0AI'm interested in your products and I have a few questions. Can you help?" target="_blank" rel="noopener noreferrer">
           <WhatsAppIcon /> WhatsApp
         </a>
         <a href="https://instagram.com/shubhamcomputersbynaresh?igshid=YmMyMTA2M2Y=" target="_blank" rel="noopener noreferrer">
