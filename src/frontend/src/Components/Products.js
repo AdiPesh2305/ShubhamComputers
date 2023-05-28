@@ -47,7 +47,6 @@ const Products = () => {
           let allSubCategories = product[1].split('.');
           let allThumbnailsSrc = product[10].split(',');
           let allThumbnailsAlt = product[11].split('.');
-          console.log('allThumbnailsSrc ', allThumbnailsSrc)
           return {
             "name": product[2].toLowerCase(),
             "description": product[3],
