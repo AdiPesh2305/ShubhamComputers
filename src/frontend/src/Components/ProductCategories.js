@@ -24,7 +24,7 @@ const ProductCategories = ({categories}) => {
           flexBasis: { sm: '48%', md: '23%' },
           border: '1.5px solid #ccc'
         }} key={product.heading}>
-          <CardActionArea>
+          <CardActionArea component={Link} to={product.routeTo}>
             <div className='card-media-wrapper'>
               <LazyLoadImage 
                 src={`/images/homePageProducts/${product?.imgSrc}`}
@@ -51,7 +51,7 @@ const ProductCategories = ({categories}) => {
               pr: 2,
             }}>
             <Button size="small" component={Link} to={product.routeTo}>
-              {product.btnText}
+              Explore {product.heading}
             </Button>
           </CardActions>
         </Card>

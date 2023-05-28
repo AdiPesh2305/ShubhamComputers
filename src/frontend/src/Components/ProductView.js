@@ -90,7 +90,7 @@ const Catalog = () => {
           <div className="product-image-wrapper">
             <div className="product-image-main">
               <img
-                src={`/images/products/${mainImg?.src}.jpg`}
+                src={`/images/products/${mainImg?.src}`}
                 alt={mainImg.alt}
               />
             </div>
@@ -116,14 +116,14 @@ const Catalog = () => {
             }}>
               {product.name.toUpperCase()}
             </Typography>
-            <div className="product-price-wrapper">
+            <div className="product-price-wrapper" style={{fontSize: "1.5rem"}}>
               &#8377; {product.price}
             </div>
             {product.description &&
               <>
                 <Typography gutterBottom variant="h3" sx={{
                   fontSize: '1.25em',
-                  m: 0
+                  mt: 2
                 }}>
                   Product Description
                 </Typography>

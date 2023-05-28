@@ -31,7 +31,7 @@ function App() {
           "imgSrc": category[2],
           "imgAlt": category[3],
           "routeTo": `/products/${category[4]}`,
-          'btnText': 'Learn More',
+          'btnText': 'Explore More',
         }
       });
 

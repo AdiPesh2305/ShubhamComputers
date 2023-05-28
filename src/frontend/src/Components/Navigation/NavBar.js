@@ -64,24 +64,26 @@ const NavBar = (props) => {
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
+    setMobileSearchOpen(false); //close the search container on mobile
   };
 
   const handleMobileSearchToggle = () => {
     setMobileSearchOpen(!mobileSearchOpen);
   };
 
-  const handleClick = (e, item) => {
+  const handleClick = async (e, item) => {
     if (item.isExpandable) {
       e.stopPropagation();
       setExpandList(!expandList);
     }
     else {
+      await setMobileOpen(false);
       navigate(`${item.routeTo}`);
     }
   };
 
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'left', width: '300px' }}>
+    <Box onClick={handleDrawerToggle}>
       <Typography variant="h6" sx={{ my: 2, pl: 2 }}>
         <img className="branding-logo" src={Logo} alt="logo" style={{ verticalAlign: 'top' }} />
         Shubham Computers
@@ -96,7 +98,7 @@ const NavBar = (props) => {
           {expandList ? <ExpandLessIcon /> : <ExpandMoreIcon />}
         </ListItemButton>
         <Collapse in={expandList} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding className="kalpesh">
+          <List component="div" disablePadding>
             <ListItemButton sx={{ pl: 4 }} component={Link} to="/products">
               <ListItemText primary="All Products" />
             </ListItemButton>
@@ -193,13 +195,13 @@ const NavBar = (props) => {
 
   return (
     <AppBar position="sticky" sx={{
-      background: '#000',
+      background: '#000'
     }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <IconButton
             color="inherit"
-            aria-label="open drawer"
+            aria-label="open menu"
             edge="start"
             onClick={handleDrawerToggle}
             sx={{ mr: 2, display: { md: 'none' } }}
