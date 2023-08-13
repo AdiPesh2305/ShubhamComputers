@@ -19,35 +19,37 @@ const Catalog = () => {
     alt: location.state.mainImg.alt
   } : {});
   const [isActive, setIsActive] = useState(0);
+  const [pointerPosition, setPointerPosition] = useState(null)
 
   const fetchProduct = async () => {
     try {
-      const response = await axios.get(`https://docs.google.com/spreadsheets/d/1ZvGw6Rj62R7tGGzCXn8GdiRQKOe0TrEWBlQSm2EPnCc/gviz/tq?tqx=out:csv&range=A2:L&sheet=testing&tq=SELECT%20*%20WHERE%20C%20=%20%27${name}%27`);
+      const response = await axios.get(`https://docs.google.com/spreadsheets/d/1ZvGw6Rj62R7tGGzCXn8GdiRQKOe0TrEWBlQSm2EPnCc/gviz/tq?tqx=out:csv&range=A2:L&sheet=testData&tq=SELECT%20*%20WHERE%20C%20=%20%27${name}%27`);
 
       const formattedResponse = response.data.replace(/(\r\n|\n|\r|")/gm, " ").split(' ,');
 
-      let allFeatures = formattedResponse[4].split('.');
-      let allCategories = formattedResponse[0].split('.');
-      let allThumbnailsSrc = formattedResponse[10].split('.');
-      let allThumbnailsAlt = formattedResponse[11].split('.');
+      let allFeatures = formattedResponse[3]?.split('.');
+      let allCategories = formattedResponse[1]?.split('.');
+      let allThumbnailsSrc = formattedResponse[9]?.split('.');
+      let allThumbnailsAlt = formattedResponse[10]?.split('.');
+      let allThumbnailsPrices = formattedResponse[11]?.split('.');
 
       let fetchedProduct = {
-        "name": formattedResponse[2].toLowerCase().trim(),
-        "description": formattedResponse[3].trim(),
-        "features": allFeatures.map(feature => feature.trim()),
-        "price": formattedResponse[6].trim(),
-        "link": formattedResponse[5],
+        "name": formattedResponse[0].toLowerCase()?.trim(),
+        "features": allFeatures?.map(feature => feature.trim()),
+        "price": formattedResponse[5],
+        "link": formattedResponse[4],
         // "categories": allCategories.map(category => category.trim().toLowerCase().replaceAll(' ', '-')),
-        "categories": allCategories.map(category => category.trim().toLowerCase()),
-        "keywords": formattedResponse[7].split(' '),
+        "categories": allCategories?.map(category => category.trim().toLowerCase()),
+        "keywords": formattedResponse[6]?.split(' '),
         "mainImg": {
-          "src": formattedResponse[8].trim(),
-          "alt": formattedResponse[9].trim(),
+          "src": formattedResponse[7]?.trim(),
+          "alt": formattedResponse[8]?.trim(),
         },
-        "thumbnails": allThumbnailsSrc.map((thumbnail, index) => {
+        "thumbnails": allThumbnailsSrc?.map((thumbnail, index) => {
           return {
-            "src": thumbnail.trim(),
-            "alt": allThumbnailsAlt[index].trim()
+            "src": thumbnail?.trim(),
+            "alt": allThumbnailsAlt[index]?.trim(),
+            "price": allThumbnailsPrices[index]?.trim()
           }
         })
       }
@@ -75,6 +77,16 @@ const Catalog = () => {
     })
   };
 
+  const handleMouseMove = (event) => {
+    const { left, top, width, height } = event.target.getBoundingClientRect();
+    // console.log(event)
+    // console.log(event.target.getBoundingClientRect())
+    setPointerPosition({
+      top: event.pageY - top,
+      left: event.pageX - left
+    })
+  }
+
   return (
     product && <div>
       <Helmet>
@@ -88,11 +100,13 @@ const Catalog = () => {
       >
         <div className="product-wrapper">
           <div className="product-image-wrapper">
-            <div className="product-image-main">
+            <div className="product-image-main" onMouseMove={(event) => handleMouseMove(event)}>
               <img
                 src={`/images/products/${mainImg?.src}`}
                 alt={mainImg.alt}
+                // xstyle={this.state}
               />
+              <span className="pointer" style={pointerPosition}></span>
             </div>
             {product.thumbnails.length > 0 &&
               <div className="product-thumb-images-wrapper">
@@ -119,28 +133,28 @@ const Catalog = () => {
             <div className="product-price-wrapper" style={{fontSize: "1.5rem"}}>
               &#8377; {product.price}
             </div>
-            {product.description &&
-              <>
-                <Typography gutterBottom variant="h3" sx={{
-                  fontSize: '1.25em',
-                  mt: 2
-                }}>
-                  Product Description
-                </Typography>
-                <div className="product-description">{product.description}</div>
-              </>
-            }
             {product.features.length > 0 &&
               <>
                 <Typography gutterBottom variant="h3" sx={{
                   fontSize: '1.25em',
                   m: 0
                 }}>
-                  Product Features
+                  Product Description & Features
                 </Typography>
                 <ul className="product-features-list">
                   {features}
                 </ul>
+              </>
+            }
+            {product.link &&
+              <>
+                <Typography gutterBottom variant="h3" sx={{
+                  fontSize: '1.25em',
+                  m: 0,
+                  mt: 3
+                }}>
+                  Product Link
+                </Typography>
               </>
             }
           </div>

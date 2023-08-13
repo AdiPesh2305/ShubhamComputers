@@ -19,7 +19,7 @@ const Product = React.lazy(() => import("./Product"));
 
 const Products = () => {
   const navigate = useNavigate();
-  const productsPerPage = 16;
+  const productsPerPage = 6;
   const { route } = useParams();
   const [searchParams] = useSearchParams();
   const [allProducts, setAllProducts] = useState(JSON.parse(sessionStorage.getItem('allProducts')) || []);
@@ -37,34 +37,36 @@ const Products = () => {
   const fetchAllProducts = async () => {
     try {
       let allProducts = null;
-      const response = await axios(`/${process.env.REACT_APP_GOOGLE_SHEET_ID}/values/testing`);
+      const response = await axios(`/${process.env.REACT_APP_GOOGLE_SHEET_ID}/values/testData`);
       response.data.values.shift(); //Remove first row which is column headers from data
 
       allProducts = response.data.values.map((product, index) => {
         if (product.length) { //empty row check
-          let allFeatures = product[4].split('.');
-          let allCategories = product[0].split('.');
-          let allSubCategories = product[1].split('.');
-          let allThumbnailsSrc = product[10].split(',');
-          let allThumbnailsAlt = product[11].split('.');
+          let allFeatures = product[3]?.split('.');
+          let allCategories = product[1]?.split('.');
+          let allSubCategories = product[2]?.split('.');
+          //Split a string by newline and remove empty strings after splitting
+          let allThumbnailsSrc = product[9]?.split(/\r?\n/).filter(element => element); 
+          let allThumbnailsAlt = product[10]?.split(/\r?\n/).filter(element => element);
+          let allThumbnailsPrices = product[11]?.split(/\r?\n/).filter(element => element);
           return {
-            "name": product[2].toLowerCase(),
-            "description": product[3],
-            "features": allFeatures.map(feature => feature.trim()),
-            "price": product[6],
-            "link": product[5],
+            "name": product[0].toLowerCase(),
+            "features": allFeatures?.map(feature => feature.trim()),
+            "price": product[5],
+            "link": product[4],
             // "categories": allCategories.map(category => category.trim().toLowerCase().replaceAll(' ', '-')),
-            "categories": allCategories.map(category => category.trim().toLowerCase()),
-            "subCategories": allSubCategories.map(subCategory => subCategory.trim().toLowerCase()),
-            "keywords": product[7].split(' '),
+            "categories": allCategories?.map(category => category.trim().toLowerCase()),
+            "subCategories": allSubCategories?.map(subCategory => subCategory.trim().toLowerCase()),
+            "keywords": product[6]?.split(' '),
             "mainImg": {
-              "src": product[8],
-              "alt": product[9],
+              "src": product[7],
+              "alt": product[8],
             },
-            "thumbnails": allThumbnailsSrc.map((thumbnail, index) => {
+            "thumbnails": allThumbnailsSrc?.map((thumbnail, index) => {
               return {
-                "src": thumbnail.trim(),
-                "alt": allThumbnailsAlt[index].trim()
+                "src": thumbnail?.trim(),
+                "alt": allThumbnailsAlt[index]?.trim(),
+                "price": allThumbnailsPrices[index]?.trim()
               }
             })
           }
@@ -137,7 +139,7 @@ const Products = () => {
 
   // To check for session storage
   const storeProducts = async () => {
-    const hours = 0.01; // to clear the sessionStorage after 1 hour
+    const hours = 0; // to clear the sessionStorage after 1 hour
 
     const currentTime = new Date().getTime();
     let productsSession = sessionStorage.getItem('productsSession');

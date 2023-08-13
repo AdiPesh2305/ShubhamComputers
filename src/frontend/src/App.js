@@ -49,7 +49,7 @@ function App() {
 
   // To check for session storage
   const storeProductCategories = async () => {
-    const hours = 0.01; // to clear the sessionStorage after 1 hour
+    const hours = 0; // to clear the sessionStorage after 1 hour
     // if someone want to clear after 8hrs simply change hours = 8
 
     const now = new Date().getTime();
